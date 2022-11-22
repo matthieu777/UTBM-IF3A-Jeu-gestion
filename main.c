@@ -22,11 +22,16 @@ int affichage(int *plateau){
   printf("---------------------\n\n\n");
 }
 
-void place(int *plateau, int couleur, int x, int y){
+int place(int *plateau, int couleur, int x, int y){
   //made by Pierre
   //fonction qui place la couleur au coordonnees x et y du plateau
   //couleur peut etre 0 pour vider la case
-  plateau[y * DIMENSION +x] = couleur;
+  if(plateau[y * DIMENSION +x] == 0 && x < DIMENSION && y < DIMENSION){
+
+    plateau[y * DIMENSION +x] = couleur;
+    return 1;
+  }
+  else{return 0;}
 }
 
 int deplacement(int *plateau, int x_depart, int y_depart, int x_arrive, int y_arrive){
@@ -34,22 +39,21 @@ int deplacement(int *plateau, int x_depart, int y_depart, int x_arrive, int y_ar
   //fonction qui effectu le deplacement d'un pion
   //return 1 si l'operation est correct, 0 sinon
   // condition: la case d'arrivé doit etre vide et suffisament proche
-  if ((plateau[y_arrive * DIMENSION + x_arrive]==0) && x_arrive-x_depart<=1 && x_arrive-x_depart>=-1 && y_arrive-y_depart<=1 && y_arrive-y_depart>=-1){  // condition a simplifier
+  if ((plateau[y_arrive * DIMENSION + x_arrive]==0) && x_arrive-x_depart<=1 && x_arrive-x_depart>=-1 && y_arrive-y_depart<=1 && y_arrive-y_depart>=-1 && (plateau[y_depart * DIMENSION + x_depart]!=0)){  // condition a simplifier
     int couleur = plateau[y_depart * DIMENSION + x_depart];
-    place(plateau, 0, x_depart, y_depart);
-    place(plateau, couleur, x_arrive, y_arrive);
+    plateau[y_depart * DIMENSION +x_depart] = 0;
+    plateau[y_arrive * DIMENSION +x_arrive] = couleur;
     return 1;
   }
-  else{
-    return 0;
-  }
+  else{return 0;}
 }
 
 int fini(int *plateau, int x, int y){
   //made by Pierre    PAS FINI
   //fonction qui parcour toutes les possibilités au tour d'un seul point ( le dernier jouer)
   int couleur = plateau[y * DIMENSION + x];
-  int nbr_alligne = 1 ,bloque1 = 0 , bloque2 = 0; //nbr de pions sur l'allignement
+  int nbr_alligne = 1 ; //nbr de pions sur l'allignement
+  int bloque1 = 0 , bloque2 = 0, ligne = 0;
   // bloque => booleen qui dit indique si il y a un trou dans la ligne se qui bloquera l'incrementation de nbr_alligne
   //check horizontale
   for (int i = 1; i < DIMENSION; i++) {
@@ -64,7 +68,7 @@ int fini(int *plateau, int x, int y){
       else{bloque2 = 1;}
     }
   }
-  printf("%d\n", nbr_alligne);
+  if (nbr_alligne == 0) {ligne = 1;}
 
   //check verticale
   nbr_alligne = 1, bloque1 = 0, bloque2 = 0;
@@ -80,7 +84,7 @@ int fini(int *plateau, int x, int y){
       else{bloque2 = 1;}
     }
   }
-  printf("%d\n", nbr_alligne);
+  if (nbr_alligne == 0) {ligne = 2;}
 
   //check diagonale \.
   nbr_alligne = 1, bloque1 = 0, bloque2 = 0;
@@ -96,7 +100,7 @@ int fini(int *plateau, int x, int y){
       else{bloque2 = 1;}
     }
   }
-  printf("%d\n", nbr_alligne);
+  if (nbr_alligne == 0) {ligne = 3;}
 
   //check autre diagonale /
   nbr_alligne = 1, bloque1 = 0, bloque2 = 0;
@@ -112,23 +116,50 @@ int fini(int *plateau, int x, int y){
       else{bloque2 = 1;}
     }
   }
-  printf("%d\n", nbr_alligne);
-
+  if (nbr_alligne == 0) {ligne = 4;}
+  return ligne;
 }
 
 
 int main(){
-  int plateau[5*5] = {0};
+  int plateau[DIMENSION*DIMENSION] = {0};
   affichage(plateau);
-  place(plateau, 1, 0,1);
-  place(plateau, 1, 1,1);
-  place(plateau, 1, 2,1);
-  place(plateau, 2, 3,1);
-  place(plateau, 1, 4,1);
-  place(plateau, 1, 2,2);
-  place(plateau, 1, 3,3);
-  place(plateau, 1, 0,2);
-  affichage(plateau);
-  fini(plateau, 1,1);
-  affichage(plateau);
+  //1er fase
+  int x, y, booleen;
+  for (int i = 0; i < 2 * (DIMENSION-1); i++) {
+    printf("joueur %d ; rentre les coordonnees de la ou tu veux poser ta piece: \n", (i%2)+1);
+    scanf("%d", &x);
+    scanf("%d", &y);
+    booleen = place(plateau, (i%2) +1, x, y);
+    while (booleen == 0) {
+      printf("ERREUR le pion ne peux pas etre poser \njoueur %d ; rentre les coordonnees de la ou tu veux poser ta piece: \n", (i%2)+1);
+      scanf("%d", &x);
+      scanf("%d", &y);
+      booleen = place(plateau, (i%2) +1, x, y);
+    }
+    affichage(plateau);
+  }
+  //2e fase
+  int x2, y2, i = 0;
+  while (fini(plateau, x, y) == 0) {
+    printf("joueur %d ; rentre les coordonnees de la piece que tu veux bouger: \n", (i%2)+1);
+    scanf("%d", &x);
+    scanf("%d", &y);
+    printf("rentre les coordonnees de la ou tu veux poser ta piece: \n");
+    scanf("%d", &x2);
+    scanf("%d", &y2);
+    booleen = deplacement(plateau, x, y, x2, y2);
+    while (booleen == 0) {
+      printf("ERREUR le pion n'a pas pu etre deplacer \njoueur %d ; rentre les coordonnees de la piece que tu veux bouger: \n", (i%2)+1);
+      scanf("%d", &x);
+      scanf("%d", &y);
+      printf("rentre les coordonnees de la ou tu veux poser ta piece: \n");
+      scanf("%d", &x2);
+      scanf("%d", &y2);
+      booleen = deplacement(plateau, x, y, x2, y2);
+    }
+    affichage(plateau);
+    i++;
+  }
+
 }
