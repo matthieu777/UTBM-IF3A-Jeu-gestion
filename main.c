@@ -7,15 +7,19 @@ int affichage(int *plateau){
   //fonction qui affiche le plateau
   printf("            ");
   for (int i = 0; i < DIMENSION; i++) {
-    printf("%c   ", i  + 49);
+    printf("%c   ", i  + 48);
   }
   printf("\n          ");
   for (int i = 0; i < DIMENSION; i++) {
     printf("---------------------\n        ");
-    printf("%c |", i+65);
+    printf("%c |", i+48);
     for (int j = 0; j < DIMENSION; j++){
-      if(plateau[i*DIMENSION + j] == 0){printf("   |");}
-      else{printf(" %d |", plateau[i*DIMENSION + j]);}
+      if(plateau[i*DIMENSION + j] == 0){
+        printf("   |");
+      }
+      else{
+        printf(" %d |", plateau[i*DIMENSION + j]);
+      }
     }
     printf("\n          ");
   }
@@ -31,7 +35,9 @@ int place(int *plateau, int couleur, int x, int y){
     plateau[y * DIMENSION +x] = couleur;
     return 1;
   }
-  else{return 0;}
+  else{
+    return 0;
+  }
 }
 
 int deplacement(int *plateau, int x_depart, int y_depart, int x_arrive, int y_arrive){
@@ -45,11 +51,13 @@ int deplacement(int *plateau, int x_depart, int y_depart, int x_arrive, int y_ar
     plateau[y_arrive * DIMENSION +x_arrive] = couleur;
     return 1;
   }
-  else{return 0;}
+  else{
+    return 0;
+  }
 }
 
 int fini(int *plateau, int x, int y){
-  //made by Pierre    PAS FINI
+  //made by Pierre
   //fonction qui parcour toutes les possibilités au tour d'un seul point ( le dernier jouer)
   int couleur = plateau[y * DIMENSION + x];
   int nbr_alligne = 1 ; //nbr de pions sur l'allignement
@@ -59,64 +67,106 @@ int fini(int *plateau, int x, int y){
   for (int i = 1; i < DIMENSION; i++) {
     if (x + i < DIMENSION){ // si on sort du plateau
       if (plateau[y * DIMENSION + x + i] == couleur){
-        if(bloque1 == 0){nbr_alligne ++;}}
+        if(bloque1 == 0){
+          nbr_alligne ++;
+        }
+      }
       else{bloque1 = 1;}
     }
     if (x - i >=0){ // symetrique
       if (plateau[y * DIMENSION + x - i] == couleur){
-        if(bloque2 == 0){nbr_alligne ++;}}
-      else{bloque2 = 1;}
+        if(bloque2 == 0){
+          nbr_alligne ++;
+        }
+      }
+      else{
+        bloque2 = 1;
+      }
     }
   }
-  if (nbr_alligne == 0) {ligne = 1;}
+  if (nbr_alligne == 4) {
+    ligne = 1;
+  }
 
   //check verticale
   nbr_alligne = 1, bloque1 = 0, bloque2 = 0;
   for (int i = 1; i < DIMENSION; i++) {
     if (y + i < DIMENSION){ // si on sort du plateau
       if (plateau[(y + i) * DIMENSION + x] == couleur){
-        if(bloque1 == 0){nbr_alligne ++;}}
-      else{bloque1 = 1;}
+        if(bloque1 == 0){
+          nbr_alligne ++;
+        }
+      }
+      else{
+        bloque1 = 1;
+      }
     }
     if (y - i >= 0){ // symetrique
       if (plateau[(y - i) * DIMENSION + x] == couleur){
-        if(bloque2 == 0){nbr_alligne ++;}}
-      else{bloque2 = 1;}
+        if(bloque2 == 0){
+          nbr_alligne ++;
+        }
+        }
+      else{
+        bloque2 = 1;
+      }
     }
   }
-  if (nbr_alligne == 0) {ligne = 2;}
-
+  if (nbr_alligne == 4) {ligne = 2;}
   //check diagonale \.
   nbr_alligne = 1, bloque1 = 0, bloque2 = 0;
   for (int i = 1; i < DIMENSION; i++) {
     if (y + i < DIMENSION && x + i < DIMENSION){ // si on sort du plateau
       if (plateau[(y + i) * DIMENSION + x + i] == couleur){
-        if(bloque1 == 0){nbr_alligne ++;}}
-      else{bloque1 = 1;}
+        if(bloque1 == 4){
+          nbr_alligne ++;
+        }
+      }
+      else{
+        bloque1 = 1;
+      }
     }
     if (y - i >= 0 && x - i >= 0){ // symetrique
       if (plateau[(y - i) * DIMENSION + x - i] == couleur){
-        if(bloque2 == 0){nbr_alligne ++;}}
-      else{bloque2 = 1;}
+        if(bloque2 == 0){
+          nbr_alligne ++;}
+        }
+      else{
+        bloque2 = 1;
+      }
     }
   }
-  if (nbr_alligne == 0) {ligne = 3;}
+  if (nbr_alligne == 4){
+    ligne = 3;
+  }
 
   //check autre diagonale /
   nbr_alligne = 1, bloque1 = 0, bloque2 = 0;
   for (int i = 1; i < DIMENSION; i++) {
     if (y + i < DIMENSION && x - i >= 0){ // si on sort du plateau
       if (plateau[(y + i) * DIMENSION + x - i] == couleur){
-        if(bloque1 == 0){nbr_alligne ++;}}
-      else{bloque1 = 1;}
+        if(bloque1 == 0){
+          nbr_alligne ++;
+        }
+      }
+      else{
+        bloque1 = 1;
+      }
     }
     if (y - i >= 0 && x + i < DIMENSION){ // symetrique
       if (plateau[(y - i) * DIMENSION + x + i] == couleur){
-        if(bloque2 == 0){nbr_alligne ++;}}
-      else{bloque2 = 1;}
+        if(bloque2 == 0){
+          nbr_alligne ++;
+        }
+      }
+      else{
+        bloque2 = 1;
+      }
     }
   }
-  if (nbr_alligne == 0) {ligne = 4;}
+  if (nbr_alligne == 4) {
+    ligne = 4;
+  }
   return ligne;
 }
 
@@ -125,8 +175,9 @@ int main(){
   int plateau[DIMENSION*DIMENSION] = {0};
   affichage(plateau);
   //1er fase
-  int x, y, booleen;
-  for (int i = 0; i < 2 * (DIMENSION-1); i++) {
+  int x , y, booleen, i = 1;
+  do {
+    i++;
     printf("joueur %d ; rentre les coordonnees de la ou tu veux poser ta piece: \n", (i%2)+1);
     scanf("%d", &x);
     scanf("%d", &y);
@@ -138,28 +189,41 @@ int main(){
       booleen = place(plateau, (i%2) +1, x, y);
     }
     affichage(plateau);
-  }
+  } while (i < 2 *(DIMENSION-4)+1 && fini(plateau, x, y) == 0);
   //2e fase
-  int x2, y2, i = 0;
-  while (fini(plateau, x, y) == 0) {
-    printf("joueur %d ; rentre les coordonnees de la piece que tu veux bouger: \n", (i%2)+1);
-    scanf("%d", &x);
-    scanf("%d", &y);
-    printf("rentre les coordonnees de la ou tu veux poser ta piece: \n");
-    scanf("%d", &x2);
-    scanf("%d", &y2);
-    booleen = deplacement(plateau, x, y, x2, y2);
-    while (booleen == 0) {
-      printf("ERREUR le pion n'a pas pu etre deplacer \njoueur %d ; rentre les coordonnees de la piece que tu veux bouger: \n", (i%2)+1);
+  int x2= 0, y2=0;
+  i = 0;
+  if(fini(plateau, x, y) == 0){
+    while (fini(plateau, x2, y2) == 0) {
+      printf("joueur %d ; rentre les coordonnees de la piece que tu veux bouger: \n", (i%2)+1);
       scanf("%d", &x);
       scanf("%d", &y);
       printf("rentre les coordonnees de la ou tu veux poser ta piece: \n");
       scanf("%d", &x2);
       scanf("%d", &y2);
-      booleen = deplacement(plateau, x, y, x2, y2);
-    }
-    affichage(plateau);
-    i++;
-  }
+      if (plateau[y *DIMENSION + x] == (i%2)+1) { // s'assurer que l'on deplace notre pion
+        booleen = deplacement(plateau, x, y, x2, y2);
+      }
+      else{
+        booleen = 0;
+      }
 
+      while (booleen == 0) {
+        printf("ERREUR le pion n'a pas pu etre deplacer \njoueur %d ; rentre les coordonnees de la piece que tu veux bouger: \n", (i%2)+1);
+        scanf("%d", &x);
+        scanf("%d", &y);
+        printf("rentre les coordonnees de la ou tu veux poser ta piece: \n");
+        scanf("%d", &x2);
+        scanf("%d", &y2);
+        if (plateau[y +DIMENSION + x] == (i%2)+1) { // s'assurer que l'on deplace notre pion
+          booleen = deplacement(plateau, x, y, x2, y2);
+        }
+        else{
+          booleen = 0;
+        }
+      }
+      affichage(plateau);
+      i++;
+    }
+  }
 }
