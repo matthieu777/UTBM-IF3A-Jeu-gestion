@@ -1,6 +1,14 @@
 #include <stdio.h>
+#include <conio.h>
+#include <windows.h>
 
 #define DIMENSION 5   //on part du principe que le plateau a une dimension fixe pour le moment
+
+void Color(int couleurDuTexte, int couleurDeFond){
+  //fonction qui change la couleur du texte de la console
+  HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(H, couleurDeFond*16+couleurDuTexte);
+}
 
 int affichage(int *plateau){
   //made by Pierre
@@ -14,11 +22,22 @@ int affichage(int *plateau){
     printf("---------------------\n        ");
     printf("%c |", i+48);
     for (int j = 0; j < DIMENSION; j++){
-      if(plateau[i*DIMENSION + j] == 0){
-        printf("   |");
-      }
-      else{
-        printf(" %d |", plateau[i*DIMENSION + j]);
+      switch (plateau[i*DIMENSION + j]) {
+        case 0:
+          printf("   |");
+          break;
+        case 1 :
+          Color(1, 0);
+          printf(" %c ", 2);
+          Color(15, 0);
+          printf("|");
+          break;
+        case 2 :
+          Color(4, 0);
+          printf(" %c ", 2);
+          Color(15, 0);
+          printf("|");
+          break;
       }
     }
     printf("\n          ");
