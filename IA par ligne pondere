@@ -1,0 +1,116 @@
+from PIL import Image
+from math import sqrt, exp
+from random import * 
+
+
+n = 5
+img = Image.new('RGB', (n,n))
+
+plateau = [[0 for i in range(n)] for j in range(n)]
+tab1 = [[0 for i in range(n)] for j in range(n)]
+tab2 = [[0 for i in range(n)] for j in range(n)]
+tab3 = [[0 for i in range(n)] for j in range(n)]
+tab = [tab1, tab2, tab3]
+
+Liste_droites = []
+for i in range(4):
+    plateau[randint(0, n-1)][randint(0, n-1)] = 1
+    plateau[randint(0, n-1)][randint(0, n-1)] = 1
+
+# L = (a, b, x, y, F)
+# ---
+
+for b in range(n):
+    F = 0
+    x = 0
+    y = 0
+    for i in range(n):
+        if plateau[b][i] == 1:
+            F +=1
+            y += i
+            x += b
+    if F != 0:
+        Liste_droites.append([1, b, x/F, y/F, F])
+        
+# \
+L1 = [[[4, 0]], [[3, 0],[4,1]], [[2, 0],[3, 1],[4, 2]], [[1, 0],[2, 1],[3, 2],[4, 3]], [[0, 0],[1, 1],[2, 2],[3, 3],[4, 4]], [[1, 0],[2,1],[3,2],[4,3]], [[2,0],[3,1],[4,2]], [[3,0],[4,1]], [[4,0]]]
+for b in range((2*n)-1):
+    F = 0
+    x = 0
+    y = 0
+    i = 0
+    for i in range(len(L1[b])):
+        if plateau[L1[b][i][0]][L1[b][i][1]] == 1:
+            F +=1
+            y += L1[b][i][0]
+            x += L1[b][i][1]
+    if F != 0:
+        Liste_droites.append([2, b, x/F, y/F, F])
+            
+# /
+L2 = [[[0, 0]], [[1, 0],[0,1]], [[2, 0],[1, 1],[0, 2]], [[3, 0],[2, 1],[1, 2],[0, 3]], [[4, 0],[3, 1],[2, 2],[1, 3],[0, 4]], [[4, 1],[3,2],[2,3],[1,4]], [[4,2],[3,3],[2,4]], [[4,3],[3,4]], [[4,4]]]
+for b in range((2*n)-1):
+    F = 0
+    x = 0
+    y = 0
+    i = 0
+    for i in range(len(L2[b])):
+        if plateau[L2[b][i][0]][L2[b][i][1]] == 1:
+            F +=1
+            y += L2[b][i][0]
+            x += L2[b][i][1]
+    if F != 0:
+        Liste_droites.append([3, b, x/F, y/F, F])
+    
+for b in range(n):
+    F = 0
+    x = 0
+    y = 0
+    for i in range(n):
+        if plateau[i][b] == 1:
+            F +=1
+            y += b
+            x += i
+    if F != 0:
+        Liste_droites.append([4, b, x/F, y/F, F])
+
+print(Liste_droites)
+for i in range(len(Liste_droites)):
+    if Liste_droites[i][0] == 2:
+        print(Liste_droites[i])
+    
+    
+print('\n\n')
+for i in range(n) :
+    for j in range(n):
+        print(plateau[i][j], end=' ')
+    print('\n')
+    
+    
+for j in range(len(Liste_droites)):
+    if Liste_droites[j][0] == 10:
+        for i in range(n):
+            tab1[Liste_droites[j][1]][i] += Liste_droites[j][4]
+    if Liste_droites[j][0] == 2:
+        for i in range(len(L1[Liste_droites[j][1]])):
+            tab1[L1[Liste_droites[j][1]] [i][0]]  [L1[Liste_droites[j][1]] [i][1]] += 1
+            
+print('\n\n')
+for i in range(n) :
+    for j in range(n):
+        print(tab1[i][j], end=' ')
+    print('\n')
+
+"""
+for y in range(n):
+    for x in range(n):
+        img.putpixel((x,y),(255 * (int(tab[2][y][x]//max([tab[2][i//n][i%n] for i in range(n * n)])))))
+        if plateau[y][x] == 1:
+            img.putpixel((x,y),(0,255,0))
+        if plateau[y][x] == 2:
+            img.putpixel((x,y),(0,0, 255))
+img.save('color.png')"""
+
+
+
+
