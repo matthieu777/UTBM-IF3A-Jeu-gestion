@@ -7,26 +7,24 @@ from random import *
 
 n = 5
 img = Image.new('RGB', (n*100,n*100))
-
+#init des tableau
 plateau = [[0 for i in range(n)] for j in range(n)]
-tab1 = [[0 for i in range(n)] for j in range(n)]
-tab2 = [[0 for i in range(n)] for j in range(n)]
-tab3 = [[0 for i in range(n)] for j in range(n)]
-tab = [tab1, tab2, tab3]
+tab1 = [[0 for i in range(n)] for j in range(n)] #tableau de valeur 'deriere' le plateau
 
 Liste_droites = []
 
-for i in range(4):
+for i in range(4): # ca c juste pour mettre des pions radom sur la grille
     plateau[randint(0, n-1)][randint(0, n-1)] = 1
     plateau[randint(0, n-1)][randint(0, n-1)] = 2
 
 
 
-def force(x_c, y_c, x_p, y_p, F):
+def force(x_c, y_c, x_p, y_p, F): #fonction qui va decroitre de facon proportionnel a la distance avec le 'centre de la droite' et du nombre de pion dessus noté F
     distance = sqrt((x_c -x_p)**2 + (y_c -y_p)**2)
     return(F**2*exp((-F/20)*distance**2))
 
 # L = (a, b, x, y, F)
+#trucs moche pour generer les droites dans tt les sens en 1 puis 2
 # ---
 
 for b in range(n):
@@ -42,6 +40,7 @@ for b in range(n):
         Liste_droites.append([1, b, x/F, y/F, F])
         
 # \
+#c trucs la c une liste d'indices parce que j'ai pas trouvé d'autre maniere 
 L1 = [[[4, 0]], [[3, 0],[4,1]], [[2, 0],[3, 1],[4, 2]], [[1, 0],[2, 1],[3, 2],[4, 3]], [[0, 0],[1, 1],[2, 2],[3, 3],[4, 4]], [[0, 1],[1,2],[2,3],[3,4]], [[0,2],[1,3],[2,4]], [[0,3],[1,4]], [[0,4]]]
 for b in range((2*n)-1):
     F = 0
@@ -152,7 +151,7 @@ for i in range(n) :
     print('\n')
     
     
-for j in range(len(Liste_droites)):
+for j in range(len(Liste_droites)): # Et la on incremente tt les cases en fonction des droites, heureusement qu'il y a des tableau de tableau de tebleau ...
     if Liste_droites[j][0] == 1: # --
         for i in range(n):
             tab1[Liste_droites[j][1]][i] += force(Liste_droites[j][2], Liste_droites[j][3], Liste_droites[j][1], i, Liste_droites[j][4])
@@ -174,7 +173,7 @@ for i in range(n) :
     print('\n')
 
 
-for y in range(n*100):
+for y in range(n*100): # Et ca c juste pour faire l'image
     for x in range(n*100):
         img.putpixel((x,y),(int(255 * (tab1[y//100][x//100]/max([tab1[i//n][i%n] for i in range(n*n)])))))
         if plateau[y//100][x//100] == 1:
@@ -182,4 +181,5 @@ for y in range(n*100):
         if plateau[y//100][x//100] == 2:
             img.putpixel((x,y),(0,0, 255))
 img.save('color.png')
+
 
