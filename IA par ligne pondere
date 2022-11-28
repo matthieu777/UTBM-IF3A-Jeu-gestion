@@ -1,4 +1,5 @@
 #le meme volume que le code principale de pu code degeulasse mais fonctionnel !
+
 from PIL import Image
 from math import sqrt, exp
 from random import * 
@@ -23,8 +24,6 @@ for i in range(4):
 
 def force(x_c, y_c, x_p, y_p, F):
     distance = sqrt((x_c -x_p)**2 + (y_c -y_p)**2)
-    print(F,distance,"                 ", F**2*exp((-F/20)*distance**2))
-
     return(F**2*exp((-F/20)*distance**2))
 
 # L = (a, b, x, y, F)
@@ -140,10 +139,10 @@ for b in range(n):
         Liste_droites.append([4, b, x/F, y/F, F])
 
 print(Liste_droites)
-
+"""
 for i in range(len(Liste_droites)):
     if Liste_droites[i][4] >1:
-        print(Liste_droites[i])
+        print(Liste_droites[i])"""
     
     
 print('\n\n')
@@ -174,12 +173,6 @@ for i in range(n) :
         print(int(255 * (tab1[i][j]/max([tab1[k//n][k%n] for k in range(n*n)]))), end=' ')
     print('\n')
 
-print('\n\n')
-for i in range(n) :
-    for j in range(n):
-        print(tab1[i][j], end=' ')
-        #print(int(255 * (tab1[i][j]/max([tab1[k//n][k%n] for k in range(n*n)]))), end=' ')
-    print('\n')
 
 for y in range(n*100):
     for x in range(n*100):
