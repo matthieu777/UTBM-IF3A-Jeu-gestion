@@ -35,12 +35,20 @@ int phaseDeJeu1(int *plateau, int i){
   // return 0 si le placement n'a pas pu etre effectue
   // return 1 le placement a ete effectue avec succe, on peut passer a la suite
   // return 2 si la partie est gagné
-  int x, y, booleen;
-  
+  int y, booleen;
+  char x;
   printf("joueur %d ; rentre les coordonnees de la ou tu veux poser ta piece: \n", (i%2)+1);
-  scanf("%u", &x);
+  fflush(stdin) ; 
+  scanf("%c", &x);
+  if(x=='x'){
+    printf("\n sauvgarde");
+  }
+  
+
+  x = x-48;
 
   scanf("%d", &y);
+
   booleen = place(plateau, (i%2) +1, x, y); // effectu le placement du pion
   if(fini(plateau, x, y) == DIMENSION-1){ // verifie si la partie est fini
     booleen = 2;
