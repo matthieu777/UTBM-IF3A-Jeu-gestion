@@ -67,13 +67,13 @@ int deplacement(int *plateau, int x_depart, int y_depart, int x_arrive, int y_ar
   if ((plateau[y_arrive * DIMENSION + x_arrive]==0) && x_arrive-x_depart<=1 && x_arrive-x_depart>=-1 && y_arrive-y_depart<=1 && y_arrive-y_depart>=-1 && (plateau[y_depart * DIMENSION + x_depart]!=0)){  // condition a simplifier
     plateau[y_arrive * DIMENSION +x_arrive] = plateau[y_depart * DIMENSION + x_depart];
     plateau[y_depart * DIMENSION +x_depart] = 0;
-    
     return 1;
   }
   else{
     return 0;
   }
 }
+
 int check(int *plateau, int x, int y, int signe_x, int signe_y){
   // fonction qui ckek une unique direction au tour d'un points
   int i = 1, nbr_alligne = 0; //  verifie que x et y soit compris entre 0 et Dimenson                                  regarde si la couleur de la case est toujours la meme sinon c'est pas la peine de continuer
@@ -109,8 +109,8 @@ int fini(int *plateau, int x, int y){
   return ligne_la_plus_grande + 1; // +1 parce qu'on n'avait pas encore compte
 }                                  //  le pion selectionne
 
-int FaseDeJeu1(int *plateau, int i){
-  // cette fonction effectu un tour lors de la premiere fase de jeu
+int phaseDeJeu1(int *plateau, int i){
+  // cette fonction effectu un tour lors de la premiere phase de jeu
   // return 0 si le placement n'a pas pu etre effectue
   // return 1 le placement a ete effectue avec succe, on peut passer a la suite
   // return 2 si la partie est gagné
@@ -125,8 +125,8 @@ int FaseDeJeu1(int *plateau, int i){
   return booleen;
 }
 
-int FaseDeJeu2(int *plateau, int i){
-  // cette fonction effectu un tour lors de la 2e fase de jeu
+int phaseDeJeu2(int *plateau, int i){
+  // cette fonction effectu un tour lors de la 2e phase de jeu
   // return 0 si le placement n'a pas pu etre effectue
   // return 1 le placement a ete effectue avec succe, on peut passer a la suite
   // return 2 si la partie est gagné
@@ -154,26 +154,26 @@ int FaseDeJeu2(int *plateau, int i){
 int main(){
   int plateau[DIMENSION*DIMENSION] = {0}; // init du plateau
   affichage(plateau);
-  //1er fase
+  //1er phase
   int booleen,x , y, i = 1;
   do {
     i++;
-    booleen = FaseDeJeu1(plateau, i);
+    booleen = phaseDeJeu1(plateau, i);
     while (booleen == 0) {
       printf("ERREUR le pion ne peux pas etre poser \n");
-      booleen = FaseDeJeu1(plateau, i);
+      booleen = phaseDeJeu1(plateau, i);
     }
     affichage(plateau);
   } while (i < 2 *(DIMENSION-1)+1 && booleen!=2);
 
-  //2e fase
+  //2e phase
   int x2= 0, y2=0;
   i = 0;
   while(booleen == 1){
-    booleen = FaseDeJeu2(plateau, i);
+    booleen = phaseDeJeu2(plateau, i);
     while (booleen == 0) {
       printf("ERREUR le pion n'a pas pu etre deplacer\n");
-      booleen = FaseDeJeu2(plateau, i);
+      booleen = phaseDeJeu2(plateau, i);
     }
     affichage(plateau);
     i++;
