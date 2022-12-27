@@ -1,5 +1,6 @@
 #define DIMENSION 5
 #include "verification.c"
+#include <stdio.h>
 
 int place(int *plateau, int couleur, int x, int y){
   // made by Pierre
@@ -38,20 +39,24 @@ int phaseDeJeu1(int *plateau, int i){
   int y, booleen;
   char x;
   printf("joueur %d ; rentre les coordonnees de la ou tu veux poser ta piece: \n", (i%2)+1);
-  fflush(stdin) ; 
+  fflush(stdin);
   scanf("%c", &x);
   if(x=='x'){
     printf("\n sauvgarde");
-  }
+    booleen = 4;
+     
+  } else {
   
 
   x = x-48;
 
   scanf("%d", &y);
-
+  
   booleen = place(plateau, (i%2) +1, x, y); // effectu le placement du pion
+
   if(fini(plateau, x, y) == DIMENSION-1){ // verifie si la partie est fini
     booleen = 2;
+  }
   }
   return booleen;
 }
@@ -61,11 +66,20 @@ int phaseDeJeu2(int *plateau, int i){
   // return 0 si le placement n'a pas pu etre effectue
   // return 1 le placement a ete effectue avec succe, on peut passer a la suite
   // return 2 si la partie est gagné
-  int x, y, x2, y2, booleen;  //booleen est une variable tres mal nomme comme dans tous le programe
+  int y, x2, y2, booleen;  //booleen est une variable tres mal nomme comme dans tous le programe
+  char x;
   // elle etait a la base un simple indicateur de si l'operation avait pu etre effectue mais mtn elle sert aussi a indiquer que la partie est fini
   // cela permet de sortir de la boucle sans devoir faire sortir les coordonne du dernier mouvement dans le main.
   printf("joueur %d ; rentre les coordonnees de la piece que tu veux bouger: \n", (i%2)+1);
-  scanf("%d", &x);
+  fflush(stdin);
+  scanf("%c", &x);
+  if(x=='x'){
+    printf("\n sauvgarde");
+    booleen = 4;
+     
+  } else {
+
+   x = x-48;
   scanf("%d", &y);
   printf("rentre les coordonnees de la ou tu veux poser ta piece: \n");
   scanf("%d", &x2);
@@ -76,8 +90,10 @@ int phaseDeJeu2(int *plateau, int i){
   else{
     booleen = 0;
   }
+
   if(fini(plateau, x2, y2) == DIMENSION-1){ // verifie si la partie est fini
     booleen = 2;
+  }
   }
   return booleen;
 }

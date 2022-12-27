@@ -6,15 +6,16 @@
 #define DIMENSION 5
 
 void Color(int couleurDuTexte, int couleurDeFond){
-  // made by Pierre
+  
   // fonction qui change la couleur du texte de la console
   HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(H, couleurDeFond*16+couleurDuTexte);
 }
 
 int affichage(int *plateau){
-  // made by Pierre
+  
   // fonction qui affiche le plateau
+  
   printf("            ");
   for (int i = 0; i < DIMENSION; i++) {
     printf("%c   ", i  + 48);
