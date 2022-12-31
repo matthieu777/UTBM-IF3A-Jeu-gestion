@@ -44,7 +44,6 @@ void recuperation_de_coordonnee(int* pX, int* pY){
   //Elle renvoie se couple de coordonnees complete, -1 si la coordonnee n'a pas été remplie
   // et 88  88 si un x a ete indique en debut de chaine indiquant la sauvegarde
 
-  printf("Ecrit un truc:\n");
   fflush(stdin);
   int x = -1, y = -1, c;
   for(int i = 0; i<10; i++){
