@@ -38,7 +38,16 @@ int phaseDeJeu1(int *plateau, int i){
   // return 2 si la partie est gagné
   // return 4 pour que la partie soit enregistre
 
-  printf("joueur %d ; rentre les coordonnees de la ou tu veux poser ta piece: \n", (i%2)+1);
+  if ((i%2)+1 == 1){
+    Color(1, 0);
+    printf("Joueur 1 ");
+  }
+  else{
+    Color(4, 0);
+    printf("Joueur 2 ");
+  }
+  Color(15, 0);
+  printf("; rentre les coordonnees de la ou tu veux poser ta piece: \n");
   int x = 0, y = 0, booleen;
   recuperation_de_coordonnee(&x, &y);
   if( x == 88 ){ //88 est la valeur ASCII correspondant au 'x'
@@ -63,7 +72,16 @@ int phaseDeJeu2(int *plateau, int i){
   int x = 0, y = 0, x2 = 0, y2 = 0, booleen;
   // elle etait a la base un simple indicateur de si l'operation avait pu etre effectue mais mtn elle sert aussi a indiquer que la partie est fini
   // cela permet de sortir de la boucle sans devoir faire sortir les coordonne du dernier mouvement dans le main.
-  printf("joueur %d ; rentre les coordonnees de la piece que tu veux bouger: \n", (i%2)+1);
+  if ((i%2)+1 == 1){
+    Color(1, 0);
+    printf("Joueur 1 ");
+  }
+  else{
+    Color(4, 0);
+    printf("Joueur 2 ");
+  }
+  Color(15, 0);
+  printf("; rentre les coordonnees de la piece que tu veux bouger: \n");
   recuperation_de_coordonnee(&x, &y);
   if( x == 88 ){
     printf("\n sauvgarde");
