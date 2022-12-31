@@ -75,7 +75,10 @@ int main(){
     i++;
     booleen = phaseDeJeu1(plateau, i);
     while (booleen == 0) {
-      printf("ERREUR le pion ne peux pas etre poser \n");
+      Color(4, 0);
+      printf("ERREUR");
+      Color(15, 0);
+      printf(" le pion ne peux pas etre poser \n");
       booleen = phaseDeJeu1(plateau, i);
     }
     affichage(plateau);
@@ -86,18 +89,33 @@ int main(){
   while(booleen == 1){
     booleen = phaseDeJeu2(plateau, i);
     while (booleen == 0) {
-      printf("ERREUR le pion n'a pas pu etre deplacer\n");
+      Color(4, 0);
+      printf("ERREUR");
+      Color(15, 0);
+      printf(" le pion n'a pas pu etre deplacer\n");
       booleen = phaseDeJeu2(plateau, i);
     }
     affichage(plateau);
     i++;
   }
   if (booleen == 4){
-   printf("sauvgarde ici");
-    // Ouverture du fichier en mode écriture
-  enregistrement(plateau,i);
-  } else if(booleen == 2) {
-    printf("Bravo le joueur %d a gagner", (i%2)+1);
+    printf("sauvgarde ici\n");
+      // Ouverture du fichier en mode écriture
+    enregistrement(plateau,i);
+  }
+  else if(booleen == 2) {
+    Color(15, 0);
+    printf("Bravo, le ");
+    if ((i%2)+1 == 1){
+      Color(1, 0);
+      printf("Joueur 1 ");
+    }
+    else{
+      Color(4, 0);
+      printf("Joueur 2 ");
+    }
+    Color(15, 0);
+    printf("a gagner");
   }
 
 }
