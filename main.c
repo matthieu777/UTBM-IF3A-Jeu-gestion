@@ -10,61 +10,49 @@
 
 
 int main(){
-  char recomencer;
+  char touche_menu;
   int plateau[DIMENSION*DIMENSION] = {0};
-  int isecondephase = -1;
-  int i ;
+  int isecondephase = -1, color_joueur1 = 1, color_joueur2 = 4, couleur;
+  int i;
+  printf("Bonjour, bien venu dans le menu du jeu du Teeko,\nSi Vous souhaitez:\n - Commencez une nouvelle partie PvP - tapez C\n - Commencez une nouvelle partie PvE - tapez J\n - Ouvrir une partie sauegarde   -     tapez S\n - Changer la couleur du");
+  Color(color_joueur1, 0);
+  printf(" Joueur 1");
+  Color(15, 0);
+  printf("    - tapez 1\n - Changer la couleur du");
+  Color(color_joueur2, 0);
+  printf(" Joueur 2");
+  Color(15, 0);
+  printf("    - tapez 2\n");
 
-  printf("Voulez vous reprendre une sauvgarde ou commencer une nouvelle partie ? (Ecrivez S ou C)");
   fflush(stdin) ;
-  scanf("%c", &recomencer);
+  scanf("%c", &touche_menu);
 
-  if (recomencer == 'C' || recomencer == 'c'){
+  if (touche_menu == 'C' || touche_menu == 'c'){
     int plateau[DIMENSION*DIMENSION] = {0};
     i = 1;
   }
-  else {
-    printf("utiliser sauvgarde \n");
-
-    // Ouvrez un fichier en mode lecture
-    FILE* fichier = fopen("tableau.txt", "r");
-
-    // Vérifiez si l'ouverture du fichier a réussi
-    if (fichier == NULL)
-    {
-        printf("Impossible d'ouvrir le fichier\n");
-        return 1;
+  else if (touche_menu == 'J' || touche_menu == 'j'){
+    printf("Dommage ca marche pas encore, on attend avec impatience que Josh ai remis tous ses points virgule %c \n", 1);
+    int plateau[DIMENSION*DIMENSION] = {0};
+    i = 1;
+  }
+  else if(touche_menu == '1' || touche_menu == '&'){
+    printf("Voici la pallette de couleur disposible :\n");
+    for(int i = 1; i<16;i++){
+      Color(i, 0);
+      printf("Pour me chosir entrez %d\n", i);
     }
-    // Parcourez chaque élément du tableau et lisez-le à partir du fichier
-    for (int i = 0; i < DIMENSION; i++)
-    {
-        for (int j = 0; j < DIMENSION; j++)
-        {
-            fscanf(fichier, "%d", &plateau[i * DIMENSION + j]);
-        }
+    fflush(stdin);
+    scanf("%d", &couleur);
+    if(couleur == color_joueur2 && couleur >1 && couleur >16){
+      printf("Cette couleur n'est pas valable \n");
     }
-    int compteur = 0;
-    char ligne[256];
-    while (fgets(ligne, sizeof(ligne), fichier) != NULL) // lecture des lignes du fichier
-    {
-      compteur++; // incrémentation du compteur de lignes
-      if (compteur == 3) // si c'est la 3 ligne
-      {
-        sscanf(ligne,"%d", &i); // lecture du nombre à partir de la chaîne de caractères
-        i--;
-        break; // sortie de la boucle
-      }
+    else{
+      color_joueur1 = couleur;
     }
-    // Fermez le fichier
-    fclose(fichier);
-    for (int i = 0; i < DIMENSION; i++)
-    {
-        for (int j = 0; j < DIMENSION; j++)
-        {
-            printf("%d ", plateau[i * DIMENSION + j]);
-        }
-        printf("\n");
-    }
+  }
+  else if(touche_menu == 'S' || touche_menu == 's'){
+    open_enregistrement(plateau);
   }
 
    // init du plateau
@@ -99,7 +87,9 @@ int main(){
     i++;
   }
   if (booleen == 4){
+    Color(11, 0);
     printf("sauvgarde ici\n");
+    Color(15,0);
       // Ouverture du fichier en mode écriture
     enregistrement(plateau,i);
   }
