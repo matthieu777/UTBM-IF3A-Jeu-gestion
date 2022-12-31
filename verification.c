@@ -36,3 +36,38 @@ int fini(int *plateau, int x, int y){
   return ligne_la_plus_grande + 1; // +1 parce qu'on n'avait pas encore compte
 }                                  //  le pion selectionne
 
+
+void recuperation_de_coordonnee(int* pX, int* pY){
+  //Cette fonction permet de pouvoir rentrer un couple de coordonnees de facon plus souple
+  //  (gestion des espaaces, des saut de lignes et des caractere non conformes)
+  //Elle prend en entree un couple de pointeur pointant vers un couple de coordonnees
+  //Elle renvoie se couple de coordonnees complete, -1 si la coordonnee n'a pas été remplie
+  // et 88  88 si un x a ete indique en debut de chaine indiquant la sauvegarde
+
+  printf("Ecrit un truc:\n");
+  fflush(stdin);
+  int x = -1, y = -1, c;
+  for(int i = 0; i<10; i++){
+    scanf("%c", &c);
+    c = c%256;
+    if((c == 120 || c == 88) && x == -1 && y == -1){ //si on rentre x en premier, on enregistrera
+      x = 88;
+      y = 88;
+      i = 10;
+    }
+    else if(c >= 48 && c <=57){
+      x = (x+1) * 10 + c - 49;
+    }
+    else if(c >= 65 && c <=90){
+      y = (y+1) * 26 + c - 65;
+    }
+    else if(c >= 97 && c <=122){
+      y = (y+1) * 26 + c - 97;
+    }
+    else if(x != -1 && y != -1){
+      i=10;
+    }
+  }
+  *pX = x;
+  *pY = y;
+}
