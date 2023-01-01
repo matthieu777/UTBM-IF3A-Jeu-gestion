@@ -31,7 +31,7 @@ int deplacement(int *plateau, int x_depart, int y_depart, int x_arrive, int y_ar
 }
 
 
-int phaseDeJeu1(int *plateau, int i){
+int phaseDeJeu1(int *plateau, int i, int color_joueur1, int color_joueur2){
   // cette fonction effectu un tour lors de la premiere phase de jeu
   // return 0 si le placement n'a pas pu etre effectue
   // return 1 le placement a ete effectue avec succes, on peut passer a la suite
@@ -39,11 +39,11 @@ int phaseDeJeu1(int *plateau, int i){
   // return 4 pour que la partie soit enregistre
 
   if ((i%2)+1 == 1){
-    Color(1, 0);
+    Color(color_joueur1, 0);
     printf("Joueur 1 ");
   }
   else{
-    Color(4, 0);
+    Color(color_joueur2, 0);
     printf("Joueur 2 ");
   }
   Color(15, 0);
@@ -63,7 +63,7 @@ int phaseDeJeu1(int *plateau, int i){
   return booleen;
 }
 
-int phaseDeJeu2(int *plateau, int i){
+int phaseDeJeu2(int *plateau, int i, int color_joueur1, int color_joueur2){
   // cette fonction effectu un tour lors de la 2e phase de jeu
   // return 0 si le placement n'a pas pu etre effectue
   // return 1 le placement a ete effectue avec succe, on peut passer a la suite
@@ -73,11 +73,11 @@ int phaseDeJeu2(int *plateau, int i){
   // elle etait a la base un simple indicateur de si l'operation avait pu etre effectue mais mtn elle sert aussi a indiquer que la partie est fini
   // cela permet de sortir de la boucle sans devoir faire sortir les coordonne du dernier mouvement dans le main.
   if ((i%2)+1 == 1){
-    Color(1, 0);
+    Color(color_joueur1, 0);
     printf("Joueur 1 ");
   }
   else{
-    Color(4, 0);
+    Color(color_joueur2, 0);
     printf("Joueur 2 ");
   }
   Color(15, 0);
