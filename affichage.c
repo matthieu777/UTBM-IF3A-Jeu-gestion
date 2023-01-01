@@ -11,7 +11,7 @@ void Color(int couleurDuTexte, int couleurDeFond){
   SetConsoleTextAttribute(H, couleurDeFond*16+couleurDuTexte);
 }
 
-int affichage(int *plateau){
+int affichage(int *plateau, int color_joueur1, int color_joueur2){
 
   // fonction qui affiche le plateau
 
@@ -29,13 +29,13 @@ int affichage(int *plateau){
           printf("   |");
           break;
         case 1 :
-          Color(1, 0);
+          Color(color_joueur1, 0);
           printf(" %c ", 2);
           Color(15, 0);
           printf("|");
           break;
         case 2 :
-          Color(4, 0);
+          Color(color_joueur2, 0);
           printf(" %c ", 2);
           Color(15, 0);
           printf("|");
