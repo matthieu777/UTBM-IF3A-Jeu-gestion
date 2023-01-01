@@ -6,7 +6,7 @@
 #define DIMENSION 5
 
 
-int enregistrement(int *plateau, int i){
+int enregistrement(int *plateau, int i,int phasencours){
     FILE*fichier = fopen("tableau.txt", "w");
 
     if (fichier == NULL) {
@@ -14,23 +14,23 @@ int enregistrement(int *plateau, int i){
     return 1;
     }
 
-    for (int i = 0; i < DIMENSION; i++) {
+    for (int o = 0; o < DIMENSION; o++) {
     for (int j = 0; j < DIMENSION; j++) {
-      fprintf(fichier,"%d ", plateau[i * DIMENSION + j]);
+      fprintf(fichier,"%d ", plateau[o * DIMENSION + j]);
     }
     fprintf(fichier,"\n");
   }
 
   fprintf(fichier,"\n%d",i);
-
+  fprintf(fichier,"\n%d",phasencours);
 
   // Fermeture du fichier
     fclose(fichier);
 
 }
 
-int open_enregistrement(int *plateau){
-  int i ;
+int open_enregistrement(int *plateau,int i,int phasencours ){
+  
   printf("utiliser sauvgarde \n");
 
   // Ouvrez un fichier en mode lecture
@@ -44,7 +44,7 @@ int open_enregistrement(int *plateau){
       Color(15,0);
       return 1;
   }
-  // Parcourez chaque élément du tableau et lisez-le à partir du fichier
+  // Parcoure de chaque élément du tableau à partir du fichier
   for (int i = 0; i < DIMENSION; i++)
   {
       for (int j = 0; j < DIMENSION; j++)
@@ -52,8 +52,10 @@ int open_enregistrement(int *plateau){
           fscanf(fichier, "%d", &plateau[i * DIMENSION + j]);
       }
   }
+
   int compteur = 0;
   char ligne[256];
+
   while (fgets(ligne, sizeof(ligne), fichier) != NULL) // lecture des lignes du fichier
   {
     compteur++; // incrémentation du compteur de lignes
@@ -61,19 +63,34 @@ int open_enregistrement(int *plateau){
     {
       sscanf(ligne,"%d", &i); // lecture du nombre à partir de la chaîne de caractères
       i--;
+
+    }
+    if (compteur == 4) // si c'est la 3 ligne
+    {
+      sscanf(ligne,"%d", &phasencours); // lecture du nombre à partir de la chaîne de caractères
       break; // sortie de la boucle
     }
   }
+
+  //refaire la meme chose pour la ligne suivante : 
+
   // Fermez le fichier
   fclose(fichier);
-  for (int i = 0; i < DIMENSION; i++)
+
+
+
+  for (int q = 0; q < DIMENSION; q++)
   {
       for (int j = 0; j < DIMENSION; j++)
       {
-          printf("%d ", plateau[i * DIMENSION + j]);
+          printf("%d ", plateau[q * DIMENSION + j]);
       }
       printf("\n");
   }
+
+
+  return i;
+  
 }
 
 /*
@@ -119,3 +136,4 @@ int enreeegistrement(int *plateau){
     fclose(fichier);
 }
 */
+
