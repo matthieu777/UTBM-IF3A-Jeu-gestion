@@ -12,10 +12,16 @@
 int main(){
   int isecondephase = -1, color_joueur1 = 1, color_joueur2 = 4, dimension = DIMENSION, nbr_pion = 4, nbr_largeur = 5;
   int i =1, etat_de_jeu;
+
+  int phasencours = 1;
+
   etat_de_jeu = menu(&color_joueur1, &color_joueur2, &i, &dimension, &nbr_pion, &nbr_largeur);
   int plateau[DIMENSION*DIMENSION] = {0};
   if(etat_de_jeu == 1){
-    open_enregistrement(plateau);
+    i=open_enregistrement(plateau,i,phasencours);
+    printf("lafgze %d \n",i);
+    phasencours =  1;
+    printf("phase %d \n",phasencours);
   }
 
 
@@ -23,7 +29,9 @@ int main(){
   affichage(plateau, color_joueur1, color_joueur2);
   //1er phase
   int booleen, x , y;
-  i = 1;
+  
+
+  if (phasencours == 1){
   do{
     i++;
     printf("i = %d\n", i);
@@ -37,9 +45,21 @@ int main(){
     }
     affichage(plateau, color_joueur1, color_joueur2);
   } while (i < 2 *(DIMENSION-1)+1 && booleen!=2 && booleen !=4);
+  if (booleen != 4){
+  phasencours = 2;
+  }
+  
+
+  }
+
+
+
   //2e phase
+  else if (phasencours == 2){
   int x2= 0, y2=0;
   i = 0;
+
+
   while(booleen == 1){
     booleen = phaseDeJeu2(plateau, i, color_joueur1, color_joueur2);
     while (booleen == 0) {
@@ -53,12 +73,14 @@ int main(){
     i++;
     printf("i = %d\n", i);
   }
+  }
+
   if (booleen == 4){
     Color(11, 0);
     printf("sauvgarde ici\n");
     Color(15,0);
       // Ouverture du fichier en mode écriture
-    enregistrement(plateau,i);
+    enregistrement(plateau,i,phasencours);
   }
   else if(booleen == 2) {
     Color(15, 0);
