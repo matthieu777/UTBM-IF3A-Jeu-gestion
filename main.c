@@ -5,6 +5,7 @@
 #include "affichage.c"
 #include "deplacement.c"
 #include "enregistrement.c"
+#include "menu.c"
 
 #define DIMENSION 5
 
