@@ -29,8 +29,8 @@ int enregistrement(int *plateau, int i,int phasencours){
 
 }
 
-int open_enregistrement(int *plateau,int i,int phasencours ){
-  
+int open_enregistrement(int *plateau,int i,int* phasencours ){
+
   printf("utiliser sauvgarde \n");
 
   // Ouvrez un fichier en mode lecture
@@ -67,12 +67,12 @@ int open_enregistrement(int *plateau,int i,int phasencours ){
     }
     if (compteur == 4) // si c'est la 3 ligne
     {
-      sscanf(ligne,"%d", &phasencours); // lecture du nombre à partir de la chaîne de caractères
+      sscanf(ligne,"%d", phasencours); // lecture du nombre à partir de la chaîne de caractères
       break; // sortie de la boucle
     }
   }
 
-  //refaire la meme chose pour la ligne suivante : 
+  //refaire la meme chose pour la ligne suivante :
 
   // Fermez le fichier
   fclose(fichier);
@@ -90,7 +90,7 @@ int open_enregistrement(int *plateau,int i,int phasencours ){
 
 
   return i;
-  
+
 }
 
 /*
@@ -100,7 +100,6 @@ int enreeegistrement(int *plateau){
     printf("Impossible d'ouvrir le fichier\n");
     return 1;
     }
-
     fprintf(fichier,"            ");
     for (int i = 0; i < DIMENSION; i++) {
     fprintf(fichier,"%c   ", i  + 48);
@@ -131,9 +130,7 @@ int enreeegistrement(int *plateau){
     fprintf(fichier,"\n          ");
   }
   fprintf(fichier,"---------------------\n\n\n");
-
     // Fermeture du fichier
     fclose(fichier);
 }
 */
-
