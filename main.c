@@ -50,6 +50,7 @@ int main(){
     while (i < 2 *(DIMENSION-1)+1 && booleen!=2 && booleen !=4);
     if (booleen != 4){
       phasencours = 2;
+      i = 0;
     }
   }
 
@@ -57,7 +58,7 @@ int main(){
 
   //2e phase
   int x2= 0, y2=0;
-  i = 1;
+ 
 
 
   while(booleen == 1){
