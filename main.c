@@ -55,7 +55,7 @@ int main(){
 
 
   //2e phase
-  else if (phasencours == 2){
+  if (phasencours == 2){
   int x2= 0, y2=0;
   i = 0;
 
