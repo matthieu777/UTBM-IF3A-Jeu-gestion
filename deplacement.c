@@ -50,7 +50,7 @@ int phaseDeJeu1(int *plateau, int i, int color_joueur1, int color_joueur2){
   printf("; rentre les coordonnees de la ou tu veux poser ta piece: \n");
   int x = 0, y = 0, booleen;
   recuperation_de_coordonnee(&x, &y);
-  if( x == 88 ){ //88 est la valeur ASCII correspondant au 'x'
+  if( x == 89 ){ //88 est la valeur ASCII correspondant au 'x'
     printf("\n sauvgarde");
     booleen = 4;
   }
@@ -60,10 +60,11 @@ int phaseDeJeu1(int *plateau, int i, int color_joueur1, int color_joueur2){
       booleen = 2;
     }
   }
+  printf("bool %d\n", booleen);
   return booleen;
 }
 
-int phaseDeJeu2(int *plateau, int i, int color_joueur1, int color_joueur2){
+int phaseDeJeu2(int *plateau, int i, int color_joueur1, int color_joueur2, int* super_coup_j1, int* super_coup_j2){
   // cette fonction effectu un tour lors de la 2e phase de jeu
   // return 0 si le placement n'a pas pu etre effectue
   // return 1 le placement a ete effectue avec succe, on peut passer a la suite
@@ -81,11 +82,27 @@ int phaseDeJeu2(int *plateau, int i, int color_joueur1, int color_joueur2){
     printf("Joueur 2 ");
   }
   Color(15, 0);
-  printf("; rentre les coordonnees de la piece que tu veux bouger: \n");
+  printf("; rentrez les coordonnees de la piece que vous voulez bouger: \n");
   recuperation_de_coordonnee(&x, &y);
   if( x == 88 ){
     printf("\n sauvgarde");
     booleen = 4;
+  }
+  else if( x == 89){ // super coup
+    printf("Vous choisiez d'utiliser le super coup, \nEntrez les coordonnes de la piece que vous voulez enlever: \n");
+    recuperation_de_coordonnee(&x, &y);
+    if (plateau[y *DIMENSION + x] == (i%2)+1 && x < DIMENSION && y < DIMENSION ) { // s'assurer que l'on prend notre pion
+      plateau[y * DIMENSION +x] = 0;
+      booleen = 1;
+      printf("banana %d,%d\n", i , (i%2)+1);
+      if ((i%2)+1 == 1){
+        *super_coup_j1 = 1;
+      }
+      else if ((i%2)+1 == 2){
+        *super_coup_j2 = 1;
+      }
+    }
+    printf("La piece a ete retire\n");
   }
   else {
     printf("rentre les coordonnees de la ou tu veux poser ta piece: \n");
