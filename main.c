@@ -16,11 +16,14 @@ int main(){
   int phasencours = 1;
 
   etat_de_jeu = menu(&color_joueur1, &color_joueur2, &i, &dimension, &nbr_pion, &nbr_largeur);
+
+  int **pointeur_plateau;
   int plateau[DIMENSION*DIMENSION] = {0};
   if(etat_de_jeu == 1){
     i=open_enregistrement(plateau,i,&phasencours);
-    
+
     if(phasencours != 1){
+
       booleen = 1;
     }
     printf("phase %d \n",phasencours);
@@ -54,27 +57,41 @@ int main(){
     }
   }
 
-
-
   //2e phase
-  int x2= 0, y2=0;
- 
-
+  int x2= 0, y2=0, super_coup_j1 = 0, super_coup_j2 = 0;
 
   while(booleen == 1){
-    booleen = phaseDeJeu2(plateau, i, color_joueur1, color_joueur2);
-    while (booleen == 0) {
-      Color(4, 0);
-      printf("ERREUR");
-      Color(15, 0);
-      printf(" le pion n'a pas pu etre deplacer\n");
-      booleen = phaseDeJeu2(plateau, i, color_joueur1, color_joueur2);
+    if(((i%2)+1 == 1 && super_coup_j1 ==1) || ((i%2)+1 == 2 && super_coup_j2 ==1)){
+      printf("Vous aviez utilise precedament le super coup\n");
+      booleen = phaseDeJeu1(plateau, i, color_joueur1, color_joueur2);
+      while (booleen == 0) {
+        Color(4, 0);
+        printf("ERREUR");
+        Color(15, 0);
+        printf(" le pion ne peux pas etre poser \n");
+        booleen = phaseDeJeu1(plateau, i, color_joueur1, color_joueur2);
+      }
+      if ((i%2)+1 == 1){
+        super_coup_j1 = 0;
+      }
+      else if ((i%2)+1 == 2){
+        super_coup_j2 = 0;
+      }
+    }
+    else{
+      booleen = phaseDeJeu2(plateau, i, color_joueur1, color_joueur2, &super_coup_j1, &super_coup_j2);
+      while (booleen == 0) {
+        Color(4, 0);
+        printf("ERREUR");
+        Color(15, 0);
+        printf(" le pion n'a pas pu etre deplacer\n");
+        booleen = phaseDeJeu2(plateau, i, color_joueur1, color_joueur2, &super_coup_j1, &super_coup_j2);
+      }
     }
     affichage(plateau, color_joueur1, color_joueur2);
     i++;
     printf("i = %d\n", i);
   }
-
 
   if (booleen == 4){
     Color(11, 0);
@@ -97,5 +114,4 @@ int main(){
     Color(15, 0);
     printf("a gagner");
   }
-
 }
