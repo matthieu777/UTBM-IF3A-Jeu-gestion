@@ -49,7 +49,12 @@ void recuperation_de_coordonnee(int* pX, int* pY){
   for(int i = 0; i<10; i++){
     scanf("%c", &c);
     c = c%256;
-    if((c == 120 || c == 88) && x == -1 && y == -1){ //si on rentre x en premier, on enregistrera
+    if((c == 120 || c == 88) && x == -1 && y == -1){ //si on rentre s en premier, on enregistrera
+      x = 89;
+      y = 89;
+      i = 10;
+    }
+    else if((c == 120 || c == 88) && x == -1 && y == -1){ //si on rentre x en premier, on utilisera le super coup
       x = 88;
       y = 88;
       i = 10;
@@ -67,6 +72,7 @@ void recuperation_de_coordonnee(int* pX, int* pY){
       i=10;
     }
   }
+  printf("coordonnee => %d , %d\n", x, y);
   *pX = x;
   *pY = y;
 }
