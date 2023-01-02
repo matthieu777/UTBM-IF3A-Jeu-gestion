@@ -39,7 +39,7 @@ int menu(int* color_joueur1, int* color_joueur2, int* i, int* dimension, int* nb
     }
     menu(color_joueur1, color_joueur2, i, dimension, nbr_pion, nbr_largeur);
   }
-  else if(touche_menu == '2' || touche_menu == 'é'){
+  else if(touche_menu == '2'){
     printf("Voici la pallette de couleur disposible :\n");
     for(int j = 1; j<16 ; j++){
       Color(j, 0);
