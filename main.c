@@ -19,7 +19,7 @@ int main(){
   int plateau[DIMENSION*DIMENSION] = {0};
   if(etat_de_jeu == 1){
     i=open_enregistrement(plateau,i,&phasencours);
-    printf("lafgze %d \n",i);
+    
     if(phasencours != 1){
       booleen = 1;
     }
