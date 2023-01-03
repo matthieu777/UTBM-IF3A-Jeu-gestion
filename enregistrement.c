@@ -3,7 +3,50 @@
 #include <stdio.h>
 
 
-#define DIMENSION 5
+
+
+int open_enregistrement_dim(){
+  int dimension = 0;
+
+  // Ouvrez un fichier en mode lecture
+  FILE* fichier = fopen("tableau.txt", "r");
+
+  // Vérifiez si l'ouverture du fichier a réussi
+  if (fichier == NULL)
+  {
+      Color(4,0);
+      printf("Impossible d'ouvrir le fichier\n");
+      Color(15,0);
+      return 1;
+  }
+
+  int compteur = 0;
+  char ligne[256];
+
+  while (fgets(ligne, sizeof(ligne), fichier) != NULL) // lecture des lignes du fichier
+  {
+    compteur++; // incrémentation du compteur de lignes
+    if (compteur == 1) // si c'est la 5 ligne
+    {
+      sscanf(ligne,"%d", &dimension); // lecture du nombre à partir de la chaîne de caractères
+      break; // sortie de la boucle
+    }
+
+  }
+
+  //refaire la meme chose pour la ligne suivante :
+
+  // Fermez le fichier
+  fclose(fichier);
+
+  return dimension;
+
+}
+
+
+
+
+
 
 
 int enregistrement(int *plateau, int i,int phasencours, int dimension){
@@ -14,6 +57,10 @@ int enregistrement(int *plateau, int i,int phasencours, int dimension){
     return 1;
     }
 
+    fprintf(fichier,"%d\n",dimension);
+    fprintf(fichier,"%d\n",i);
+    fprintf(fichier,"%d\n",phasencours);
+
     for (int o = 0; o < dimension; o++) {
     for (int j = 0; j < dimension; j++) {
       fprintf(fichier,"%d ", plateau[o * dimension + j]);
@@ -21,15 +68,15 @@ int enregistrement(int *plateau, int i,int phasencours, int dimension){
     fprintf(fichier,"\n");
   }
 
-  fprintf(fichier,"\n%d",i);
-  fprintf(fichier,"\n%d",phasencours);
+
+
 
   // Fermeture du fichier
     fclose(fichier);
 
 }
 
-int open_enregistrement(int *plateau ,int i ,int* phasencours ){
+int open_enregistrement(int *plateau ,int i ,int* phasencours, int dimension ){
 
   printf("utiliser sauvgarde \n");
 
@@ -50,13 +97,7 @@ int open_enregistrement(int *plateau ,int i ,int* phasencours ){
 
 
   // Parcoure de chaque élément du tableau à partir du fichier
-  for (int i = 0; i < DIMENSION; i++)
-  {
-      for (int j = 0; j < DIMENSION; j++)
-      {
-          fscanf(fichier, "%d", &plateau[i * DIMENSION + j]);
-      }
-  }
+
 
   int compteur = 0;
   char ligne[256];
@@ -64,18 +105,27 @@ int open_enregistrement(int *plateau ,int i ,int* phasencours ){
   while (fgets(ligne, sizeof(ligne), fichier) != NULL) // lecture des lignes du fichier
   {
     compteur++; // incrémentation du compteur de lignes
-    if (compteur == 3) // si c'est la 3 ligne
+    if (compteur == 2) // si c'est la 3 ligne
     {
       sscanf(ligne,"%d", &i); // lecture du nombre à partir de la chaîne de caractères
       i--;
 
     }
-    if (compteur == 4) // si c'est la 3 ligne
+    if (compteur == 3) // si c'est la 3 ligne
     {
       sscanf(ligne,"%d", phasencours); // lecture du nombre à partir de la chaîne de caractères
       break; // sortie de la boucle
     }
   }
+
+  for (int i = 0; i < dimension; i++)
+  {
+      for (int j = 0; j < dimension; j++)
+      {
+          fscanf(fichier, "%d", &plateau[i * dimension + j]);
+      }
+  }
+
 
   //refaire la meme chose pour la ligne suivante :
 
@@ -84,14 +134,7 @@ int open_enregistrement(int *plateau ,int i ,int* phasencours ){
 
 
 
-  for (int q = 0; q < DIMENSION; q++)
-  {
-      for (int j = 0; j < DIMENSION; j++)
-      {
-          printf("%d ", plateau[q * DIMENSION + j]);
-      }
-      printf("\n");
-  }
+
 
   //affichage(*pointeur_plateau, 1, 4);
 
