@@ -26,20 +26,20 @@ int open_enregistrement_dim(){
   while (fgets(ligne, sizeof(ligne), fichier) != NULL) // lecture des lignes du fichier
   {
     compteur++; // incrémentation du compteur de lignes
-    if (compteur == 1) // si c'est la 5 ligne
+    if (compteur == 1) // si c'est la 1 ligne
     {
-      sscanf(ligne,"%d", &dimension); // lecture du nombre à partir de la chaîne de caractères
+      sscanf(ligne,"%d", &dimension); // lecture du nombre
       break; // sortie de la boucle
     }
 
   }
 
-  //refaire la meme chose pour la ligne suivante :
+ 
 
   // Fermez le fichier
   fclose(fichier);
 
-  return dimension;
+  return dimension; // Retourne la dimension
 
 }
 
@@ -57,13 +57,13 @@ int enregistrement(int *plateau, int i,int phasencours, int dimension){
     return 1;
     }
 
-    fprintf(fichier,"%d\n",dimension);
+    fprintf(fichier,"%d\n",dimension);  //Enregistrement de la Dimension, i et la phase en cours
     fprintf(fichier,"%d\n",i);
     fprintf(fichier,"%d\n",phasencours);
 
     for (int o = 0; o < dimension; o++) {
     for (int j = 0; j < dimension; j++) {
-      fprintf(fichier,"%d ", plateau[o * dimension + j]);
+      fprintf(fichier,"%d ", plateau[o * dimension + j]); //enregistrement du plateau sous forme de tableau de chiffres
     }
     fprintf(fichier,"\n");
   }
@@ -91,12 +91,11 @@ int open_enregistrement(int *plateau ,int i ,int* phasencours, int dimension ){
       Color(15,0);
       return 1;
   }
-  // ici tu va récuperer la DIMENSION parce qu'elle doit etre installer
-
-//int DIMENSION = 5;
+  
 
 
-  // Parcoure de chaque élément du tableau à partir du fichier
+
+  
 
 
   int compteur = 0;
@@ -105,42 +104,43 @@ int open_enregistrement(int *plateau ,int i ,int* phasencours, int dimension ){
   while (fgets(ligne, sizeof(ligne), fichier) != NULL) // lecture des lignes du fichier
   {
     compteur++; // incrémentation du compteur de lignes
-    if (compteur == 2) // si c'est la 3 ligne
+    if (compteur == 2) // si c'est la 2 ligne
     {
-      sscanf(ligne,"%d", &i); // lecture du nombre à partir de la chaîne de caractères
-      i--;
+      sscanf(ligne,"%d", &i); // lecture du nombre
+      i--; //i -1 pour retourner au joueur a qui c'est le tour
 
     }
     if (compteur == 3) // si c'est la 3 ligne
     {
-      sscanf(ligne,"%d", phasencours); // lecture du nombre à partir de la chaîne de caractères
+      sscanf(ligne,"%d", phasencours); // lecture du nombre de la phase
       break; // sortie de la boucle
     }
   }
 
   for (int i = 0; i < dimension; i++)
   {
-      for (int j = 0; j < dimension; j++)
+      for (int j = 0; j < dimension; j++)   // Parcoure de chaque élément du tableau à partir du fichier enregistré
       {
           fscanf(fichier, "%d", &plateau[i * dimension + j]);
       }
   }
 
 
-  //refaire la meme chose pour la ligne suivante :
+  
 
   // Fermez le fichier
   fclose(fichier);
 
-
-
-
-
-  //affichage(*pointeur_plateau, 1, 4);
-
   return i;
 
 }
+
+
+
+
+
+//1er test pas concluant mais laisser au cas ou on voudrais un jour enregistrer de facon bien structurer le tableau final : 
+
 
 /*
 int enreeegistrement(int *plateau){
