@@ -19,14 +19,16 @@ typedef struct Coordinates{
 
 /* ### USUAL FUNCTIONS ### */
 
-float find_max(float array[], int arr_len, coos *coordinates){ // Find the max in an array, return its value, and gives its coordinates
+float find_max(float array[], int arr_len, int* x, int* y){ // Find the max in an array, return its value, and gives its coordinates
     float max = 0;
     for(int i = 0; i < arr_len; i++){
         for(int j = 0; j < arr_len; j++){
+
             if(array[j + i*arr_len] > max){
-                max = array[j + i*arr_len];
-                (*coordinates).x = j;
-                (*coordinates).y = i;
+                max = array[j + i*arr_len]; // value of the max
+                *x = j;
+                *y = i;
+
             }
         }
     }
@@ -74,11 +76,10 @@ float diagonal_mean(int type, int origin, int axe, int gameboard_lenght){
     return sum / n;
 }
 
-int maxi(float a, float b){
-    if(a >= b){
+int max(float a, float b){
+    if (a >= b) {
         return a;
-    }
-    else {
+    } else {
         return b;
     }
 }
@@ -90,7 +91,7 @@ float force(int ia_color, float x_center, float y_center, float x_case, float y_
     // F is the number of pawns aligned on the line. Called like that because it determines the force of the function (greater it is, greater the number force will be)
     // ia_color is an int representing the color of the IA.
 
-    int distance = maxi(abs(x_center - x_case), abs(y_center - y_case)); // The distance is given in number of square away, not a real distance
+    int distance = max(abs(x_center - x_case), abs(y_center - y_case)); // The distance is given in number of square away, not a real distance
     if (color == ia_color){
         return pow(F, 4) * expf((-F/20) * pow(distance, 2));
     } else if (color == (ia_color % 2 + 1)) {
@@ -380,13 +381,15 @@ void ia_moving(int gameboard[], int n, int ia_color, int* x_actual_square, int* 
     // Get the max amongst all the probability of presence maps, to know what will be the next move
     float max = 0;
     int indice_max = 0;
-    coos coo_max;
+    int x_local_max = 0, y_local_max = 0, x_max = 0, y_max = 0;
 
     for(int i = 0; i < k; i++){
-        float local_max = find_max(presence_proba_map_array[i], n, &coo_max);
+        float local_max = find_max(presence_proba_map_array[i], n, &x_local_max, &y_local_max);
             if(local_max > max){
                 max = local_max;
                 indice_max = i;
+                x_max = x_local_max;
+                y_max = x_local_max;
             }
         }
 
@@ -394,7 +397,7 @@ void ia_moving(int gameboard[], int n, int ia_color, int* x_actual_square, int* 
     *x_actual_square = allies[indice_max].x;
     *y_actual_square = allies[indice_max].y;
 
-    *x_future_square = coo_max.x;
-    *y_future_square = coo_max.y;
+    *x_future_square = x_max;
+    *y_future_square = y_max;
 
 }
