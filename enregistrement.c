@@ -6,7 +6,7 @@
 #define DIMENSION 5
 
 
-int enregistrement(int *plateau, int i,int phasencours){
+int enregistrement(int *plateau, int i,int phasencours, int dimension){
     FILE*fichier = fopen("tableau.txt", "w");
 
     if (fichier == NULL) {
@@ -14,9 +14,9 @@ int enregistrement(int *plateau, int i,int phasencours){
     return 1;
     }
 
-    for (int o = 0; o < DIMENSION; o++) {
-    for (int j = 0; j < DIMENSION; j++) {
-      fprintf(fichier,"%d ", plateau[o * DIMENSION + j]);
+    for (int o = 0; o < dimension; o++) {
+    for (int j = 0; j < dimension; j++) {
+      fprintf(fichier,"%d ", plateau[o * dimension + j]);
     }
     fprintf(fichier,"\n");
   }
@@ -29,7 +29,7 @@ int enregistrement(int *plateau, int i,int phasencours){
 
 }
 
-int open_enregistrement(int *plateau,int i,int* phasencours ){
+int open_enregistrement(int *plateau ,int i ,int* phasencours ){
 
   printf("utiliser sauvgarde \n");
 
@@ -44,6 +44,11 @@ int open_enregistrement(int *plateau,int i,int* phasencours ){
       Color(15,0);
       return 1;
   }
+  // ici tu va récuperer la DIMENSION parce qu'elle doit etre installer
+
+//int DIMENSION = 5;
+
+
   // Parcoure de chaque élément du tableau à partir du fichier
   for (int i = 0; i < DIMENSION; i++)
   {
@@ -88,6 +93,7 @@ int open_enregistrement(int *plateau,int i,int* phasencours ){
       printf("\n");
   }
 
+  //affichage(*pointeur_plateau, 1, 4);
 
   return i;
 
