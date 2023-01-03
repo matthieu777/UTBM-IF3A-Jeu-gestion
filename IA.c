@@ -402,29 +402,3 @@ void ia_moving(int gameboard[], int n, int ia_color, int* x_actual_square, int* 
     *y_future_square = coo_max.y;
 
 }
-
-int main(){
-    int plateau[25] = {0};
-
-    plateau[0 + 3*5] = 1;
-    plateau[1 + 1*5] = 1;
-    plateau[1 + 2*5] = 1;
-    plateau[3 + 1*5] = 1;
-
-    plateau[0 + 0*5] = 2;
-    plateau[2 + 1*5] = 2;
-    plateau[3 + 3*5] = 2;
-    plateau[4 + 4*5] = 2;
-
-    for(int i = 0; i < 5; i++){
-        for(int j = 0; j < 5; j++){
-            printf("%d ", plateau[j + i*5]);
-        }
-        printf("\n");
-    }
-
-    int a, b, c, d;
-    ia_moving(plateau, 5, 2, &a, &b, &c, &d);
-
-    printf("%d %d -> %d %d", a, b, c, d);
-}
