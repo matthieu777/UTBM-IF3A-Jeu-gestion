@@ -19,20 +19,33 @@ int main(){
 
   int iajoue = 0;
   etat_de_jeu = menu(&color_joueur1, &color_joueur2, &i, &dimension, &nbr_pion, &nbr_largeur, &iajoue);
-  
-  printf("dim %d\n", dimension);
-  
-  int plateau[dimension*dimension];
-  for(int i = 0; i < dimension * dimension; i++){
-    plateau[i] = 0;
-  }
+
+
+
 
   if(etat_de_jeu == 1){
-    i=open_enregistrement(plateau ,i,&phasencours);
+    dimension = open_enregistrement_dim() ;
+  }
+
+  printf("dim %d\n", dimension);
+
+  int plateau[dimension*dimension];
+
+  if(etat_de_jeu == 1){
+
+
+    i=open_enregistrement(plateau ,i,&phasencours, dimension);
+
     if(phasencours != 1){
       booleen = 1;
     }
     printf("phase %d \n",phasencours);
+  }
+  else{
+
+    for(int i = 0; i < dimension * dimension; i++){
+      plateau[i] = 0;
+    }
   }
 
 
@@ -61,10 +74,10 @@ int main(){
         affichage(plateau, color_joueur1, color_joueur2, dimension);
       }
     }
-    while (i < 2 *(DIMENSION-1)+1 && booleen!=2 && booleen !=4);
+    while (i < 2 *(dimension-1)+1 && booleen!=2 && booleen !=4);
+
     if (booleen != 4){
       phasencours = 2;
-      i = 0;
     }
   }
 
@@ -97,7 +110,9 @@ int main(){
     }
     else{
       if(iajoue == 1 && (i%2)+1 == 2){
+        printf("111\n");
         booleen = phaseDeJeu2ia(plateau, i, color_joueur1, color_joueur2, &super_coup_j1, &super_coup_j2, dimension);
+        printf("666-%d\n", booleen);
       }
       else{
         booleen = phaseDeJeu2(plateau, i, color_joueur1, color_joueur2, &super_coup_j1, &super_coup_j2, dimension);
@@ -112,9 +127,7 @@ int main(){
     }
     affichage(plateau, color_joueur1, color_joueur2, dimension);
     i++;
-    printf("i = %d\n", i);
   }
-
   if (booleen == 4){
     Color(11, 0);
     printf("sauvgarde ici\n");
