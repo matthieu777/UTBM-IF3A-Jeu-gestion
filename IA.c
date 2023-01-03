@@ -19,15 +19,15 @@ typedef struct Coordinates{
 
 /* ### USUAL FUNCTIONS ### */
 
-float find_max(float array[], int arr_len, int* x, int* y){ // Find the max in an array, return its value, and gives its coordinates
+float find_max(float array[], int arr_len, coos* coordinates){ // Find the max in an array, return its value, and gives its coordinates
     float max = 0;
     for(int i = 0; i < arr_len; i++){
         for(int j = 0; j < arr_len; j++){
 
             if(array[j + i*arr_len] > max){
                 max = array[j + i*arr_len]; // value of the max
-                *x = j;
-                *y = i;
+                (*coordinates).x = j;
+                (*coordinates).y = i;
 
             }
         }
@@ -381,15 +381,16 @@ void ia_moving(int gameboard[], int n, int ia_color, int* x_actual_square, int* 
     // Get the max amongst all the probability of presence maps, to know what will be the next move
     float max = 0;
     int indice_max = 0;
-    int x_local_max = 0, y_local_max = 0, x_max = 0, y_max = 0;
+    coos local_max_coo, coo_max;
+    local_max_coo.x = 0;
+    local_max_coo.y = 0;
 
     for(int i = 0; i < k; i++){
-        float local_max = find_max(presence_proba_map_array[i], n, &x_local_max, &y_local_max);
+        float local_max = find_max(presence_proba_map_array[i], n, &local_max_coo);
             if(local_max > max){
                 max = local_max;
                 indice_max = i;
-                x_max = x_local_max;
-                y_max = x_local_max;
+                coo_max = local_max_coo;
             }
         }
 
@@ -397,7 +398,33 @@ void ia_moving(int gameboard[], int n, int ia_color, int* x_actual_square, int* 
     *x_actual_square = allies[indice_max].x;
     *y_actual_square = allies[indice_max].y;
 
-    *x_future_square = x_max;
-    *y_future_square = y_max;
+    *x_future_square = coo_max.x;
+    *y_future_square = coo_max.y;
 
+}
+
+int main(){
+    int plateau[25] = {0};
+
+    plateau[0 + 3*5] = 1;
+    plateau[1 + 1*5] = 1;
+    plateau[1 + 2*5] = 1;
+    plateau[3 + 1*5] = 1;
+
+    plateau[0 + 0*5] = 2;
+    plateau[2 + 1*5] = 2;
+    plateau[3 + 3*5] = 2;
+    plateau[4 + 4*5] = 2;
+
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            printf("%d ", plateau[j + i*5]);
+        }
+        printf("\n");
+    }
+
+    int a, b, c, d;
+    ia_moving(plateau, 5, 2, &a, &b, &c, &d);
+
+    printf("%d %d -> %d %d", a, b, c, d);
 }
