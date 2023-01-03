@@ -20,7 +20,7 @@ int phaseDeJeu1ia(int *plateau, int i, int color_joueur1, int color_joueur2, int
   Color(15, 0);
   printf("; rentre les coordonnees de la ou tu veux poser ta piece: \n");
   int x = 0, y = 0, booleen;
-  /*
+
   float presence_proba_map[DIMENSION*DIMENSION] = {0};
   ia_placement(plateau, 5, presence_proba_map, (i%2)+1);
   float maximum = 0;
@@ -34,9 +34,8 @@ int phaseDeJeu1ia(int *plateau, int i, int color_joueur1, int color_joueur2, int
         y = i;
       }
     }
-  }*/
-  x = (i-1)/2;
-  y = 1;
+  }
+
 
   booleen = place(plateau, (i%2) +1, x, y, dimension); // effectu le placement du pion
   if(fini(plateau, x, y, dimension) == dimension-1){ // verifie si la partie est fini
@@ -65,12 +64,12 @@ int phaseDeJeu2ia(int *plateau, int i, int color_joueur1, int color_joueur2, int
   Color(15, 0);
   printf("; rentrez les coordonnees de la piece que vous voulez bouger: \n");
   int x_actual_square, y_actual_square, x_future_square, y_future_square;
-  //ia_moving(plateau, DIMENSION, 2, &x_actual_square, &y_actual_square, &x_future_square, &y_future_square);
+  ia_moving(plateau, DIMENSION, 2, &x_actual_square, &y_actual_square, &x_future_square, &y_future_square);
   printf("rentre les coordonnees de la ou tu veux poser ta piece: \n");
 
-  booleen = deplacement(plateau, x, y, x2, y2, dimension);
+  booleen = deplacement(plateau, x_actual_square, y_actual_square, x_future_square, y_future_square, dimension);
 
-  if(fini(plateau, x2, y2, dimension) == dimension-1){ // verifie si la partie est fini
+  if(fini(plateau, x_future_square, y_future_square, dimension) == dimension-1){ // verifie si la partie est fini
     booleen = 2;
   }
 
