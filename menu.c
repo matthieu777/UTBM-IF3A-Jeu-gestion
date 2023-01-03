@@ -1,6 +1,4 @@
-#define DIMENSION 5
-
-int menu(int* color_joueur1, int* color_joueur2, int* i, int* dimension, int* nbr_pion, int* nbr_largeur){
+int menu(int* color_joueur1, int* color_joueur2, int* i, int* dimension, int* nbr_pion, int* nbr_largeur, int* iajoue){
   int couleur, etat_du_jeu =0;
   char touche_menu;
   printf("\nBonjour, bien venu dans le menu du jeu du Teeko,\nSi Vous souhaitez:\n - Commencez une nouvelle partie PvP - tapez C\n - Commencez une nouvelle partie PvE - tapez J\n - Ouvrir une partie sauegarde       - tapez S\n - Changer la couleur du");
@@ -20,6 +18,7 @@ int menu(int* color_joueur1, int* color_joueur2, int* i, int* dimension, int* nb
     *i = 1;
   }
   else if (touche_menu == 'J' || touche_menu == 'j'){
+    *iajoue = 1;
     printf("Dommage ca marche pas encore, on attend avec impatience que Josh ai remis tous ses points virgule %c \n", 1);
     *i = 1;
   }
@@ -37,7 +36,7 @@ int menu(int* color_joueur1, int* color_joueur2, int* i, int* dimension, int* nb
     else{
       *color_joueur1 = couleur;
     }
-    menu(color_joueur1, color_joueur2, i, dimension, nbr_pion, nbr_largeur);
+    menu(color_joueur1, color_joueur2, i, dimension, nbr_pion, nbr_largeur, iajoue);
   }
   else if(touche_menu == '2'){
     printf("Voici la pallette de couleur disposible :\n");
@@ -53,7 +52,7 @@ int menu(int* color_joueur1, int* color_joueur2, int* i, int* dimension, int* nb
     else{
       *color_joueur2 = couleur;
     }
-    menu(color_joueur1, color_joueur2, i, dimension, nbr_pion, nbr_largeur);
+    menu(color_joueur1, color_joueur2, i, dimension, nbr_pion, nbr_largeur, iajoue);
   }
   else if(touche_menu == 'S' || touche_menu == 's'){
     etat_du_jeu = 1;
@@ -72,7 +71,7 @@ int menu(int* color_joueur1, int* color_joueur2, int* i, int* dimension, int* nb
     else{
       *nbr_pion = x;
     }
-    menu(color_joueur1, color_joueur2, i, dimension, nbr_pion, nbr_largeur);
+    menu(color_joueur1, color_joueur2, i, dimension, nbr_pion, nbr_largeur, iajoue);
   }
   else if(touche_menu == 'D' || touche_menu == 'd'){
     int x; //x est une variable temporaire pour ne pas perdre l'encienne valeur de nbr_largeur si la valeur n'est corecte
@@ -86,9 +85,10 @@ int menu(int* color_joueur1, int* color_joueur2, int* i, int* dimension, int* nb
       printf("Cette valeur est trop petite, il ne peux pas y avoir plus de pions que la largeur du plateau\n");
     }
     else{
-      *nbr_largeur = x;
+      *dimension = x;
+      printf("dimmm%d\n", *dimension);
     }
-    menu(color_joueur1, color_joueur2, i, dimension, nbr_pion, nbr_largeur);
+    menu(color_joueur1, color_joueur2, i, dimension, nbr_pion, nbr_largeur, iajoue);
   }
   return etat_du_jeu;
 }
