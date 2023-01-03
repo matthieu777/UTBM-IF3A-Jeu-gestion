@@ -19,7 +19,9 @@ int main(){
 
   int iajoue = 0;
   etat_de_jeu = menu(&color_joueur1, &color_joueur2, &i, &dimension, &nbr_pion, &nbr_largeur, &iajoue);
+  
   printf("dim %d\n", dimension);
+  
   int plateau[dimension*dimension];
   for(int i = 0; i < dimension * dimension; i++){
     plateau[i] = 0;
@@ -94,13 +96,18 @@ int main(){
       }
     }
     else{
-      booleen = phaseDeJeu2(plateau, i, color_joueur1, color_joueur2, &super_coup_j1, &super_coup_j2, dimension);
-      while (booleen == 0) {
-        Color(4, 0);
-        printf("ERREUR");
-        Color(15, 0);
-        printf(" le pion n'a pas pu etre deplacer\n");
+      if(iajoue == 1 && (i%2)+1 == 2){
+        booleen = phaseDeJeu2ia(plateau, i, color_joueur1, color_joueur2, &super_coup_j1, &super_coup_j2, dimension);
+      }
+      else{
         booleen = phaseDeJeu2(plateau, i, color_joueur1, color_joueur2, &super_coup_j1, &super_coup_j2, dimension);
+        while (booleen == 0){
+          Color(4, 0);
+          printf("ERREUR");
+          Color(15, 0);
+          printf(" le pion n'a pas pu etre deplacer\n");
+          booleen = phaseDeJeu2(plateau, i, color_joueur1, color_joueur2, &super_coup_j1, &super_coup_j2, dimension);
+        }
       }
     }
     affichage(plateau, color_joueur1, color_joueur2, dimension);
