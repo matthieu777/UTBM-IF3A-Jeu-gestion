@@ -11,8 +11,8 @@ void Color(int couleurDuTexte, int couleurDeFond){
 int affichage(int *plateau, int color_joueur1, int color_joueur2, int dimension){
 
   // fonction qui affiche le plateau
-
-  printf("            ");
+  system("cls");
+  printf("\n\n\n            ");
   for (int i = 0; i < dimension; i++) {
     printf("%c   ", i  + 49);
   }
