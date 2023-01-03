@@ -76,7 +76,7 @@ float diagonal_mean(int type, int origin, int axe, int gameboard_lenght){
     return sum / n;
 }
 
-int max(float a, float b){
+int maxi(float a, float b){
     if (a >= b) {
         return a;
     } else {
@@ -91,7 +91,7 @@ float force(int ia_color, float x_center, float y_center, float x_case, float y_
     // F is the number of pawns aligned on the line. Called like that because it determines the force of the function (greater it is, greater the number force will be)
     // ia_color is an int representing the color of the IA.
 
-    int distance = max(abs(x_center - x_case), abs(y_center - y_case)); // The distance is given in number of square away, not a real distance
+    int distance = maxi(abs(x_center - x_case), abs(y_center - y_case)); // The distance is given in number of square away, not a real distance
     if (color == ia_color){
         return pow(F, 4) * expf((-F/20) * pow(distance, 2));
     } else if (color == (ia_color % 2 + 1)) {
@@ -370,13 +370,29 @@ void ia_moving(int gameboard[], int n, int ia_color, int* x_actual_square, int* 
         // Here we put to 0 all the squares that are to far from the pawn
         for(int a = 0; a < n; a++){
             for(int b = 0; b < n; b++){
-                if(abs(b - x) > 1 || abs(a - y) > 1){
+                if((abs(b - x) > 1 || abs(a - y) > 1) || ((b - x) == 0 && (a - y) == 0)){
                     presence_proba_map_array[i][b + a*n] = 0;
                 }
             }
         }
-    }
 
+/*
+        for(int y = 0; y < 5; y++){
+            for(int x = 0; x < 5; x++){
+                printf("%d ", gameboard_array[i][x + y*5]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+
+        for(int y = 0; y < 5; y++){
+            for(int x = 0; x < 5; x++){
+                printf("%f ", presence_proba_map_array[i][x + y*5]);
+            }
+            printf("\n");
+        }
+        printf("\n");*/
+    }
 
     // Get the max amongst all the probability of presence maps, to know what will be the next move
     float max = 0;
@@ -402,3 +418,30 @@ void ia_moving(int gameboard[], int n, int ia_color, int* x_actual_square, int* 
     *y_future_square = coo_max.y;
 
 }
+/*
+int main(){
+    int plateau[25] = {0};
+
+    plateau[0 + 2*5] = 1;
+    plateau[1 + 2*5] = 1;
+    plateau[2 + 2*5] = 1;
+    plateau[3 + 1*5] = 1;
+
+    plateau[1 + 1*5] = 2;
+    plateau[2 + 3*5] = 2;
+    plateau[3 + 2*5] = 2;
+    plateau[4 + 2*5] = 2;
+
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            printf("%d ", plateau[j + i*5]);
+        }
+        printf("\n");
+    }
+    printf("\n\n");
+    int a, b, c, d;
+    ia_moving(plateau, 5, 2, &a, &b, &c, &d);
+
+    printf("%d %d -> %d %d", a, b, c, d);
+}
+*/
