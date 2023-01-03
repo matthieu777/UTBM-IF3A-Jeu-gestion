@@ -74,10 +74,11 @@ float diagonal_mean(int type, int origin, int axe, int gameboard_lenght){
     return sum / n;
 }
 
-int max(float a, float b){
-    if (a >= b) {
+int maxi(float a, float b){
+    if(a >= b){
         return a;
-    } else {
+    }
+    else {
         return b;
     }
 }
@@ -89,7 +90,7 @@ float force(int ia_color, float x_center, float y_center, float x_case, float y_
     // F is the number of pawns aligned on the line. Called like that because it determines the force of the function (greater it is, greater the number force will be)
     // ia_color is an int representing the color of the IA.
 
-    int distance = max(abs(x_center - x_case), abs(y_center - y_case)); // The distance is given in number of square away, not a real distance
+    int distance = maxi(abs(x_center - x_case), abs(y_center - y_case)); // The distance is given in number of square away, not a real distance
     if (color == ia_color){
         return pow(F, 4) * expf((-F/20) * pow(distance, 2));
     } else if (color == (ia_color % 2 + 1)) {
