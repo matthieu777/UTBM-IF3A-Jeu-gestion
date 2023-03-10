@@ -1,0 +1,71 @@
+CREATE TABLE map(
+    idPartie INT NOT NULL AUTO_INCREMENT,
+    nTour INT NOT NULL DEFAULT 0,
+    ferRestant INT NOT NULL DEFAULT 500,
+    petroleRestant INT NOT NULL DEFAULT 600,
+    UraniumRestant INT NOT NULL DEFAULT 400,
+    PRIMARY KEY(idPartie)
+    );
+    
+#Joueur; Id , speudo, mdp, resources, partie
+
+CREATE TABLE joueur(
+    idJoueur INT NOT NULL AUTO_INCREMENT,
+    nPartie INT NOT NULL,
+    speudo VARCHAR(255) NOT NULL,
+    motDePasse VARCHAR(255) NOT NULL,
+    nArgent INT DEFAULT 50,
+    nElec INT DEFAULT 0,
+    nFer INT DEFAULT 10,
+    nPetrole INT DEFAULT 15,
+    nUranium INT DEFAULT 5,
+    PRIMARY KEY(idJoueur),
+    FOREIGN KEY(nPartie) REFERENCES map(idPartie)
+    );
+    
+#Structure; I, type, nom, datecréation
+
+CREATE TABLE structure(
+    idStructure INT NOT NULL AUTO_INCREMENT,
+    idProprietaire INT NOT NULL,
+    type VARCHAR(25) NOT NULL,
+    nom VARCHAR(100),
+    dateCreation INT NOT NULL, #numero du tour a completer en php
+    PRIMARY KEY (idStructure),
+    FOREIGN KEY(IdProprietaire) REFERENCES joueur(idJoueur)
+	);
+ 
+#Contrat; idvendeur, ressource1, valeur1, ressource2, valeur2, periode, duree, debut, acheteur
+
+CREATE TABLE contrat(
+    idContrat INT NOT NULL AUTO_INCREMENT,
+    idVendeur INT NOT NULL,
+    ressource1 VARCHAR(10) NOT NULL,
+    valeur1 INT NOT NULL,
+    ressource2 VARCHAR(10) NOT NULL,
+    valeur2 INT NOT NULL,
+    periode INT NOT NULL,
+    duree INT NOT NULL,
+    debut INT,
+    idAcheteur INT,
+    PRIMARY KEY(idContrat),
+    FOREIGN KEY(IdVendeur) REFERENCES joueur(idJoueur),
+    FOREIGN KEY(IdAcheteur) REFERENCES joueur(idJoueur)
+    );
+
+#tour, valeur , joueur
+CREATE TABLE graphOffre(
+    tour INT NOT NULL,
+    valeur INT NOT NULL,
+    idJoueur INT NOT NULL,
+    PRIMARY KEY(tour, idJoueur),
+    FOREIGN KEY(idJoueur) REFERENCES joueur(idJoueur)
+    );
+
+CREATE TABLE graphDemande(
+    tour INT NOT NULL,
+    valeur INT NOT NULL,
+    partie INT NOT NULL,
+    PRIMARY KEY(partie),
+    FOREIGN KEY(partie) REFERENCES map(idPartie)
+    );
