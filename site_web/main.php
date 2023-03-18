@@ -13,15 +13,26 @@
             </style>';
     }
 
-    function writeImageButtonJS(string $link, string $button_id){
-        echo "<script type='text/javascript'>
-        main.getElementById('".$button_id."').onclick = function() {
-            alert('button was clicked');
-        }​;
-        </script>";
+    function writeButtonMenuCSS(string $class, int $left, int $top){
+        echo '<style>
+                .'.$class.'{
+                    position: absolute;
+                    left: '.$left.'%;
+                    top: '.$top.'%
+                }
+            </style>';
+    }
+
+    function writeIframeCSS(string $id, int $right, int $top){
+        echo '<style>
+                #'.$id.'{
+                    position: absolute;
+                    right: '.$right.'%;
+                    top: '.$top.'%
+                }
+            </style>';
     }
 ?>
-
 
 <!-- CODE -->
 <!DOCTYPE html>
@@ -36,12 +47,17 @@
             writeClickableImageCSS("info_menu_pic", 125, 125);
             writeClickableImageCSS("menu_pic", 200, 200);
             writeClickableImageCSS("power_plant_pic", 60, 60);
-            writeClickableImageCSS("mines_pic", 60, 60);
-        ?>
+            writeClickableImageCSS("mines_pic", 65, 65);
+            writeClickableImageCSS("plus_pic", 45, 45);
 
+            writeButtonMenuCSS("info_button_menu",27,1);
+            writeButtonMenuCSS("button_menu",70,0);
+
+            writeIframeCSS("misc_display_iframe", 1, 33);
+        ?>
         <!-- Graph iframe -->
 
-        <iframe id="graph_iframe" name="graph_iframe" src="" width="200" height="100"></iframe>
+        <iframe id="graph_iframe" name="graph_iframe" src="" width="25%" height="33%"></iframe>
 
 
         <!-- Display of the button menu -->
@@ -65,7 +81,7 @@
 
         <!-- Display of the subpage handling every miscellaneous displays -->
 
-        <iframe src="" name="misc_display_iframe" id="misc_display_iframe" height=600 width=50%  style="float: right" scrolling=no></iframe>
+        <iframe src="" name="misc_display_iframe" id="misc_display_iframe" height=65% width=50%  style="float: right" scrolling=no></iframe>
 
 
         <!-- Display of the centrals/mines -->
@@ -75,7 +91,7 @@
             foreach ($powplt_list as $key => $value) {
                 echo '<div class="'.$key.'">';
 
-                echo '<button id="buy_pplt" type="button" name="button"><img src="textures/plus.png"></button>';
+                echo '<a href="buy_structure.php?type='.$key.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($i=0; $i < $value; $i++) {
                     echo '<a href="central.php?type='.$key.'&id='.$i.'" target="misc_display_iframe"><img src="textures/'.$key.'.png" class="power_plant_pic"></a>';
@@ -92,7 +108,7 @@
             foreach ($mine_list as $key => $value) {
                 echo '<div class="'.$key.'">';
 
-                echo '<button id="buy_mine" type="button" name="button"><img src="textures/plus.png"></button>';
+                echo '<a href="buy_structure.php?type='.$key.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($i=0; $i < $value; $i++) {
                     echo '<a href="central.php?type='.$key.'&id='.$i.'" target="misc_display_iframe"><img src="textures/'.$key.'.png" class="mines_pic"></a>';
