@@ -5,7 +5,7 @@
         <title>Détail des centrales</title>
     </head>
     <body>
-        <h1>Eolienne</h1>
+        <h1><?php echo $_GET["type"]; ?></h1>
         <br>
         <h2>Rendement : ___ WhattMois</h2>
         <h2>Prix de vente : ___ $</h2>
