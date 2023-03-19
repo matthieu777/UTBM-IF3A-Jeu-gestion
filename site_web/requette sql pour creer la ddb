@@ -12,7 +12,7 @@ CREATE TABLE map(
 CREATE TABLE joueur(
     idJoueur INT NOT NULL AUTO_INCREMENT,
     nPartie INT NOT NULL,
-    speudo VARCHAR(255) NOT NULL,
+    pseudo VARCHAR(255) NOT NULL,
     motDePasse VARCHAR(255) NOT NULL,
     nArgent INT DEFAULT 50,
     nElec INT DEFAULT 0,
