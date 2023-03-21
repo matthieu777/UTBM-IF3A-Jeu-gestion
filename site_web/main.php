@@ -1,6 +1,6 @@
-<!-- FUNCTIONS -->
+<!-- FUNCTIONS (you can't see the code its in php :-) )-->
 
-<!-- A function used to generate css code for image-link clickable buttons -->
+<!-- CSS related functions -->
 <?php
     function writeClickableImageCSS(string $class, int $height, int $width)
     {
@@ -31,6 +31,24 @@
                     top: '.$top.'%
                 }
             </style>';
+    }
+?>
+
+<!-- SQL related functions -->
+<?php
+    function executeRequest(string $dbname, string $sql_request){
+        try{
+            $db = new PDO("mysql:host=localhost;port=3306;dbname=".$dbname.";charset=utf8", "root", "");
+        }
+        catch (Exception $e){
+            echo "la base de donnée n'a pas pu etre chargé";
+            die('Erreur : '.$e->getMessage());
+        }
+        $req = $db->prepare($sql_request);
+        $req->execute();
+        $datas = $req->fetch();
+
+        return $datas;
     }
 ?>
 
