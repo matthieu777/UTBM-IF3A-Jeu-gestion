@@ -1,0 +1,171 @@
+body{
+    background-color: #D9B384;
+    display: flex;
+}
+
+
+
+.nav-barre{
+    background-color: #838C3B;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 8vh;
+    position: fixed;
+    display: flex;
+}
+
+.nav-barre-gauche{
+    background-color: #d41414;
+    width: 7vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-centre{
+
+    width: 53vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-titre{
+    color: #ededed;
+    font-size: 2.7vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-barre-droite{
+
+    width: 40vw;
+    display: flex;
+}
+
+.nav-barre-droite-gauche{
+
+    width: 20vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-droite-droite{
+
+    width: 20vw;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-boutton{
+    border: solid;
+    border-color:#402813;
+    border-radius: 13px;
+
+    width: 17vw;
+    height: 6vh;
+
+
+    background-color: #A69256;
+    color: #402813;
+    
+    font-size: 1.5vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+
+
+
+
+.body-main{
+    margin-top: 12vh;
+
+
+
+    width: 96vw;
+    height: 84vh;
+
+    display: flex;
+}
+
+
+
+
+
+.body-main-droite{
+
+    width: 27vw;
+
+}
+
+
+.body-main-droite-bas{
+    background-color: #736F3D;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.page-info{
+    background-color: #A69256;
+    border: none;
+    border-radius: 15px;
+
+    margin-top: 5%;
+}
+
+.body-main-gauche{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    width: 69vw;
+    margin-left: 3vw;
+}
+
+.body-main-gauche-box-boutton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+
+
+    background-color: #736F3D;
+    height: 15vh;
+    width: 67vw;
+
+
+    
+}
+
+.info_button_menu{
+
+    height: 100%;
+    display: flex;
+}
+
+.button_menu{
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+}
