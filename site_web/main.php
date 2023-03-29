@@ -16,7 +16,7 @@
     function writeButtonMenuCSS(string $class, int $left, int $top){
         echo '<style>
                 .'.$class.'{
-                    position: absolute;
+
                     left: '.$left.'%;
                     top: '.$top.'%
                 }
@@ -26,7 +26,7 @@
     function writeIframeCSS(string $id, int $right, int $top){
         echo '<style>
                 #'.$id.'{
-                    position: absolute;
+
                     right: '.$right.'%;
                     top: '.$top.'%
                 }
@@ -58,6 +58,7 @@
     <head>
         <meta charset="utf-8">
         <title>Jeu des énergies !</title>
+        <link rel="stylesheet" href="style/main.css">
     </head>
     <body>
         <!-- Write CSS -->
@@ -75,31 +76,49 @@
         ?>
         <!-- Graph iframe -->
 
-        <iframe id="graph_iframe" name="graph_iframe" src="" width="25%" height="33%"></iframe>
-
-
-        <!-- Display of the button menu -->
-
-        <div class="info_button_menu">
-            <?php
-                $button_names = ['dollar', 'electricity', 'iron', 'oil', 'uranium'];
-
-                for ($i = 0; $i < count($button_names); $i++) {
-                    echo '<a href="detail.php?type='.$button_names[$i].'" target="misc_display_iframe"><img src="textures/'.$button_names[$i].'.png" class="info_menu_pic"></a>';
-                }
-
-            ?>
+        <div class="nav-barre">
+        <div class="nav-barre-gauche">
+            logo
+        </div>
+        <div class="nav-barre-centre">
+            <h1 class="nav-barre-titre"><u> Industries de ..... </u><h1>
+        </div>
+        <div class="nav-barre-droite">
+            <div class="nav-barre-droite-gauche">
+                <button class="nav-barre-boutton" onclick="window.location.href='inscription.php'">
+                    <span>profil</span>
+                </button>
+            </div>
+            <div class="nav-barre-droite-droite">
+            <button class="nav-barre-boutton" onclick="window.location.href='acceuil.php'">
+                    <span>deco</span>
+                </button>
+            </div>
+        </div>
         </div>
 
-        <div class="button_menu">
-            <a href="market.php" target="misc_display_iframe"><img src="textures/market.png" class="menu_pic"></a>
-            <a href="contract.php" target="misc_display_iframe"><img src="textures/deal.png" class="menu_pic"></a>
-        </div>
 
 
-        <!-- Display of the subpage handling every miscellaneous displays -->
 
-        <iframe src="" name="misc_display_iframe" id="misc_display_iframe" height=65% width=50%  style="float: right" scrolling=no></iframe>
+
+
+
+
+
+
+        <div class="body-main">
+
+
+
+
+        <div class="body-main-droite">
+
+            <iframe id="graph_iframe" name="graph_iframe" src="" width="100%" height="33%"></iframe>
+        
+
+
+        <div class="body-main-droite-bas">
+
 
 
         <!-- Display of the centrals/mines -->
@@ -118,6 +137,7 @@
                 echo "</div>";
             }
         ?>
+        
 
         <br>
 
@@ -136,5 +156,54 @@
             }
         ?>
 
+
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+<!-- partie à gauche -->
+
+    <div class="body-main-gauche">
+
+        <!-- Display of the button menu -->
+
+        <div class="body-main-gauche-box-boutton">
+
+        <div class="info_button_menu">
+            <?php
+                $button_names = ['dollar', 'electricity', 'iron', 'oil', 'uranium'];
+
+                for ($i = 0; $i < count($button_names); $i++) {
+                    echo '<a href="detail.php?type='.$button_names[$i].'" target="misc_display_iframe"><img src="textures/'.$button_names[$i].'.png" class="info_menu_pic"></a>';
+                }
+
+            ?>
+        </div>
+
+        <div class="button_menu">
+            <a href="market.php" target="misc_display_iframe"><img src="textures/market.png" class="menu_pic"></a>
+            <a href="contract.php" target="misc_display_iframe"><img src="textures/deal.png" class="menu_pic"></a>
+        </div>
+
+        </div>
+
+
+
+        <!-- Display of the subpage handling every miscellaneous displays -->
+
+        <iframe class="page-info" src="" name="misc_display_iframe" id="misc_display_iframe" height=70% width=90%  style="float: right" scrolling=no></iframe>
+
+    </div>
+
+
+    
+    </div>
+ 
     </body>
 </html>
