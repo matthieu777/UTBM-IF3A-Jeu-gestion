@@ -66,6 +66,8 @@ body{
     justify-content: center;
 }
 
+
+
 .nav-barre-boutton{
     border: solid;
     border-color:#402813;
@@ -82,6 +84,11 @@ body{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
+
+.nav-barre-boutton:hover{
+    background-color: #c4ac64;
+}
+
 
 
 
