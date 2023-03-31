@@ -16,7 +16,7 @@ CREATE TABLE joueur(
     pseudo VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(200) NOT NULL UNIQUE,
     motDePasse VARCHAR(400) NOT NULL,
-    nPartie INT NOT NULL,
+    nPartie INT DEFAULT 0,
     nArgent INT DEFAULT 50,
     nElec INT DEFAULT 0,
     nFer INT DEFAULT 10,
