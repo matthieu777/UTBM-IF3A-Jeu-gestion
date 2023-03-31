@@ -86,12 +86,12 @@
         <div class="nav-barre-droite">
             <div class="nav-barre-droite-gauche">
                 <button class="nav-barre-boutton" onclick="window.location.href='inscription.php'">
-                    <span>profil</span>
+                    <span><img class = "nav-barre-boutton-logo" src="textures/logo-profil.png"></span>
                 </button>
             </div>
             <div class="nav-barre-droite-droite">
             <button class="nav-barre-boutton" onclick="window.location.href='acceuil.php'">
-                    <span>deco</span>
+                    <span><img class = "nav-barre-boutton-logo" src="textures/logo-deconexion.png"></span>
                 </button>
             </div>
         </div>
