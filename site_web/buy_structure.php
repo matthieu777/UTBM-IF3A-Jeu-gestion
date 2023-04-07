@@ -8,7 +8,7 @@
     </head>
     <body>
         <?php
-            include("fonction_for_bdd.php");
+            include("function_for_bdd.php");
             $type = $_GET["type"];
             $playerId = $_GET["playerid"];
 
