@@ -128,7 +128,7 @@
             foreach ($powplt_list as $key => $value) {
                 echo '<div class="'.$key.'">';
 
-                echo '<a href="buy_structure.php?type='.$key.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+                echo '<a href="buy_structure.php?type='.$key.'&playerid=1" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($i=0; $i < $value; $i++) {
                     echo '<a href="central.php?type='.$key.'&id='.$i.'" target="misc_display_iframe"><img src="textures/'.$key.'.png" class="power_plant_pic"></a>';
@@ -146,7 +146,7 @@
             foreach ($mine_list as $key => $value) {
                 echo '<div class="'.$key.'">';
 
-                echo '<a href="buy_structure.php?type='.$key.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+                echo '<a href="buy_structure.php?type='.$key.'&playerid=1" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($i=0; $i < $value; $i++) {
                     echo '<a href="central.php?type='.$key.'&id='.$i.'" target="misc_display_iframe"><img src="textures/'.$key.'.png" class="mines_pic"></a>';
