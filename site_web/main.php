@@ -16,7 +16,6 @@
     function writeButtonMenuCSS(string $class, int $left, int $top){
         echo '<style>
                 .'.$class.'{
-
                     left: '.$left.'%;
                     top: '.$top.'%
                 }
@@ -26,7 +25,6 @@
     function writeIframeCSS(string $id, int $right, int $top){
         echo '<style>
                 #'.$id.'{
-
                     right: '.$right.'%;
                     top: '.$top.'%
                 }
@@ -74,7 +72,9 @@
 
             writeIframeCSS("misc_display_iframe", 1, 33);
         ?>
-        <!-- Graph iframe -->
+
+
+        <!-- Barre des boutons de déconnexion etc... -->
 
         <div class="nav-barre">
         <div class="nav-barre-gauche">
@@ -101,11 +101,6 @@
 
 
 
-
-
-
-
-
         <div class="body-main">
 
 
@@ -113,8 +108,8 @@
 
         <div class="body-main-droite">
 
-            <iframe id="graph_iframe" name="graph_iframe" src="" width="100%" height="33%"></iframe>
-        
+            <iframe id="graph_iframe" name="graph_iframe" src="chart.php" width="100%" height="33%"></iframe>
+
 
 
         <div class="body-main-droite-bas">
@@ -137,7 +132,7 @@
                 echo "</div>";
             }
         ?>
-        
+
 
         <br>
 
@@ -202,8 +197,8 @@
     </div>
 
 
-    
+
     </div>
- 
+
     </body>
 </html>
