@@ -1,37 +1,56 @@
-<!DOCTYPE html>
+<?php
+	include("function_for_bdd.php");
 
-<html lang="en" dir="ltr">
-  <head>
-    <title>chart</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body>
+	$idPlayer = 1;
+	$r = "SELECT tour, valeur FROM `graphoffre` WHERE idJoueur = ?";
+	$points = requestResultToArray(executeSQLRequest($r, array($idPlayer)));
 
-    <div>
-      <canvas id="myChart"></canvas>
-    </div>
+	$dataPointsEnergy = array();
 
+	for ($i=0; $i < count($points); $i++) {
+		$arr = array('x' => $points[$i][0], 'y' => $points[$i][1]);
+		array_push($dataPointsEnergy, $arr);
+	}
+?>
+
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+    <meta charset="UTF-8">
     <script>
-      const ctx = document.getElementById('myChart');
+        window.onload = function () {
 
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
+            var chart = new CanvasJS.Chart("chartContainer", {
+            	animationEnabled: true,
+            	title:{
+            		text: "Courbe d'offre de l'énergie"
+            	},
+            	axisX:{
+            		title: "Mois"
+            	},
+            	axisY:{
+            		title: "WhattMois",
+            		titleFontColor: "#4F81BC",
+            		lineColor: "#4F81BC",
+            		labelFontColor: "#4F81BC",
+            		tickColor: "#4F81BC"
+            	},
+            	data: [{
+            		type: "line",
+            		name: "Energie",
+            		markerSize: 0,
+            		toolTipContent: "Mois: {x} <br>{name}: {y} WhattMois",
+            		dataPoints: <?php echo json_encode($dataPointsEnergy, JSON_NUMERIC_CHECK); ?>
+            	}]
+            });
+            chart.render();
+
         }
-      });
-    </script>
-
-  </body>
+        </script>
+    </head>
+<body>
+    <div id="chartContainer" style="height: 100%; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
