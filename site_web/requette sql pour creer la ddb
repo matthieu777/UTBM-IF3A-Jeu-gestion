@@ -59,7 +59,7 @@ CREATE TABLE contrat(
 #tour, valeur , joueur
 CREATE TABLE graphOffre(
     tour INT NOT NULL,
-    valeur INT NOT NULL,
+    valeur DECIMAL NOT NULL,
     idJoueur INT NOT NULL,
     PRIMARY KEY(tour, idJoueur),
     FOREIGN KEY(idJoueur) REFERENCES joueur(idJoueur)
@@ -67,7 +67,7 @@ CREATE TABLE graphOffre(
 
 CREATE TABLE graphDemande(
     tour INT NOT NULL,
-    valeur INT NOT NULL,
+    valeur DECIMAL NOT NULL,
     partie INT NOT NULL,
     PRIMARY KEY(partie),
     FOREIGN KEY(partie) REFERENCES map(idPartie)
