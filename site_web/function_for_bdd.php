@@ -10,8 +10,14 @@ function executeSQLRequest(string $sql_request, array $parameters){
     }
     $req = $db->prepare($sql_request);
     $req->execute($parameters);
-    $datas = $req->fetch();
 
-    return $datas;
+    $data = [];
+    $a = $req->fetch();
+    while ($a != null){
+        array_push($data ,$a);
+        $a = $req->fetch();
+    }
+
+    return $data;
 }
 ?>
