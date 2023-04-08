@@ -9,13 +9,17 @@ function executeSQLRequest(string $sql_request, array $parameters){
         die('Erreur : '.$e->getMessage());
     }
     $req = $db->prepare($sql_request);
-    $req->execute($parameters);
+    $req->execute($parameters); 
 
+    return $req;
+}
+
+function requestResultToArray($request_res){
     $data = [];
-    $a = $req->fetch();
+    $a = $request_res->fetch();
     while ($a != null){
         array_push($data ,$a);
-        $a = $req->fetch();
+        $a = $request_res->fetch();
     }
 
     return $data;
