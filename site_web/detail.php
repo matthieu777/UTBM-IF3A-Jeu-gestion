@@ -25,7 +25,7 @@
                 <?php
                     $list = ['dollar' => 'nArgent', 'electricity' => 'nElec', 'iron' => 'nFer', 'oil' => 'nPetrole', 'uranium' => 'nUranium'];
                     $req = "SELECT ".$list[$type]." FROM `joueur` WHERE idJoueur = ?;";
-                    $res = executeSQLRequest($req, array($player));
+                    $res = requestResultToArray(executeSQLRequest($req, array($player)));
                     echo $res[0][0];
                 ?>
             </li>
