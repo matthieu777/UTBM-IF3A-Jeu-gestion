@@ -63,19 +63,9 @@
 
                 $i++;
             }
+
+            echo '<button type="button" name="button"><a href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'">Acheter</a></button>';
         ?>
-        <input id="button" type="submit" name="button" onclick="refreshPage();" value="Acheter"/>
-        <script>
-        function refreshPage(){
-            window.location.reload();
-            <?php
-                $type = $_GET["type"];
-                $playerId = $_GET["playerid"];
-                $r = "INSERT INTO `structure` (`idProprietaire`, `type`, `nom`, `dateCreation`) VALUES (?, ?, 'Eolienne 1', '0');";
-                executeSQLRequest($r, array("$playerId", "$type"));
-            ?>
-            window.top.location.reload();
-        };
-        </script>
+
     </body>
 </html>
