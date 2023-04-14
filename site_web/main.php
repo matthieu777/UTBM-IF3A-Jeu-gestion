@@ -32,24 +32,6 @@
     }
 ?>
 
-<!-- SQL related functions -->
-<?php
-    function executeRequest(string $dbname, string $sql_request){
-        try{
-            $db = new PDO("mysql:host=localhost;port=3306;dbname=".$dbname.";charset=utf8", "root", "");
-        }
-        catch (Exception $e){
-            echo "la base de donnée n'a pas pu etre chargé";
-            die('Erreur : '.$e->getMessage());
-        }
-        $req = $db->prepare($sql_request);
-        $req->execute();
-        $datas = $req->fetch();
-
-        return $datas;
-    }
-?>
-
 <!-- CODE -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -119,16 +101,21 @@
         <!-- Display of the centrals/mines -->
 
         <?php
-            $powplt_list = ["nuclear_plant" => 1, "oil_power_station" => 2, "wind_turbine" => 5, "solar_panel" => 0, "dam" => 1];
-            foreach ($powplt_list as $key => $value) {
-                echo '<div class="'.$key.'">';
+            include("function_for_bdd.php");
 
-                echo '<a href="buy_structure_front.php?type='.$key.'&playerid=1&bought=0" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+            // Get the number of each type of powerplant in the db
+            $arr = ["wind_turbine", "solar_panel", "dam", "oil_power_station", "nuclear_plant"];
+            for ($i=0; $i < count($arr); $i++) {
+                $r = "SELECT nom, dateCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
+                $data = requestResultToArray(executeSQLRequest($r, array($arr[$i])));
 
-                for ($i=0; $i < $value; $i++) {
-                    echo '<a href="central.php?type='.$key.'&id='.$i.'" target="misc_display_iframe"><img src="textures/'.$key.'.png" class="power_plant_pic"></a>';
+                echo '<div class="'.$arr[$i].'">';
+
+                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid=1" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+
+                for ($j=0; $j < count($data); $j++) {
+                    echo '<a href="central.php?type='.$arr[$i].'&name='.$data[$j][0].'&datecrea='.$data[$j][1].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
                 }
-
                 echo "</div>";
             }
         ?>
@@ -137,16 +124,18 @@
         <br>
 
         <?php
-            $mine_list = ["uranium" => 1, "iron" => 2, "oil" => 2];
-            foreach ($mine_list as $key => $value) {
-                echo '<div class="'.$key.'">';
+            $arr = ["iron", "oil", "uranium"];
+            for ($i=0; $i < count($arr); $i++) {
+                $r = "SELECT nom, dateCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
+                $data = requestResultToArray(executeSQLRequest($r, array($arr[$i])));
 
-                echo '<a href="buy_structure_front.php?type='.$key.'&playerid=1$bought=0" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+                echo '<div class="'.$arr[$i].'">';
 
-                for ($i=0; $i < $value; $i++) {
-                    echo '<a href="central.php?type='.$key.'&id='.$i.'" target="misc_display_iframe"><img src="textures/'.$key.'.png" class="mines_pic"></a>';
+                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid=1" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+
+                for ($j=0; $j < count($data); $j++) {
+                    echo '<a href="central.php?type='.$arr[$i].'&name='.$data[$j][0].'&datecrea='.$data[$j][1].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
                 }
-
                 echo "</div>";
             }
         ?>
