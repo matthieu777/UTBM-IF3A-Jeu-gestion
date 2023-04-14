@@ -1,0 +1,282 @@
+body{
+    background-color: #D9B384;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+.nav-barre{
+    background-color: #838C3B;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 8vh;
+    position: fixed;
+    display: flex;
+}
+
+.nav-barre-gauche{
+
+    width: 7vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo_du_jeu_nav{
+    width: 3.5vw;
+
+}
+
+.nav-barre-centre{
+
+    width: 53vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-titre{
+    color: #ededed;
+    font-size: 2.7vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-barre-droite{
+
+    width: 40vw;
+    display: flex;
+}
+
+.nav-barre-droite-gauche{
+
+    width: 20vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-droite-droite{
+
+    width: 20vw;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-boutton{
+    border: solid;
+    border-color:#402813;
+    border-radius: 13px;
+
+    width: 17vw;
+    height: 6vh;
+
+
+    background-color: #A69256;
+    color: #402813;
+    
+    font-size: 1.5vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+.nav-barre-boutton:hover{
+    background-color: #c4ac64;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.body-inscription{
+    margin-top: 12vh;
+
+    width: 88vw;
+    height: 80vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+
+
+.contour{
+    
+
+/* From https://css.glass */
+background: rgba(131, 140, 59, 0.27);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.1px);
+-webkit-backdrop-filter: blur(9.1px);
+border: 3px solid rgba(131, 140, 59, 0.38);
+
+
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+
+
+
+    width: 120vh;
+    height: 75vh;
+    border-radius: 10px;
+   
+}
+
+
+.contour:hover{
+
+    border: 3px solid #402813;
+
+    }
+
+
+
+
+
+
+    .titre-inscription{
+        margin-left: 5vh;
+        font-size: 2vw;
+        color: #ffffff;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+
+
+
+
+
+    .inputinscriptionensemble{
+        margin-left: 12vh;
+
+        width: 100vh;
+        display: flex;
+    
+    
+    }
+
+
+
+
+    .inputinscription{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between ;
+    
+        width: 95vh;
+        height: 7vh;
+       
+    }
+    
+
+
+    .inputinscriptiontext{
+        display: flex;
+        font-size: 2vw;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: #402813;
+    }
+    
+    .inputinscriptionreponse{
+        display: flex;
+        justify-content: center;
+        height: 4vh;
+        width: 54vh;
+    
+        margin-left: 10vh;
+        font-size: 1.5vw;
+        border-radius: 5px;
+        border: none;
+    }
+    
+
+
+    .affichermdp{
+
+        position:absolute;
+
+        margin-left: 98vh;
+        margin-top: 7vh;
+
+        border-radius: 7px;
+        border: solid;
+        border-color: rgba(131, 140, 59, 0.38);
+
+        background-color: #A69256;
+        color: #f9f9f9;
+    }
+
+
+    .affichermdp:hover{
+        border-color:  #402813;
+
+    }
+
+
+
+    .boutonentrer{
+
+        display: flex;
+        justify-content: end;
+    
+        margin-top: 3vh;
+        width: 100vh;
+        height: 7vh;
+    }
+    
+    .boutonentretext{
+        border: solid;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        border-color: rgba(184, 199, 70, 0.38);
+        color: #ffffff;
+        border-radius: 5px;
+        width: 25vh;
+        background-color: #838C3B;
+        font-size: 1.4vw;
+        margin-left: 50vh;
+    }
+
+
+
+    .boutonentretext:hover{
+        border-color: #402813;
+        color: #402813;
+    
+    }
+
+
+    .texteerreur{
+        color: red;
+        font-size: 2.3vw;
+        margin-top : -2.5vh;
+    }
