@@ -41,6 +41,7 @@
         <link rel="stylesheet" href="style/main.css">
     </head>
     <body>
+        <?php session_start(); ?>
         <!-- Write CSS -->
         <?php
             writeClickableImageCSS("info_menu_pic", 125, 125);
@@ -63,7 +64,7 @@
             <img  class = "logo_du_jeu_nav" src="textures/logo_energie.png">
         </div>
         <div class="nav-barre-centre">
-            <h1 class="nav-barre-titre"><u> Industries de ..... </u><h1>
+            <h1 class="nav-barre-titre"><u> Industries de <?php echo $_SESSION['pseudo']?></u><h1>
         </div>
         <div class="nav-barre-droite">
             <div class="nav-barre-droite-gauche">
