@@ -107,7 +107,7 @@
             // Get the number of each type of powerplant in the db
             $arr = ["wind_turbine", "solar_panel", "dam", "oil_power_station", "nuclear_plant"];
             for ($i=0; $i < count($arr); $i++) {
-                $r = "SELECT nom, dateCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
+                $r = "SELECT idStructure, nom, dateCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
                 $data = requestResultToArray(executeSQLRequest($r, array($arr[$i])));
 
                 echo '<div class="'.$arr[$i].'">';
@@ -115,7 +115,7 @@
                 echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid=1" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($j=0; $j < count($data); $j++) {
-                    echo '<a href="central.php?type='.$arr[$i].'&name='.$data[$j][0].'&datecrea='.$data[$j][1].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
+                    echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
                 }
                 echo "</div>";
             }
@@ -127,7 +127,7 @@
         <?php
             $arr = ["iron", "oil", "uranium"];
             for ($i=0; $i < count($arr); $i++) {
-                $r = "SELECT nom, dateCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
+                $r = "SELECT idStructure, nom, dateCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
                 $data = requestResultToArray(executeSQLRequest($r, array($arr[$i])));
 
                 echo '<div class="'.$arr[$i].'">';
@@ -135,7 +135,7 @@
                 echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid=1" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($j=0; $j < count($data); $j++) {
-                    echo '<a href="central.php?type='.$arr[$i].'&name='.$data[$j][0].'&datecrea='.$data[$j][1].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
+                    echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
                 }
                 echo "</div>";
             }
