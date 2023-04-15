@@ -8,6 +8,7 @@
         <?php
             $type = $_GET["type"];
             $name = $_GET["name"];
+            $id = $_GET['id'];
             $datecrea = $_GET["datecrea"];
 
             $random_sentence_pplt = [
@@ -71,8 +72,9 @@
                 echo '<h3>'.$random_sentence_pplt[$type][$i].'</h3>';
             }
 
+        echo '<button type="button" class="sell"><a href="sell_struct.php?type='.$type.'&name='.$name.'&datecrea='.$datecrea.'&id='.$id.'">Vendre</a></button>';
         ?>
 
-        <button type="button" class="sell">Vendre</button>
+
     </body>
 </html>
