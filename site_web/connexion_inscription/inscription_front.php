@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../style/inscription.css">
 </head>
 <body>
-    
+
     <div class="nav-barre">
         <div class="nav-barre-gauche">
         <img  class = "logo_du_jeu_nav" src="../textures/logo_energie.png">
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    
+
 
     <div class="body-inscription">
         <div class = "contour">
@@ -38,7 +38,7 @@
 
     <div class ="inputinscriptionensemble">
 
-    
+
 
     <form action="inscription_back.php" method="post">
 
@@ -46,7 +46,7 @@
             <p class="inputinscriptiontext"> Nom :</p>
             <input class="inputinscriptionreponse" type = "text" name="nom" placeholder="Entrez votre nom"/>
         </div>
-        
+
         <div class="inputinscription">
             <p class="inputinscriptiontext">Prenom :</p>
             <input class="inputinscriptionreponse" type = "text" name = "prenom" placeholder="Entrez votre prénom"/>
@@ -56,7 +56,7 @@
             <p class="inputinscriptiontext">Pseudo:</p>
             <input class="inputinscriptionreponse" type = "text" name = "pseudo" placeholder="Entrez votre pseudo"/>
         </div>
-        
+
         <div class="inputinscription">
             <p class="inputinscriptiontext">Email :</p>
             <input class="inputinscriptionreponse" type = "email" name ="mail" placeholder="Entrez votre email"/>
@@ -93,14 +93,10 @@
         if($_GET["error"] == "erreur") {
             echo "<u><p >ERREUR</p></u>";
         }
-                
     }
-    
     ?>
 
- 
     </form>
-        
         </div>
 
     </div>
