@@ -1,13 +1,15 @@
+DROP TABLE contrat,graphoffre,graphdemande,structure,joueur,map,equilibrage;
+CREATE DATABASE projet_if_energie ;
 CREATE TABLE map(
     idPartie INT NOT NULL AUTO_INCREMENT,
-    nTour INT NOT NULL DEFAULT 0,
+    numeroTour INT NOT NULL DEFAULT 0,
     ferRestant INT NOT NULL DEFAULT 500,
     petroleRestant INT NOT NULL DEFAULT 600,
     UraniumRestant INT NOT NULL DEFAULT 400,
     PRIMARY KEY(idPartie)
     );
     
-#Joueur; Id , speudo, mdp, resources, partie
+#Joueur; Id , pseudo, mdp, resources, partie
 
 CREATE TABLE joueur(
     idJoueur INT NOT NULL AUTO_INCREMENT,
@@ -16,14 +18,14 @@ CREATE TABLE joueur(
     pseudo VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(200) NOT NULL UNIQUE,
     motDePasse VARCHAR(400) NOT NULL,
-    nPartie INT DEFAULT 0,
-    nArgent INT DEFAULT 50,
-    nElec INT DEFAULT 0,
-    nFer INT DEFAULT 10,
-    nPetrole INT DEFAULT 15,
-    nUranium INT DEFAULT 5,
+    numeroPartie INT DEFAULT 0,  
+    numeroArgent INT DEFAULT 50,
+    nombreElec INT DEFAULT 0,
+    nombreFer INT DEFAULT 10,
+    nombrePetrole INT DEFAULT 15,
+    nombreUranium INT DEFAULT 5,
     PRIMARY KEY(idJoueur),
-    FOREIGN KEY(nPartie) REFERENCES map(idPartie)
+    FOREIGN KEY(numeroPartie) REFERENCES map(idPartie)
     );
     
 #Structure; I, type, nom, datecréation
@@ -33,10 +35,11 @@ CREATE TABLE structure(
     idProprietaire INT NOT NULL,
     type VARCHAR(25) NOT NULL,
     nom VARCHAR(100),
-    dateCreation INT NOT NULL, #numero du tour a completer en php
+    tourCreation INT NOT NULL, #numero du tour a completer en php
+    tourMaintenace INT NOT NULL DEFAULT 0,
     PRIMARY KEY (idStructure),
     FOREIGN KEY(IdProprietaire) REFERENCES joueur(idJoueur)
-	);
+    );
  
 #Contrat; idvendeur, ressource1, valeur1, ressource2, valeur2, periode, duree, debut, acheteur
 
@@ -69,6 +72,43 @@ CREATE TABLE graphDemande(
     tour INT NOT NULL,
     valeur DECIMAL NOT NULL,
     partie INT NOT NULL,
-    PRIMARY KEY(partie),
+    PRIMARY KEY(tour),
     FOREIGN KEY(partie) REFERENCES map(idPartie)
     );
+
+CREATE TABLE equilibrage(
+    typeStructure VARCHAR(25) NOT NULL,
+    coutAchatDollar INT,
+    coutAchatIron INT,
+    coutAchatOil INT,
+    coutAchatUranium INT,
+
+    productionElec INT,
+    productionIron INT,
+    productionOil INT,
+    productionUranium INT,
+
+    coutProductionDollar INT,
+    coutProductionIron INT,
+    coutProductionOil INT,
+    coutProductionUranium INT,
+
+    coutMaintenanceDollar INT,
+    coutMaintenanceIron INT,
+    coutMaintenanceOil INT,
+    coutMaintenanceUranium INT
+    #FOREIGN KEY(typeStructure) REFERENCES structure(type)
+);
+INSERT INTO `equilibrage` (`typeStructure`, `coutAchatDollar`, `coutAchatIron`, `coutAchatOil`, `coutAchatUranium`, `productionElec`, `productionIron`, `productionOil`, `productionUranium`, `coutProductionDollar`, `coutProductionIron`, `coutProductionOil`, `coutProductionUranium`, `coutMaintenanceDollar`, `coutMaintenanceIron`, `coutMaintenanceOil`, `coutMaintenanceUranium`) VALUES ('nuclear_plant', '17', '4', '0', '0', '8', '0', '0', '0', '0', '0', '0', '1', '3', '2', '0', '1'),
+('oil_power_station', '10', '3', '0', '0', '6', '0', '0', '0', '0', '0', '1', '0', '2', '1', '1', '0'),
+('wind_turbine', '3', '1', '0', '0', '2', '0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '0'),
+('solar_panel', '1', '1', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0'),
+('dam', '17', '4', '0', '0', '8', '0', '0', '0', '0', '1', '0', '0', '2', '1', '0', '0'),
+('uranium_mine', '10', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0'),
+('iron_plant', '8', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('oil_plant', '6', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0'));
+
+tableenergie69
+    															
+"wind_turbine", "solar_panel", "dam", "oil_power_station", "nuclear_plant"
+'dollar', 'electricity', 'iron', 'oil', 'uranium'
