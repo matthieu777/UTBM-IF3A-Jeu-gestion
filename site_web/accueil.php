@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="style/accueil.css">
 </head>
 <body>
-    
+
     <div class="nav-barre">
         <div class="nav-barre-gauche">
             <img  class = "logo_du_jeu_nav" src="textures/logo_energie.png">
         </div>
         <div class="nav-barre-centre">
-            <h1 class="nav-barre-titre"><u> Accueil </u><h1>
+            <h1 class="nav-barre-titre"><u> Acceuil </u><h1>
         </div>
         <div class="nav-barre-droite">
             <div class="nav-barre-droite-gauche">
@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        
+
     </div>
 
 </body>
@@ -64,13 +64,13 @@ function rotation() {
 
   if (cmpt === 1) {
 
-    
+
   var img = document.getElementById("img");
   var angle = 0;
   var interval = setInterval(function() {
     angle += 10;
     img.style.transform = "rotateZ(" + angle + "deg)";
-    
+
     if (cmpt === 2) {
       clearInterval(interval);
       cmpt = 0
@@ -78,7 +78,7 @@ function rotation() {
  }, 8);
 
 
-    
+
   }
 }
 
