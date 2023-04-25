@@ -107,7 +107,7 @@
             // Get the number of each type of powerplant in the db
             $arr = ["wind_turbine", "solar_panel", "dam", "oil_power_station", "nuclear_plant"];
             for ($i=0; $i < count($arr); $i++) {
-                $r = "SELECT idStructure, nom, dateCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
+                $r = "SELECT idStructure, nom, tourCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
                 $data = requestResultToArray(executeSQLRequest($r, array($arr[$i])));
 
                 echo '<div class="'.$arr[$i].'">';
@@ -127,7 +127,7 @@
         <?php
             $arr = ["iron", "oil", "uranium"];
             for ($i=0; $i < count($arr); $i++) {
-                $r = "SELECT idStructure, nom, dateCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
+                $r = "SELECT idStructure, nom, tourCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
                 $data = requestResultToArray(executeSQLRequest($r, array($arr[$i])));
 
                 echo '<div class="'.$arr[$i].'">';
@@ -189,6 +189,6 @@
 
 
     </div>
-
+      <iframe class="actualisation" id="actualisation_iframe" name="actualisation_iframe" src="actualisation.php" ></iframe>
     </body>
 </html>
