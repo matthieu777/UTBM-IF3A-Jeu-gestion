@@ -14,7 +14,7 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) &&
     $mdpcrypte = password_hash($mdp, PASSWORD_DEFAULT);
 
 
-    
+
 
 
     //$bdd = new PDO("mysql:host=localhost;port=3306;dbname=projet_if_energie;charset=utf8", "root", "");
@@ -34,7 +34,7 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) &&
     $reqverifmail = executeSQLRequest("SELECT * FROM joueur WHERE email = ?",[$email]);
 
     //$reqverifmail = $bdd->prepare("SELECT * FROM joueur WHERE email = ?");
-    
+
     //$reqverifmail->execute([$email]);
 
     if ($reqverifmail->fetch() == null ){
@@ -43,58 +43,38 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) &&
         $donneesreqverifmail = 1; //si il est deja dans la base
     }
 
-
-    
-
     if(($donneesreqverifpseudo ) != 0){
         header("Location: inscription_front.php?error=duplicate_login");
     }
 
     else if (($donneesreqverifmail ) != 0){
-        
-        header("Location: inscription_front.php?error=duplicate_mail");            
-        
+
+        header("Location: inscription_front.php?error=duplicate_mail");
+
       } else if($mdp != $mdpverif ){
 
-
-        header("Location: inscription_front.php?error=mdp_not_egal"); 
-        
+        header("Location: inscription_front.php?error=mdp_not_egal");
 
       }
-      
-      
+
       else {
-        
-        $req = executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse) values (?,?,?,?,?)",array($nom , $prenom , $pseudo , $email ,  $mdpcrypte ));
-        
+
+        $req = executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($nom , $prenom , $pseudo , $email ,  $mdpcrypte,6 ));
+
         //$req = $bdd->prepare("insert into joueur (nom,prenom,pseudo,email,motDePasse) values (?,?,?,?,?)");
         //$req->execute(array($nom , $prenom , $pseudo , $email ,  $mdpcrypte ));
 
 
 
-
-       
-
         if ($req){
-             
+
             header("Location: connexion_front.php?reussi=inscription");
-        
 
-
-            
-
-            
-    
         } else {
 
-            header("Location: inscription_front.php?error=erreur"); 
-            
-    
+            header("Location: inscription_front.php?error=erreur");
+
         }
-    
-    
-
-
 
       }
 
