@@ -23,10 +23,11 @@
         <ol>
             <li>Nombre actuel <?php echo $name[$type]; ?> :
                 <?php
-                    $list = ['dollar' => 'nArgent', 'electricity' => 'nElec', 'iron' => 'nFer', 'oil' => 'nPetrole', 'uranium' => 'nUranium'];
+                    $list = ['dollar' => 'numeroArgent', 'electricity' => 'nombreElec', 'iron' => 'nombreFer', 'oil' => 'nombrePetrole', 'uranium' => 'nombreUranium'];
                     $req = "SELECT ".$list[$type]." FROM `joueur` WHERE idJoueur = ?;";
-                    $res = requestResultToArray(executeSQLRequest($req, array($player)));
-                    echo $res[0][0];
+                    $res = executeSQLRequest($req, array($player));
+                    $res = $res->fetch();
+                    echo $res[0];
                 ?>
             </li>
 
