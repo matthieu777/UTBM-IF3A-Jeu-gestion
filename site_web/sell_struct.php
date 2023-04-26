@@ -8,6 +8,7 @@
 
     $r = "DELETE FROM structure WHERE idStructure = ?";
     executeSQLRequest($r, array($id));
-
-    header("Location: central.php?type=".$type."&name=".$name."&datecrea=".$datecrea."&id=".$id);
 ?>
+<script>
+    window.top.location.reload();
+</script>
