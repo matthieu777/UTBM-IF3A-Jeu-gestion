@@ -102,10 +102,13 @@
         <!-- Display of the centrals/mines -->
 
         <?php
+            include("function_for_bdd.php");
             $idPlayer = 2;
 
+            $r = "SELECT numeroTour FROM map INNER JOIN joueur ON map.idPartie = joueur.numeroPartie WHERE joueur.idJoueur = ?";
+            $tour = requestResultToArray(executeSQLRequest($r,array($idPlayer)))[0][0];
+
             // AFFICHAGE DES CENTRALE
-            include("function_for_bdd.php");
 
             // Get the number of each type of powerplant in the db
             $arr = ["wind_turbine", "solar_panel", "dam", "oil_power_station", "nuclear_plant"];
@@ -115,7 +118,7 @@
 
                 echo '<div class="'.$arr[$i].'">';
 
-                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($j=0; $j < count($data); $j++) {
                     echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
@@ -123,7 +126,6 @@
                 echo "</div>";
             }
         ?>
-
 
         <br>
 
@@ -137,7 +139,7 @@
 
                 echo '<div class="'.$arr[$i].'">';
 
-                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($j=0; $j < count($data); $j++) {
                     echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
@@ -179,8 +181,10 @@
 
         <div class="button_menu">
             <!-- MARKET ET CONTRATS -->
-            <a href="market.php" target="misc_display_iframe"><img src="textures/market.png" class="menu_pic"></a>
-            <a href="contract.php" target="misc_display_iframe"><img src="textures/deal.png" class="menu_pic"></a>
+            <?php
+                echo '<a href="market.php" target="misc_display_iframe"><img src="textures/market.png" class="menu_pic"></a>';
+                echo '<a href="contract.php?idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/deal.png" class="menu_pic"></a>';
+            ?>
         </div>
 
         </div>
