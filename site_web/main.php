@@ -102,17 +102,20 @@
         <!-- Display of the centrals/mines -->
 
         <?php
+            $idPlayer = 2;
+
+            // AFFICHAGE DES CENTRALE
             include("function_for_bdd.php");
 
             // Get the number of each type of powerplant in the db
             $arr = ["wind_turbine", "solar_panel", "dam", "oil_power_station", "nuclear_plant"];
             for ($i=0; $i < count($arr); $i++) {
-                $r = "SELECT idStructure, nom, tourCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
-                $data = requestResultToArray(executeSQLRequest($r, array($arr[$i])));
+                $r = "SELECT idStructure, nom, tourCreation FROM `structure` WHERE idProprietaire = ? AND type = ?;";
+                $data = requestResultToArray(executeSQLRequest($r, array($idPlayer, $arr[$i])));
 
                 echo '<div class="'.$arr[$i].'">';
 
-                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid=1" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($j=0; $j < count($data); $j++) {
                     echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
@@ -125,14 +128,16 @@
         <br>
 
         <?php
+            // AFFICHAGE DES MINES
+
             $arr = ["iron", "oil", "uranium"];
             for ($i=0; $i < count($arr); $i++) {
-                $r = "SELECT idStructure, nom, tourCreation FROM `structure` WHERE idProprietaire = 1 AND type = ?;";
-                $data = requestResultToArray(executeSQLRequest($r, array($arr[$i])));
+                $r = "SELECT idStructure, nom, tourCreation FROM `structure` WHERE idProprietaire = ? AND type = ?;";
+                $data = requestResultToArray(executeSQLRequest($r, array($idPlayer, $arr[$i])));
 
                 echo '<div class="'.$arr[$i].'">';
 
-                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid=1" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($j=0; $j < count($data); $j++) {
                     echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
@@ -162,16 +167,18 @@
 
         <div class="info_button_menu">
             <?php
+                // DETAIL
                 $button_names = ['dollar', 'electricity', 'iron', 'oil', 'uranium'];
 
                 for ($i = 0; $i < count($button_names); $i++) {
-                    echo '<a href="detail.php?type='.$button_names[$i].'" target="misc_display_iframe"><img src="textures/'.$button_names[$i].'.png" class="info_menu_pic"></a>';
+                    echo '<a href="detail.php?type='.$button_names[$i].'&idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/'.$button_names[$i].'.png" class="info_menu_pic"></a>';
                 }
 
             ?>
         </div>
 
         <div class="button_menu">
+            <!-- MARKET ET CONTRATS -->
             <a href="market.php" target="misc_display_iframe"><img src="textures/market.png" class="menu_pic"></a>
             <a href="contract.php" target="misc_display_iframe"><img src="textures/deal.png" class="menu_pic"></a>
         </div>
