@@ -65,7 +65,7 @@
 
             echo "<h2>Rendement : __ WhattMois</h2>";
             echo "<h2>Prix de vente : __ $</h2>";
-            echo "<h2>Date de création (en tour) : $datecrea</h2>";
+            echo "<h2>Date de création : $datecrea-ième tour</h2>";
 
             if ($type != "iron" and $type != "oil" and $type != "uranium") {
                 $i = rand(0, count($random_sentence_pplt[$type])-1);
