@@ -21,13 +21,13 @@
         case 'solar_panel':
             $name = "Panneau solaire";
             break;
-        case 'iron':
+        case 'iron_mine':
             $name = "Mine de fer";
             break;
-        case 'oil':
-            $name = "Pompes à pétrole";
+        case 'oil_mine':
+            $name = "Mine de pétrole";
             break;
-        case 'uranium':
+        case 'uranium_mine':
             $name = "Mine d'uranium";
             break;
         default:
