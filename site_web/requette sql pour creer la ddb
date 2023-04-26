@@ -1,5 +1,4 @@
 DROP TABLE contrat,graphoffre,graphdemande,structure,joueur,map,equilibrage;
-CREATE DATABASE projet_if_energie ;
 CREATE TABLE map(
     idPartie INT NOT NULL AUTO_INCREMENT,
     numeroTour INT NOT NULL DEFAULT 0,
@@ -62,7 +61,7 @@ CREATE TABLE contrat(
 #tour, valeur , joueur
 CREATE TABLE graphOffre(
     tour INT NOT NULL,
-    valeur DECIMAL NOT NULL,
+    valeur DECIMAL(5,2) NOT NULL,
     idJoueur INT NOT NULL,
     PRIMARY KEY(tour, idJoueur),
     FOREIGN KEY(idJoueur) REFERENCES joueur(idJoueur)
@@ -70,7 +69,7 @@ CREATE TABLE graphOffre(
 
 CREATE TABLE graphDemande(
     tour INT NOT NULL,
-    valeur DECIMAL NOT NULL,
+    valeur DECIMAL(5,2) NOT NULL,
     partie INT NOT NULL,
     PRIMARY KEY(tour),
     FOREIGN KEY(partie) REFERENCES map(idPartie)
@@ -106,7 +105,7 @@ INSERT INTO `equilibrage` (`typeStructure`, `coutAchatDollar`, `coutAchatIron`, 
 ('dam', '17', '4', '0', '0', '8', '0', '0', '0', '0', '1', '0', '0', '2', '1', '0', '0'),
 ('uranium_mine', '10', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0'),
 ('iron_plant', '8', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
-('oil_plant', '6', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0'));
+('oil_plant', '6', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 
 tableenergie69
     															
