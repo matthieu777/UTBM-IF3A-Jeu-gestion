@@ -32,36 +32,17 @@
                 ]
             ];
 
-            switch ($type) {
-                case 'wind_turbine':
-                    echo '<h1><a href="change_name.php">'.$name.' (Eolienne)</a></h1>';
-                    break;
-                case 'oil_power_station':
-                    echo '<h1><a href="change_name.php">'.$name.' (Centrale à pétrole)</a></h1>';
-                    break;
-                case 'nuclear_plant':
-                    echo '<h1><a href="change_name.php">'.$name.' (Centrale nucléaire)</a></h1>';
-                    break;
-                case 'dam':
-                    echo '<h1><a href="change_name.php">'.$name.' (Barrage hydroélectrique)</a></h1>';
-                    break;
-                case 'solar_panel':
-                    echo '<h1><a href="change_name.php">'.$name.' (Panneau solaire)</a></h1>';
-                    break;
-                case 'iron':
-                    echo '<h1><a href="change_name.php">'.$name.' (Mine de fer)</a></h1>';
-                    break;
-                case 'oil':
-                    echo '<h1><a href="change_name.php">'.$name.' (Pompes à pétrole)</a></h1>';
-                    break;
-                case 'uranium':
-                    echo '<h1><a href="change_name.php">'.$name." (Mine d'uranium)</a></h1>";
-                    break;
-                default:
-                    echo '<h1><a href="change_name.php">'.$name.' (Eolienne)</a></h1>';
-                    break;
-            }
+            $arr = ["wind_turbine" => "Eolienne",
+                    "oil_power_station" => "Centrale à pétrole",
+                    "nuclear_plant" => "Centrale nucléaire",
+                    "dam" => "Barrage hydroélectrique",
+                    "solar_panel" => "Panneau solaire",
+                    "iron" => "Mine de fer",
+                    "oil" => "Pompe à pétrole",
+                    "uranium" => "Mine d'uranium"
+                ];
 
+            echo '<h1><a href="change_name_front.php?type='.$type.'&id='.$id.'&name='.$name.'&datecrea='.$datecrea.'">'.$name.' ('.$arr[$type].')</a></h1>';
 
             echo "<h2>Rendement : __ WhattMois</h2>";
             echo "<h2>Prix de vente : __ $</h2>";
