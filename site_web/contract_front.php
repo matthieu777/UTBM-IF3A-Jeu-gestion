@@ -25,7 +25,7 @@
 	echo'
 	<form action="contract_back.php?idPlayer='.$idPlayer.'" method="post">
 
-  		<input type="radio" id="dollar" name="ressource1" class="radio-img" value="dollard">
+  		<input type="radio" id="dollar" name="ressource1" class="radio-img" value="dollar">
   		<label for="dollar"><img src="textures/dollar.png" alt="dollar"></label>
 
       <input type="radio" id="electricity" name="ressource1" class="radio-img" value="electricity">
@@ -43,7 +43,7 @@
     <input class="valeur1" type = "text" name = "valeur1" placeholder="Combien en voulez vous ?"/>
     <br>
 
-      <input type="radio" id="dollar2" name="ressource2" class="radio-img" value="dollard">
+      <input type="radio" id="dollar2" name="ressource2" class="radio-img" value="dollar">
       <label for="dollar2"><img src="textures/dollar.png" alt="dollar"></label>
 
       <input type="radio" id="electricity2" name="ressource2" class="radio-img" value="electricity">
