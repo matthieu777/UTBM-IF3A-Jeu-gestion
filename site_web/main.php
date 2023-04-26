@@ -103,7 +103,7 @@
 
         <?php
             include("function_for_bdd.php");
-            $idPlayer = 2;
+            $idPlayer = 1;
 
             $r = "SELECT numeroTour FROM map INNER JOIN joueur ON map.idPartie = joueur.numeroPartie WHERE joueur.idJoueur = ?";
             $tour = requestResultToArray(executeSQLRequest($r,array($idPlayer)))[0][0];
@@ -132,7 +132,7 @@
         <?php
             // AFFICHAGE DES MINES
 
-            $arr = ["iron", "oil", "uranium"];
+            $arr = ["iron_mine", "oil_mine", "uranium_mine"];
             for ($i=0; $i < count($arr); $i++) {
                 $r = "SELECT idStructure, nom, tourCreation FROM `structure` WHERE idProprietaire = ? AND type = ?;";
                 $data = requestResultToArray(executeSQLRequest($r, array($idPlayer, $arr[$i])));
