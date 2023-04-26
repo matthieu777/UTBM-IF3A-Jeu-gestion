@@ -3,6 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title>Market Place</title>
+        <style>
+          img {
+            width : 50px;
+            height : 50px;
+          }
+        </style>
     </head>
 
     <body>
@@ -15,10 +21,15 @@
         $nbr_contrat = count($nbr_contrat);
         //parcours au temps de fois qu'il y ai de contrat pour tous les afficher
         for ($i=1; $i < $nbr_contrat +1 ; $i++) {
-            $donnees = executeSQLRequest("SELECT idVendeur, pseudo , ressource1, valeur1, ressource2, valeur2 FROM contrat INNER JOIN joueur ON idVendeur = joueur.idJoueur WHERE idContrat = $i", array());
+            $donnees = executeSQLRequest("SELECT idVendeur, pseudo , ressource1, valeur1, ressource2, valeur2 FROM contrat INNER JOIN joueur ON idVendeur = joueur.idJoueur WHERE idContrat = ?", array($i));
             $donnees = $donnees->fetch();
             //affichage de la ligne de contrat
-            echo $donnees['pseudo'], ' veut vendre ', $donnees['valeur1'],' ', $donnees['ressource1'], ' en echange de ', $donnees['valeur2'],' ', $donnees['ressource2']; ?><br><?php
+            $button_names = ['dollar', 'electricity', 'iron', 'oil', 'uranium'];
+
+            echo '<button name = '.$i.' type="button_marcket"> '.$donnees['pseudo'].' veut vendre '.$donnees['valeur1'].' <img src="textures/'.$donnees['ressource1'].'.png"> en echange de '.$donnees['valeur2'].' <img src="textures/'.$donnees['ressource2'].'.png">
+
+            </button>'
+            //echo $donnees['pseudo'], ' veut vendre ', $donnees['valeur1'],' ', $donnees['ressource1'], ' en echange de ', $donnees['valeur2'],' ', $donnees['ressource2']; ?><br><?php
           }?>
 
       </p>
