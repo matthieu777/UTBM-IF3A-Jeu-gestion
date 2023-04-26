@@ -40,6 +40,21 @@
                     $prices['dollar'] = 1;
                     $prices['iron'] = 1;
                     break;
+                case 'iron_mine':
+                    echo "<h1>Acheter une mine de fer</h1>";
+                    $prices['dollar'] = 1;
+                    $prices['iron'] = 1;
+                    break;
+                case 'oil_mine':
+                    echo "<h1>Acheter une mine de pétrole</h1>";
+                    $prices['dollar'] = 1;
+                    $prices['iron'] = 1;
+                    break;
+                case 'uranium_mine':
+                    echo "<h1>Acheter une mine d'uranium</h1>";
+                    $prices['dollar'] = 1;
+                    $prices['iron'] = 1;
+                    break;
                 default:
                     echo "<h1>Type inconnu</h1>";
                     break;
