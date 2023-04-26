@@ -11,6 +11,7 @@
             include("function_for_bdd.php");
             $type = $_GET["type"];
             $playerId = $_GET["playerid"];
+            $tour = $_GET["tour"];
 
             $prices = ['dollar' => 0, 'iron' => 0, 'oil' => 0, 'uranium' => 0];
             switch ($type) {
@@ -64,9 +65,8 @@
                 $i++;
             }
 
-            echo '<button type="button" name="button"><a href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'">Acheter</a></button>';
+            echo '<button type="button" name="button"><a href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'&tour='.$tour.'">Acheter</a></button>';
         ?>
 
     </body>
 </html>
-
