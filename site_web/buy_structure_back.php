@@ -7,5 +7,7 @@
     $r = "INSERT INTO `structure` (`idProprietaire`, `type`, `nom`, `tourCreation`) VALUES (?, ?, 'Eolienne 1', '0');";
     executeSQLRequest($r, array("$playerId", "$type"));
 
-    header("Location: buy_structure_front.php?type=".$type."&playerid=".$playerId);
 ?>
+<script>
+    window.top.location.reload();
+</script>
