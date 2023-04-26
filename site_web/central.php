@@ -37,9 +37,9 @@
                     "nuclear_plant" => "Centrale nucléaire",
                     "dam" => "Barrage hydroélectrique",
                     "solar_panel" => "Panneau solaire",
-                    "iron" => "Mine de fer",
-                    "oil" => "Pompe à pétrole",
-                    "uranium" => "Mine d'uranium"
+                    "iron_mine" => "Mine de fer",
+                    "oil_mine" => "Mine de pétrole",
+                    "uranium_mine" => "Mine d'uranium"
                 ];
 
             echo '<h1><a href="change_name_front.php?type='.$type.'&id='.$id.'&name='.$name.'&datecrea='.$datecrea.'">'.$name.' ('.$arr[$type].')</a></h1>';
@@ -48,7 +48,7 @@
             echo "<h2>Prix de vente : __ $</h2>";
             echo "<h2>Date de création : $datecrea-ième tour</h2>";
 
-            if ($type != "iron" and $type != "oil" and $type != "uranium") {
+            if ($type != "iron_mine" and $type != "oil_mine" and $type != "uranium_mine") {
                 $i = rand(0, count($random_sentence_pplt[$type])-1);
                 echo '<h3>'.$random_sentence_pplt[$type][$i].'</h3>';
             }
