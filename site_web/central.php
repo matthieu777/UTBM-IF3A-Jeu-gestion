@@ -34,31 +34,31 @@
 
             switch ($type) {
                 case 'wind_turbine':
-                    echo "<h1>$name (Eolienne)</h1>";
+                    echo '<h1><a href="change_name.php">'.$name.' (Eolienne)</a></h1>';
                     break;
                 case 'oil_power_station':
-                    echo "<h1>$name (Centrale à pétrole)</h1>";
+                    echo '<h1><a href="change_name.php">'.$name.' (Centrale à pétrole)</a></h1>';
                     break;
                 case 'nuclear_plant':
-                    echo "<h1>$name (Centrale nucléaire)</h1>";
+                    echo '<h1><a href="change_name.php">'.$name.' (Centrale nucléaire)</a></h1>';
                     break;
                 case 'dam':
-                    echo "<h1>$name (Barrage hydroélectrique)</h1>";
+                    echo '<h1><a href="change_name.php">'.$name.' (Barrage hydroélectrique)</a></h1>';
                     break;
                 case 'solar_panel':
-                    echo "<h1>$name (Panneau solaire)</h1>";
+                    echo '<h1><a href="change_name.php">'.$name.' (Panneau solaire)</a></h1>';
                     break;
                 case 'iron':
-                    echo "<h1>$name (Mine de fer)</h1>";
+                    echo '<h1><a href="change_name.php">'.$name.' (Mine de fer)</a></h1>';
                     break;
                 case 'oil':
-                    echo "<h1>$name (Pompes à pétroles)</h1>";
+                    echo '<h1><a href="change_name.php">'.$name.' (Pompes à pétrole)</a></h1>';
                     break;
                 case 'uranium':
-                    echo "<h1>$name (Mine d'uranium)</h1>";
+                    echo '<h1><a href="change_name.php">'.$name." (Mine d'uranium)</a></h1>";
                     break;
                 default:
-                    echo "<h1>$name (Undefined Structure)</h1>";
+                    echo '<h1><a href="change_name.php">'.$name.' (Eolienne)</a></h1>';
                     break;
             }
 
