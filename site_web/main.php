@@ -183,7 +183,7 @@
             <!-- MARKET ET CONTRATS -->
             <?php
                 echo '<a href="market.php" target="misc_display_iframe"><img src="textures/market.png" class="menu_pic"></a>';
-                echo '<a href="contract.php?idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/deal.png" class="menu_pic"></a>';
+                echo '<a href="contract_front.php?idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/deal.png" class="menu_pic"></a>';
             ?>
         </div>
 
