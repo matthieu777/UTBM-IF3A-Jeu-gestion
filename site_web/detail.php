@@ -10,7 +10,7 @@
         <?php
             include("function_for_bdd.php");
             $type = $_GET["type"];
-            $player = 1;
+            $player = $_GET["idPlayer"];
         ?>
 
         <h1>Détail du gain
