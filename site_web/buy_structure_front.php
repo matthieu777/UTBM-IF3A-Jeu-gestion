@@ -65,7 +65,7 @@
                 $i++;
             }
 
-            echo '<button type="button" name="button"><a href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'&tour='.$tour.'">Acheter</a></button>';
+            echo '<button type="button" name="button"><a href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'&tour='.$tour.'"><img src="textures/acheter.png"></a></button>';
         ?>
 
     </body>
