@@ -10,5 +10,5 @@
     executeSQLRequest($r, array($id));
 ?>
 <script>
-    window.top.location.reload();
+    top.window.location = 'main.php';
 </script>
