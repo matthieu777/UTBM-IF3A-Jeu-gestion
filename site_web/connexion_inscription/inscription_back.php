@@ -58,8 +58,19 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) &&
       }
 
       else {
+        // creation de la map
+        executeSQLRequest("INSERT INTO `map` () VALUES ();",array());
 
-        $req = executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($nom , $prenom , $pseudo , $email ,  $mdpcrypte,6 ));
+        $req = executeSQLRequest("SELECT MAX(idPartie) FROM map",array());
+        $idPartie = $req->fetch();
+        $liste_prenom_bot = ["Pierre","Robin","Alain"];
+        $liste_nom_bot = ["Kiroule","Moussant","Verse"];
+        $i = rand(0,3);
+        executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($liste_nom_bot[$i] , $liste_prenom_bot[$i] , $liste_prenom_bot[$i].$liste_nom_bot[$i] , $liste_prenom_bot[$i].'.'.$liste_nom_bot[$i]'@gmail.bot' ,  '1234' ,$idPartie["MAX(idPartie)"] ));
+
+        $req = executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($nom , $prenom , $pseudo , $email ,  $mdpcrypte ,$idPartie["MAX(idPartie)"] ));
+
+
 
         //$req = $bdd->prepare("insert into joueur (nom,prenom,pseudo,email,motDePasse) values (?,?,?,?,?)");
         //$req->execute(array($nom , $prenom , $pseudo , $email ,  $mdpcrypte ));
