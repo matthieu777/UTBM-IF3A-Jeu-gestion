@@ -13,51 +13,24 @@
             $playerId = $_GET["playerid"];
             $tour = $_GET["tour"];
 
+
+            $arr = ["wind_turbine" => "une éolienne",
+                    "oil_power_station" => "une centrale à pétrole",
+                    "nuclear_plant" => "une centrale nucléaire",
+                    "dam" => "un barrage hydroélectrique",
+                    "solar_panel" => "un panneau solaire",
+                    "iron_mine" => "une mine de fer",
+                    "oil_mine" => "une mine de pétrole",
+                    "uranium_mine" => "une mine d'uranium"
+                ];
+            echo "<h1>Acheter ".$arr[$type]."</h1>";
+
             $prices = ['dollar' => 0, 'iron' => 0, 'oil' => 0, 'uranium' => 0];
-            switch ($type) {
-                case 'nuclear_plant':
-                    echo "<h1>Acheter une centrale nucléaire</h1>";
-                    $prices['dollar'] = 17;
-                    $prices['iron'] = 4;
-                    break;
-                case 'oil_power_station':
-                    echo "<h1>Acheter une centrale à pétrole</h1>";
-                    $prices['dollar'] = 10;
-                    $prices['iron'] = 3;
-                    break;
-                case 'wind_turbine':
-                    echo "<h1>Acheter une éolienne</h1>";
-                    $prices['dollar'] = 3;
-                    $prices['iron'] = 1;
-                    break;
-                case 'dam':
-                    echo "<h1>Acheter un barrage hydroélectrique</h1>";
-                    $prices['dollar'] = 12;
-                    $prices['iron'] = 2;
-                    break;
-                case 'solar_panel':
-                    echo "<h1>Acheter un panneau solaire</h1>";
-                    $prices['dollar'] = 1;
-                    $prices['iron'] = 1;
-                    break;
-                case 'iron_mine':
-                    echo "<h1>Acheter une mine de fer</h1>";
-                    $prices['dollar'] = 1;
-                    $prices['iron'] = 1;
-                    break;
-                case 'oil_mine':
-                    echo "<h1>Acheter une mine de pétrole</h1>";
-                    $prices['dollar'] = 1;
-                    $prices['iron'] = 1;
-                    break;
-                case 'uranium_mine':
-                    echo "<h1>Acheter une mine d'uranium</h1>";
-                    $prices['dollar'] = 1;
-                    $prices['iron'] = 1;
-                    break;
-                default:
-                    echo "<h1>Type inconnu</h1>";
-                    break;
+            $a = ['dollar', 'iron', 'oil', 'uranium'];
+            $r = "SELECT coutAchatDollar, coutAchatIron, coutAchatOil, coutAchatUranium FROM `equilibrage` WHERE typeStructure = ?";
+            $res = requestResultToArray(executeSQLRequest($r, array($type)));
+            for ($i=0; $i < count($prices); $i++) {
+                $prices[$a[$i]] = $res[0][$i];
             }
 
             echo "<p>Prix :</p>";
@@ -80,7 +53,7 @@
                 $i++;
             }
 
-            echo '<button type="button" name="button"><a href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'&tour='.$tour.'"><img src="textures/acheter.png"></a></button>';
+            echo '<button type="button" name="button"><a href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'&tour='.$tour.'&price_dollar='.$prices['dollar'].'&price_iron='.$prices['iron'].'"><img src="textures/acheter.png"></a></button>';
         ?>
 
     </body>
