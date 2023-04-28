@@ -4,6 +4,8 @@
     $type = $_GET["type"];
     $playerId = $_GET["playerid"];
     $tour = $_GET["tour"];
+    $price_dollar = $_GET["price_dollar"];
+    $price_iron = $_GET["price_iron"];
 
     switch ($type) {
         case 'wind_turbine':
@@ -41,8 +43,10 @@
 
     $r = "INSERT INTO `structure` (`idProprietaire`, `type`, `nom`, `tourCreation`) VALUES (?, ?, ?, ?);";
     executeSQLRequest($r, array($playerId, $type, $name, $tour));
-?>
 
+    $r = "UPDATE joueur SET numeroArgent = numeroArgent - ?, nombreFer = nombreFer - ? WHERE idJoueur = ?";
+    executeSQLRequest($r, array($price_dollar, $price_iron, $playerId));
+?>
 <script>
   top.window.location = 'main.php';
 </script>
