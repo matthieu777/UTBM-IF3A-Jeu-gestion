@@ -134,7 +134,7 @@ if (isset($_POST['deconnexion'])) {
                 echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($j=0; $j < count($data); $j++) {
-                    echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
+                    echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
                 }
                 echo "</div>";
             }
@@ -155,7 +155,7 @@ if (isset($_POST['deconnexion'])) {
                 echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
 
                 for ($j=0; $j < count($data); $j++) {
-                    echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
+                    echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
                 }
                 echo "</div>";
             }
