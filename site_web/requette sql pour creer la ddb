@@ -45,7 +45,7 @@ CREATE TABLE joueur(
     motDePasse VARCHAR(400) NOT NULL,
     numeroPartie INT DEFAULT 0,  
     numeroArgent INT DEFAULT 50,
-    nombreElec INT DEFAULT 0,
+    nombreElec DECIMAL(5,2) DEFAULT 0.00,
     nombreFer INT DEFAULT 10,
     nombrePetrole INT DEFAULT 15,
     nombreUranium INT DEFAULT 5,
