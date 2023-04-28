@@ -42,7 +42,7 @@
     </head>
     <body>
         <?php session_start(); 
-        include "./function_for_bdd.php"; 
+        include "function_for_bdd.php"; 
         $idPlayerrequete= executeSQLRequest("SELECT idJoueur FROM joueur WHERE pseudo = ? ",array($_SESSION['pseudo']));
         $idPlayer = $idPlayerrequete-> fetch();
         $idPlayer = $idPlayer[0]
