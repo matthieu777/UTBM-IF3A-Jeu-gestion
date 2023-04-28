@@ -74,7 +74,7 @@
         </div>
         <div class="nav-barre-droite">
             <div class="nav-barre-droite-gauche">
-                 <button class="nav-barre-boutton" onclick="window.location.href='connexion_inscription/parametre.php'">
+                 <button class="nav-barre-boutton" onclick="window.location.href='connexion_inscription/parametre_front.php'">
                     <span><img class = "nav-barre-boutton-logo" src="textures/logo-profil.png"></span>
                 </button>
             </div>
