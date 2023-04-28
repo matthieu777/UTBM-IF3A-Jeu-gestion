@@ -1,5 +1,27 @@
-DROP TABLE contrat,graphoffre,graphdemande,structure,joueur,map,equilibrage;
-#CREATE DATABASE projet_if_energie ;
+CREATE TABLE equilibrage(
+    typeStructure VARCHAR(25) NOT NULL,
+    coutAchatDollar INT,
+    coutAchatIron INT,
+    coutAchatOil INT,
+    coutAchatUranium INT,
+
+    productionElec INT,
+    productionIron INT,
+    productionOil INT,
+    productionUranium INT,
+
+    coutProductionDollar INT,
+    coutProductionIron INT,
+    coutProductionOil INT,
+    coutProductionUranium INT,
+
+    coutMaintenanceDollar INT,
+    coutMaintenanceIron INT,
+    coutMaintenanceOil INT,
+    coutMaintenanceUranium INT,
+    PRIMARY KEY(typeStructure)
+);
+
 CREATE TABLE map(
     idPartie INT NOT NULL AUTO_INCREMENT,
     numeroTour INT NOT NULL DEFAULT 0,
@@ -38,7 +60,8 @@ CREATE TABLE structure(
     tourCreation INT NOT NULL, #numero du tour a completer en php
     tourMaintenace INT NOT NULL DEFAULT 0,
     PRIMARY KEY (idStructure),
-    FOREIGN KEY(IdProprietaire) REFERENCES joueur(idJoueur)
+    FOREIGN KEY(IdProprietaire) REFERENCES joueur(idJoueur),
+    FOREIGN KEY(type) REFERENCES equilibrage(typeStructure) 
     );
  
 #Contrat; idvendeur, ressource1, valeur1, ressource2, valeur2, periode, duree, debut, acheteur
@@ -76,29 +99,6 @@ CREATE TABLE graphDemande(
     FOREIGN KEY(partie) REFERENCES map(idPartie)
     );
 
-CREATE TABLE equilibrage(
-    typeStructure VARCHAR(25) NOT NULL,
-    coutAchatDollar INT,
-    coutAchatIron INT,
-    coutAchatOil INT,
-    coutAchatUranium INT,
-
-    productionElec INT,
-    productionIron INT,
-    productionOil INT,
-    productionUranium INT,
-
-    coutProductionDollar INT,
-    coutProductionIron INT,
-    coutProductionOil INT,
-    coutProductionUranium INT,
-
-    coutMaintenanceDollar INT,
-    coutMaintenanceIron INT,
-    coutMaintenanceOil INT,
-    coutMaintenanceUranium INT
-    #FOREIGN KEY(typeStructure) REFERENCES structure(type)
-);
 INSERT INTO `equilibrage` (`typeStructure`, `coutAchatDollar`, `coutAchatIron`, `coutAchatOil`, `coutAchatUranium`, `productionElec`, `productionIron`, `productionOil`, `productionUranium`, `coutProductionDollar`, `coutProductionIron`, `coutProductionOil`, `coutProductionUranium`, `coutMaintenanceDollar`, `coutMaintenanceIron`, `coutMaintenanceOil`, `coutMaintenanceUranium`) VALUES ('nuclear_plant', '17', '4', '0', '0', '8', '0', '0', '0', '0', '0', '0', '1', '3', '2', '0', '1'),
 ('oil_power_station', '10', '3', '0', '0', '6', '0', '0', '0', '0', '0', '1', '0', '2', '1', '1', '0'),
 ('wind_turbine', '3', '1', '0', '0', '2', '0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '0'),
@@ -106,4 +106,4 @@ INSERT INTO `equilibrage` (`typeStructure`, `coutAchatDollar`, `coutAchatIron`, 
 ('dam', '17', '4', '0', '0', '8', '0', '0', '0', '0', '1', '0', '0', '2', '1', '0', '0'),
 ('uranium_mine', '10', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0'),
 ('iron_plant', '8', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
-('oil_plant', '6', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0'));
+('oil_plant', '6', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0');
