@@ -1,3 +1,6 @@
+DROP TABLE contrat,graphoffre,graphdemande,structure,joueur,map,equilibrage;
+#CREATE DATABASE projet_if_energie ;
+
 CREATE TABLE equilibrage(
     typeStructure VARCHAR(25) NOT NULL,
     coutAchatDollar INT,
