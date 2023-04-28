@@ -6,10 +6,26 @@
     </head>
     <body>
         <?php
+            include("function_for_bdd.php");
+
+            function elecProdGaussian(string $type, int $productionElec, int $tour, int $tourCrea){
+                $r = "SELECT coutAchatDollar, coutAchatIron FROM equilibrage WHERE typeStructure = ?;";
+                $res = requestResultToArray(executeSQLRequest($r, array($type)));
+
+                $m = $productionElec;
+                $a = $res[0][0];
+                $b = $res[0][1];
+
+                //f(x) = m*e^(-((1)/(a))(x-b)^(2))+c
+                return $m * exp(-((($tour - $tourCrea) - $b)**2 / ($a * 25)));
+            }
+
+
             $type = $_GET["type"];
             $name = $_GET["name"];
             $id = $_GET['id'];
             $datecrea = $_GET["datecrea"];
+            $tour = $_GET["tour"];
 
             $random_sentence_pplt = [
                 "wind_turbine" => [
@@ -44,7 +60,15 @@
 
             echo '<h1><a href="change_name_front.php?type='.$type.'&id='.$id.'&name='.$name.'&datecrea='.$datecrea.'">'.$name.' ('.$arr[$type].')</a></h1>';
 
-            echo "<h2>Rendement : __ WhattMois</h2>";
+            $r = "SELECT (productionElec + productionIron + productionOil + productionUranium) FROM equilibrage WHERE typeStructure = ?;";
+            $res = requestResultToArray(executeSQLRequest($r, array($type)));
+
+            $prod = $res[0][0];
+            if ($type != "iron_mine" and $type != "uranium_mine" and $type != "oil_mine") {
+                $prod = elecProdGaussian($type, $res[0][0], $tour, $datecrea);
+            }
+
+            echo "<h2>Rendement : ".$prod." WhattMois</h2>";
             echo "<h2>Prix de vente : __ $</h2>";
             echo "<h2>Date de création : $datecrea-ième tour</h2>";
 
