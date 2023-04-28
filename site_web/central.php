@@ -91,7 +91,7 @@
             // Prix de vente
             $r = "SELECT coutAchatDollar FROM equilibrage WHERE typeStructure = ?;";
             $res_prix = requestResultToArray(executeSQLRequest($r, array($type)));
-            $price = 1 + round($res_prix[0][0] * $prod / $res[0][0]);
+            $price = round($res_prix[0][0] * $prod / $res[0][0]);
             echo "<h2>Prix de vente : ".$price." $</h2>";
 
 
