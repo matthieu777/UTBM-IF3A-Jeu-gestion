@@ -66,7 +66,7 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) &&
         $liste_prenom_bot = ["Pierre","Robin","Alain"];
         $liste_nom_bot = ["Kiroule","Moussant","Verse"];
         $i = rand(0,3);
-        executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($liste_nom_bot[$i] , $liste_prenom_bot[$i] , $liste_prenom_bot[$i].$liste_nom_bot[$i] , $liste_prenom_bot[$i].'.'.$liste_nom_bot[$i]'@gmail.bot' ,  '1234' ,$idPartie["MAX(idPartie)"] ));
+        executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($liste_nom_bot[$i] , $liste_prenom_bot[$i] , $liste_prenom_bot[$i].$liste_nom_bot[$i] , $liste_prenom_bot[$i].'.'.$liste_nom_bot[$i].'@gmail.bot' ,  '1234' ,$idPartie["MAX(idPartie)"] ));
 
         $req = executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($nom , $prenom , $pseudo , $email ,  $mdpcrypte ,$idPartie["MAX(idPartie)"] ));
 
