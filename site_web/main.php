@@ -41,8 +41,14 @@
         <link rel="stylesheet" href="style/main.css">
     </head>
     <body>
-        <?php session_start(); ?>
-        <!-- Write CSS -->
+        <?php session_start(); 
+        include "./function_for_bdd.php"; 
+        $idPlayerrequete= executeSQLRequest("SELECT idJoueur FROM joueur WHERE pseudo = ? ",array($_SESSION['pseudo']));
+        $idPlayer = $idPlayerrequete-> fetch();
+        $idPlayer = $idPlayer[0]
+
+        ?>
+        
         <?php
             writeClickableImageCSS("info_menu_pic", 125, 125);
             writeClickableImageCSS("menu_pic", 200, 200);
@@ -68,20 +74,28 @@
         </div>
         <div class="nav-barre-droite">
             <div class="nav-barre-droite-gauche">
-                <button class="nav-barre-boutton" onclick="window.location.href='inscription.php'">
+                 <button class="nav-barre-boutton" onclick="window.location.href='connexion_inscription/parametre.php'">
                     <span><img class = "nav-barre-boutton-logo" src="textures/logo-profil.png"></span>
                 </button>
             </div>
             <div class="nav-barre-droite-droite">
-            <button class="nav-barre-boutton" onclick="window.location.href='acceuil.php'">
+            <form method="POST">
+            <button class="nav-barre-boutton" name="deconnexion">
                     <span><img class = "nav-barre-boutton-logo" src="textures/logo-deconexion.png"></span>
                 </button>
+            </form>
             </div>
         </div>
         </div>
 
 
+<?php
 
+if (isset($_POST['deconnexion'])) { 
+  session_destroy();
+  header('Location: accueil.php?reussi=deconnexion');
+}
+?>
 
 
         <div class="body-main">
@@ -102,8 +116,7 @@
         <!-- Display of the centrals/mines -->
 
         <?php
-            include("function_for_bdd.php");
-            $idPlayer = 1;
+            
 
             $r = "SELECT numeroTour FROM map INNER JOIN joueur ON map.idPartie = joueur.numeroPartie WHERE joueur.idJoueur = ?";
             $tour = requestResultToArray(executeSQLRequest($r,array($idPlayer)))[0][0];
