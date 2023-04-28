@@ -41,8 +41,8 @@
 
     $r = "INSERT INTO `structure` (`idProprietaire`, `type`, `nom`, `tourCreation`) VALUES (?, ?, ?, ?);";
     executeSQLRequest($r, array($playerId, $type, $name, $tour));
-
 ?>
+
 <script>
-    window.top.location.reload();
+  top.window.location = 'main.php';
 </script>
