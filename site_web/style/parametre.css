@@ -1,0 +1,277 @@
+body{
+    background-color: #D9B384;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.nav-barre{
+    background-color: #838C3B;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 8vh;
+    position: fixed;
+    display: flex;
+}
+
+.nav-barre-gauche{
+
+    width: 7vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo_du_jeu_nav{
+    width: 3.5vw;
+
+}
+
+.nav-barre-centre{
+
+    width: 73vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-titre{
+    color: #ededed;
+    font-size: 2.7vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-barre-droite{
+
+    width: 20vw;
+    display: flex;
+}
+
+.nav-barre-droite-gauche{
+
+    width: 8vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-droite-droite{
+
+    width: 8vw;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-boutton{
+    border: solid;
+    border-color:#402813;
+    border-radius: 13px;
+
+    width: 4vw;
+    height: 6vh;
+
+
+    background-color: #A69256;
+    color: #402813;
+    
+    font-size: 1.5vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.nav-barre-boutton:hover{
+    background-color: #c4ac64;
+}
+
+.nav-barre-boutton-logo{
+    height: 4.5vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.body-parametre{
+    margin-top: 12vh;
+
+    width: 92vw;
+    height: 80vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+
+}
+
+
+.body-modif-mdp{
+    width: 40vw;
+    height: 80vh;
+
+    /* From https://css.glass */
+    background: rgba(131, 140, 59, 0.27);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.1px);
+    -webkit-backdrop-filter: blur(9.1px);
+    border: 3px solid rgba(131, 140, 59, 0.38);
+
+
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+
+
+
+    border-radius: 10px;
+}
+
+.body-modif-mdp:hover{
+
+    border: 3px solid #402813;
+
+    }
+
+.box-titre{
+
+    width: 100%;
+    height: 10%;
+}
+
+h1{
+    color: white;
+    margin-left: 5%;
+    font-size: 3vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.box-formulaire-mdp{
+
+ width: 85%;
+ margin-left: 15%;
+ height: 90%;
+
+ display: flex;
+ align-items: start;
+ justify-content: space-evenly;
+ flex-direction: column;
+
+}
+
+.inputmodifmdp{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-around ;
+    
+    width: 90%;
+    height: 7vh;
+
+}
+
+.inputmdptext{
+    display: flex;
+    font-size: 2.2vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #402813;
+}
+
+
+.inputmdpreponse{
+    display: flex;
+        justify-content: center;
+
+        width: 80%;
+
+        margin-left: 10vh;
+        font-size: 1.7vw;
+        border-radius: 5px;
+        border: none;
+}
+
+
+
+
+.boutonentrer{
+
+    display: flex;
+    justify-content: start;
+
+    margin-top: 3vh;
+    width: 100vh;
+    height: 11vh;
+}
+
+.boutonentretext{
+    border: solid;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-color: rgba(184, 199, 70, 0.38);
+    color: #ffffff;
+    border-radius: 5px;
+    width: 25vh;
+    background-color: #838C3B;
+    font-size: 1.4vw;
+    margin-left: 20vw;
+    margin-top: 2vw;
+}
+
+
+
+.boutonentretext:hover{
+    border-color: #402813;
+    color: #402813;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.body-modif-map{
+    width: 40vw;
+    height: 80vh;
+
+    /* From https://css.glass */
+    background: rgba(131, 140, 59, 0.27);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.1px);
+    -webkit-backdrop-filter: blur(9.1px);
+    border: 3px solid rgba(131, 140, 59, 0.38);
+
+
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+
+
+
+    border-radius: 10px;
+}
