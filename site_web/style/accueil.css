@@ -160,3 +160,13 @@ body{
 .logo_du_jeu_bodyaccueil{
     width: 20vw;
 }
+
+
+
+.textereussi{
+    position: absolute;
+    bottom: 0.5%;
+    left: 30%;
+    font-size: 3.8vw;
+    color: red;
+}
