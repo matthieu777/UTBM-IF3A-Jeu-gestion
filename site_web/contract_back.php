@@ -1,48 +1,23 @@
 <?php
-    include("function_for_bdd.php");
 
-    $type = $_GET["type"];
-    $playerId = $_GET["playerid"];
-    $tour = $_GET["tour"];
+include("function_for_bdd.php");
 
-    switch ($type) {
-        case 'wind_turbine':
-            $name = "Eolienne";
-            break;
-        case 'oil_power_station':
-            $name = "Centrale à pétrole";
-            break;
-        case 'nuclear_plant':
-            $name = "Centrale nucléaire";
-            break;
-        case 'dam':
-            $name = "Barrage hydroélectrique";
-            break;
-        case 'solar_panel':
-            $name = "Panneau solaire";
-            break;
-        case 'iron_mine':
-            $name = "Mine de fer";
-            break;
-        case 'oil_mine':
-            $name = "Mine de pétrole";
-            break;
-        case 'uranium_mine':
-            $name = "Mine d'uranium";
-            break;
-        default:
-            $name = "Undefined";
-            break;
-    }
+if(isset($_POST["ressource1"])&& isset($_POST["valeur1"])&& isset($_POST["ressource2"])&& isset($_POST["valeur2"]))
+{
+  session_start();
+  $ressource1 = $_POST["ressource1"];
+  $ressource2 = $_POST["ressource2"];
+  $valeur1 = $_POST["valeur1"];
+  $valeur2 = $_POST["valeur2"];
+  $player = $_GET["idPlayer"];
+  echo $player;
+  echo '<br>';
+  $arr = array($player,$ressource1,$valeur1,$ressource2,$valeur2);
+  echo var_dump($arr);
+  echo '<br>';
 
-    $r = "SELECT COUNT(*) + 1 FROM structure WHERE structure.type = ?";
-    $num = requestResultToArray(executeSQLRequest($r, array($type)))[0][0];
-    $name = $name." ".$num;
+  $req= executeSQLRequest("INSERT INTO `contrat` (`idVendeur`, `ressource1`, `valeur1`, `ressource2`, `valeur2`,`periode`,`duree`) VALUES (?,?,?,?,?,1,1); ",$arr);
 
-    $r = "INSERT INTO `structure` (`idProprietaire`, `type`, `nom`, `tourCreation`) VALUES (?, ?, ?, ?);";
-    executeSQLRequest($r, array($playerId, $type, $name, $tour));
+
+}
 ?>
-
-<script>
-  top.window.location = 'main.php';
-</script>
