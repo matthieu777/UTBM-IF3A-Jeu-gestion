@@ -47,7 +47,19 @@
 
             </div>
         </div>
-
+    
+        <div>
+        <?php
+    if(isset($_GET["reussi"])) {
+        if($_GET["reussi"] == "deconnexion") {
+            echo  "<p class = 'textereussi' >Vous etes bien deconnecté</p>";
+        } else {
+            echo  "<p class = 'textereussi' >La deconnexion à échoué</p>";
+        }
+        }
+        ?>
+    </div>
+            
 
     </div>
 
