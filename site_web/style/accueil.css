@@ -1,0 +1,210 @@
+body{
+    background-color: #D9B384;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+.nav-barre{
+    background-color: #838C3B;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 8vh;
+    position: fixed;
+    display: flex;
+}
+
+.nav-barre-gauche{
+
+    width: 7vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo_du_jeu_nav{
+    width: 3.5vw;
+
+}
+
+.nav-barre-centre{
+
+    width: 53vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-titre{
+    color: #ededed;
+    font-size: 2.7vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-barre-droite{
+
+    width: 40vw;
+    display: flex;
+}
+
+.nav-barre-droite-gauche{
+
+    width: 20vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-barre-droite-droite{
+
+    width: 20vw;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.nav-barre-boutton{
+    border: solid;
+    border-color:#402813;
+    border-radius: 13px;
+
+    width: 17vw;
+    height: 6vh;
+
+
+    background-color: #A69256;
+    color: #402813;
+    
+    font-size: 1.5vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.nav-barre-boutton:hover{
+    background-color: #c4ac64;
+}
+
+
+
+
+
+
+
+
+.body-accueil{
+    margin-top: 12vh;
+
+    width: 88vw;
+    height: 80vh;
+
+    display: flex;
+    
+}
+
+
+
+.body-accueil-gauche{
+
+    width: 44vw;
+}
+
+.body-accueil-gauche-titre{
+    font-size: 3.4vw;
+    color: #402813;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.body-accueil-gauche-texte{
+    margin-left: 2.8vw;
+    margin-top: 12vh;
+
+    color: #ededed;
+    font-size: 2.4vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.body-accueil-droite{
+
+    width: 44vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body-accueil-droite-box-image{
+    background-color: #A69256;
+    width: 45vw;
+    height: 48vh;
+
+    border-radius: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.logo_du_jeu_bodyaccueil{
+    width: 20vw;
+}
+
+
+
+.textereussi{
+    position: absolute;
+    bottom: 0.5%;
+    left: 30%;
+    font-size: 3.8vw;
+    color: red;
+}
+
+
+
+.test{
+    position: absolute;
+    left: 1vw;
+    bottom: 0%;
+    width: 5%;
+
+    animation-duration: 30s;
+    animation-name: mouton;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes mouton {
+    0% {
+      margin-left: 3vw;
+      height: 10%;
+      transform: rotateY(0deg);
+    }
+  
+    49% {
+      margin-left: 93vw;
+      height: 10%;
+      transform: rotateY(0deg);
+    }
+    50%{
+        margin-left: 93vw;
+        height: 10%;
+        transform: rotateY(180deg);
+    }
+    100%{
+        margin-left: 3vw;
+      height: 10%;
+      transform: rotateY(180deg);
+    }
+  }

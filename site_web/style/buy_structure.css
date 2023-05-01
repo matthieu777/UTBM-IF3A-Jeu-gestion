@@ -1,0 +1,80 @@
+h1{
+    color: #402813;
+    margin-left: 2%;
+    font-size: 5vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+
+.ensemble{
+
+    display: flex;
+    align-items: center;
+
+    margin-left: 5%;
+    width: 30vw;
+    height: 13vh;
+    margin-top: 0.5%;
+}
+
+
+
+.box-img{
+
+    height: 100%;
+    width: 30%;
+
+}
+
+
+
+.image{
+    width: 80%;
+    
+}
+
+p{
+    font-size: 3vw;
+    color: white;
+}
+
+.prix{
+    margin-left: 2%;
+}
+
+
+
+
+
+
+
+
+
+.boutton-acheter{
+    border: none;
+    
+    background-color: rgb(59, 85, 59);
+    
+    height: 13vh;
+    width: 15vw;
+    border-radius: 5px;
+
+    position: absolute;
+    margin-left: 70%;
+    margin-top: -10%;
+
+}
+
+.boutton-acheter:hover{
+    border: solid;
+    border-color: #402813;
+}
+
+.texte-boutton-acheter{
+    color: white;
+    font-size: 2vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: none;
+}

@@ -1,0 +1,115 @@
+.titre-mes-centrale{
+    color: #402813;
+    margin-left: 2%;
+    font-size: 5vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.titre-mes-centrale:hover{
+    color: #704722;
+}
+
+h2{
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 5%;
+    font-size: 3.5vw;
+}
+
+h3{
+    color: rgb(68, 68, 68);
+    margin-left: 8%;
+}
+
+
+.sell{
+    border: none;
+    height: 12vh;
+    width: 30vh;
+    background-color: rgb(59, 85, 59);
+    border-radius: 5px;
+
+    margin-top: 0.1% ;
+    margin-left: 75%;
+}
+
+.sell:hover{
+    border: solid;
+    border-color:#402813;
+}
+
+.sell-texte{
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2vw;
+    text-decoration: none;
+}
+
+
+
+
+
+
+.body-changer-nom{
+
+    height: 90vh;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.boutton-changer-nom{
+    border: none;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(59, 85, 59);
+    color: white;
+    height: 13vh;
+    width: 15vw;
+    border-radius: 5px;
+
+}
+
+.boutton-changer-nom:hover{
+    border: solid;
+    border-color: #402813;
+}
+
+.boutton-annuler{
+    border: none;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(59, 85, 59);
+    color: white;
+    height: 13vh;
+    width: 15vw;
+    border-radius: 5px;
+
+}
+.boutton-annuler:hover{
+    border: solid;
+    border-color: #402813;
+}
+
+
+.box-boutton{
+    margin-top: -10%;
+    display: flex;
+    justify-content: space-around;
+    width: 70vw;
+}
+
+.input-nom{
+    border: solid;
+    border-color: #402813;
+    border-radius: 5px;
+    height: 10vh;
+    width: 30vw;
+}
+
+.texte-input-nom{
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3.4vw;
+}
