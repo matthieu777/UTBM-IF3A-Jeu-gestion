@@ -27,7 +27,7 @@ session_start();
     // Enregistrons les informations de date dans des variables
     $seconde = date("s");
     $pseudo = $_SESSION['pseudo'];
-    if($seconde == 59 or $seconde == 19 or $seconde == 39)
+    if($seconde == 59)
     { #pour s'assurer qu'il n'y ai pas plusieurs actualisation la meme seconde
       $req = executeSQLRequest("SELECT numeroTour FROM map INNER JOIN joueur ON map.idPartie = joueur.numeroPartie WHERE pseudo = ?",array($pseudo));
       $tour = $req->fetch();
