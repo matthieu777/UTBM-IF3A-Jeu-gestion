@@ -27,8 +27,6 @@ session_start();
     // Enregistrons les informations de date dans des variables
     $seconde = date("s");
     $pseudo = $_SESSION['pseudo'];
-    echo '<br><br><br><br>';
-    echo $seconde;
     if($seconde == 59 or $seconde == 19 or $seconde == 39)
     { #pour s'assurer qu'il n'y ai pas plusieurs actualisation la meme seconde
       $req = executeSQLRequest("SELECT numeroTour FROM map INNER JOIN joueur ON map.idPartie = joueur.numeroPartie WHERE pseudo = ?",array($pseudo));
@@ -87,7 +85,6 @@ session_start();
       //gestion des graph
       $productionElec = executeSQLRequest("SELECT nombreElec FROM Joueur WHERE pseudo = ?", array($pseudo));
       $productionElec = $productionElec -> fetch();
-      echo var_dump($productionElec["nombreElec"]);
       executeSQLRequest("INSERT INTO graphoffre (tour, valeur, idJoueur) VALUES (?, ?, (SELECT idJoueur FROM joueur WHERE pseudo = ?))", array($tour, $productionElec["nombreElec"], $pseudo));
 
       //recuperation du tour actuel
@@ -102,7 +99,6 @@ session_start();
         sleep(1);
         //la page choisi pour ajouter le tour s'occupe egalement de calculer le graph de demande
         //si c le premier tour, la demande et initialisé a 0
-        echo "tour ", $tour;
         if($tour == 1){
           executeSQLRequest("INSERT INTO graphdemande (tour, valeur, partie) VALUES (?, ?, (SELECT numeroPartie FROM joueur WHERE pseudo = ?))", array($tour, 0, $pseudo));
         }
@@ -111,20 +107,17 @@ session_start();
           //calcul moyenne
           $somme = 0;
           for($i = 0; $i<count($liste_production); $i++){
-            echo var_dump($liste_production[$i]["valeur"]);
             $somme = $somme + $liste_production[$i]["valeur"];
           }
           $moyenne = $somme / count($liste_production);
           $demande_elec = executeSQLRequest("SELECT valeur FROM graphdemande WHERE tour = ? - 1 and partie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?);",array($tour, $pseudo));
-          echo '<br><br>',var_dump($demande_elec);
           $demande_elec = $demande_elec -> fetch();
-          echo var_dump($demande_elec);
 
           $demande_elec = $demande_elec["valeur"] + rand(0, ($moyenne) - $demande_elec["valeur"]);
           executeSQLRequest("INSERT INTO graphdemande (tour, valeur, partie) VALUES (?, ?, (SELECT numeroPartie FROM joueur WHERE pseudo = ?))", array($tour, $demande_elec, $pseudo));
         }
       }
-
+      //remise a 0 de l'elec
       executeSQLRequest("UPDATE joueur SET nombreElec = 0 WHERE joueur.idJoueur = ?; ", array($pseudo));
 
       echo '
