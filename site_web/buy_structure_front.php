@@ -47,7 +47,7 @@
                 $i++;
             }
 
-            echo '<button class = boutton-acheter type="button" name="button"><a class = texte-boutton-acheter type="button" href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'&tour='.$tour.'&price_dollar='.$prices['dollar'].'&price_iron='.$prices['iron'].'">Acheter</a></button>';
+            echo '<button class = boutton-acheter type="button" name="button"><a class = texte-boutton-acheter type="button" href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'&tour='.$tour.'&price_dollar='.$prices['dollar'].'&price_iron='.$prices['iron'].'&price_oil='.$prices['oil'].'&price_uranium='.$prices['uranium'].'">Acheter</a></button>';
         ?>
 
     </body>
