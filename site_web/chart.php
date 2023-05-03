@@ -54,7 +54,7 @@
 					type: "line",
 					name: "Energie produite",
 					markerSize: 0,
-					toolTipContent: "Temperature: {x} °C <br>{name}: {y} mPa.s",
+					toolTipContent: "Mois {x} <br>{name}: {y} WhattMois",
 					showInLegend: true,
 					dataPoints: <?php echo json_encode($dataPointsEnergyProduced, JSON_NUMERIC_CHECK); ?>
 				},{
@@ -62,12 +62,14 @@
 					axisYType: "secondary",
 					name: "Energie demandée",
 					markerSize: 0,
-					toolTipContent: "Temperature: {x} °C <br>{name}: {y} g/cm³",
+					toolTipContent: "Mois {x} <br>{name}: {y} WhattMois",
 					showInLegend: true,
 					dataPoints: <?php echo json_encode($dataPointsEnergyAsked, JSON_NUMERIC_CHECK); ?>
 				}]
 			});
             chart.render();
+			chart.axisY2[0].set("minimum", chart.axisY[0].get("minimum"), false);
+			chart.axisY2[0].set("maximum", chart.axisY[0].get("maximum"));
 
         }
         </script>
