@@ -1,7 +1,7 @@
 <?php
 	include("function_for_bdd.php");
 
-	$idPlayer = 1;
+	$idPlayer = $_GET["idPlayer"];
 	$r = "SELECT tour, valeur FROM `graphoffre` WHERE idJoueur = ?";
 	$points = requestResultToArray(executeSQLRequest($r, array($idPlayer)));
 
@@ -22,12 +22,12 @@
         window.onload = function () {
 
             var chart = new CanvasJS.Chart("chartContainer", {
-            	animationEnabled: true,
+            	animationEnabled: false,
 				backgroundColor: "rgba(214, 217, 217, 0.3)",
-				
+
             	title:{
             		text: "Courbe d'offre de l'énergie"
-					
+
             	},
             	axisX:{
             		title: "Mois"
@@ -46,7 +46,7 @@
             		toolTipContent: "Mois: {x} <br>{name}: {y} WhattMois",
             		dataPoints: <?php echo json_encode($dataPointsEnergy, JSON_NUMERIC_CHECK); ?>
             	}]
-				
+
             });
             chart.render();
 
