@@ -11,6 +11,7 @@
         $name = $_GET["name"];
         $id = $_GET['id'];
         $datecrea = $_GET["datecrea"];
+        $tour = $_GET["tour"];
 
         echo '
             <form class=body-changer-nom method="post" action="change_name_back.php?type='.$type.'&id='.$id.'&datecrea='.$datecrea.'">
@@ -29,7 +30,7 @@
     echo '
     <script type="text/javascript">
         function goBack(){
-            window.location.assign("central.php?type='.$type.'&id='.$id.'&name='.$name.'&datecrea='.$datecrea.'");
+            window.location.assign("central.php?type='.$type.'&id='.$id.'&name='.$name.'&datecrea='.$datecrea.'&tour='.$tour.'");
         }
     </script>'
 ?>
