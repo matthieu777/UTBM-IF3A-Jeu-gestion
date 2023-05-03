@@ -42,25 +42,26 @@ session_start();
 
       //teste puis ajout du fer
       if($valeurs_restant_map[0]["fer"] >= $valeurs_production_joueur[0]["fer"]){
-        executeSQLRequest("UPDATE joueur SET nombreFer = nombreFer + (SELECT SUM(productionIron) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type ) where idJoueur = (SELECT idJoueur FROM joueur WHERE pseudo = ?)", array($pseudo));
-        executeSQLRequest("UPDATE map SET ferRestant = ferRestant - (SELECT SUM(ProductionIron) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type WHERE idProprietaire = (SELECT idJoueur FROM joueur WHERE pseudo = ?)) where idPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?)",array($pseudo, $pseudo));
+        executeSQLRequest("UPDATE joueur SET nombreFer = nombreFer + (SELECT COALESCE(SUM(productionIron),0) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type where idJoueur = (SELECT idJoueur FROM joueur WHERE pseudo = ?) ) where idJoueur = (SELECT idJoueur FROM joueur WHERE pseudo = ?)", array($pseudo, $pseudo));
+        executeSQLRequest("UPDATE map SET ferRestant = ferRestant - (SELECT COALESCE(SUM(ProductionIron),0) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type WHERE idProprietaire = (SELECT idJoueur FROM joueur WHERE pseudo = ?)) where idPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?)",array($pseudo, $pseudo));
       }
 
       //teste puis ajout du petrole
       if($valeurs_restant_map[0]["petrole"] >= $valeurs_production_joueur[0]["petrole"]){
-        executeSQLRequest("UPDATE joueur SET nombrePetrole = nombrePetrole + (SELECT SUM(productionOil) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type ) where idJoueur = (SELECT idJoueur FROM joueur WHERE pseudo = ?)", array($pseudo));
-        executeSQLRequest("UPDATE map SET petroleRestant = petroleRestant - (SELECT SUM(ProductionOil) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type WHERE idProprietaire = (SELECT idJoueur FROM joueur WHERE pseudo = ?)) where idPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?)",array($pseudo, $pseudo));
+        executeSQLRequest("UPDATE joueur SET nombrePetrole = nombrePetrole + (SELECT COALESCE(SUM(productionOil),0) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type where idJoueur = (SELECT idJoueur FROM joueur WHERE pseudo = ?) ) where idJoueur = (SELECT idJoueur FROM joueur WHERE pseudo = ?)", array($pseudo, $pseudo));
+        executeSQLRequest("UPDATE map SET petroleRestant = petroleRestant - (SELECT COALESCE(SUM(ProductionOil),0) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type WHERE idProprietaire = (SELECT idJoueur FROM joueur WHERE pseudo = ?)) where idPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?)",array($pseudo, $pseudo));
       }
 
       //teste puis ajout du uranium
       if($valeurs_restant_map[0]["uranium"] >= $valeurs_production_joueur[0]["uranium"]){
-        executeSQLRequest("UPDATE joueur SET nombreUranium = nombreUranium + (SELECT SUM(productionUranium) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type ) where idJoueur = (SELECT idJoueur FROM joueur WHERE pseudo = ?)", array($pseudo));
-        executeSQLRequest("UPDATE map SET uraniumRestant = uraniumRestant - (SELECT SUM(productionUranium) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type WHERE idProprietaire = (SELECT idJoueur FROM joueur WHERE pseudo = ?)) where idPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?)",array($pseudo, $pseudo));
+        executeSQLRequest("UPDATE joueur SET nombreUranium = nombreUranium + (SELECT COALESCE(SUM(productionUranium),0) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type where idJoueur = (SELECT idJoueur FROM joueur WHERE pseudo = ?)) where idJoueur = (SELECT idJoueur FROM joueur WHERE pseudo = ?)", array($pseudo, $pseudo));
+        executeSQLRequest("UPDATE map SET uraniumRestant = uraniumRestant - (SELECT COALESCE(SUM(productionUranium),0) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type WHERE idProprietaire = (SELECT idJoueur FROM joueur WHERE pseudo = ?)) where idPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?)",array($pseudo, $pseudo));
       }
 
       //recuperation de la liste des id de toutes structures du joueur
       $liste_id_structure = requestResultToArray(executeSQLRequest("SELECT idStructure FROM structure WHERE idProprietaire = (SELECT idJoueur FROM joueur WHERE pseudo = ?);", array($pseudo)));
       //parcours chaques structures une par une pour soustraire les cout de productions et ajouter l'electricite
+
       for($i = 0; $i<count($liste_id_structure); $i++){
 
         // recupere les ressources du joueur pour le comparer avec se qu'il va utililier
@@ -118,7 +119,7 @@ session_start();
         }
       }
       //remise a 0 de l'elec
-      executeSQLRequest("UPDATE joueur SET nombreElec = 0 WHERE joueur.idJoueur = ?; ", array($pseudo));
+      executeSQLRequest("UPDATE joueur SET nombreElec = 0 WHERE pseudo = ?; ", array($pseudo));
 
       echo '
       <script type="text/javascript">
