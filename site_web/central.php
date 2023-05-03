@@ -62,7 +62,7 @@
 
 
             // Nom de la structure
-            echo '<h1 ><a class ="titre-mes-centrale" href="change_name_front.php?type='.$type.'&id='.$id.'&name='.$name.'&datecrea='.$datecrea.'">'.$name.' ('.$arr[$type].')</a></h1>';
+            echo '<h1 ><a class ="titre-mes-centrale" href="change_name_front.php?type='.$type.'&id='.$id.'&name='.$name.'&datecrea='.$datecrea.'&tour='.$tour.'">'.$name.' ('.$arr[$type].')</a></h1>';
 
 
             // Rendement par mois
