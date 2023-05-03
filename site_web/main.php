@@ -104,11 +104,9 @@ if (isset($_POST['deconnexion'])) {
 
 
         <div class="body-main-gauche">
-
-            <iframe class="graphe" id="graph_iframe" name="graph_iframe" src="chart.php" ></iframe>
-
-
-
+            <?php
+                echo '<iframe class="graphe" id="graph_iframe" name="graph_iframe" src="chart.php?idPlayer='.$idPlayer.'" ></iframe>';
+            ?>
         <div class="body-main-gauche-bas">
 
 
