@@ -50,8 +50,7 @@
         ?>
 
         <?php
-            writeClickableImageCSS("info_menu_pic", 125, 125);
-            writeClickableImageCSS("menu_pic", 200, 200);
+
 
             writeClickableImageCSS("mines_pic", 65, 65);
 
@@ -184,34 +183,33 @@ if (isset($_POST['deconnexion'])) {
 
 <!-- partie à droit -->
 
-    <div class="body-main-droite">
+   <div class="body-main-droite">
 
         <!-- Display of the button menu -->
 
         <div class="body-main-droite-box-boutton">
 
-        <div class="info_button_menu">
+        <div class="barre_button_menu_gauche">
             <?php
                 // DETAIL
                 $button_names = ['dollar', 'electricity', 'iron', 'oil', 'uranium'];
 
                 for ($i = 0; $i < count($button_names); $i++) {
-                    echo '<a href="detail.php?type='.$button_names[$i].'&idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/'.$button_names[$i].'.png" class="info_menu_pic"></a>';
+                    echo '<a href="detail.php?type='.$button_names[$i].'&idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/'.$button_names[$i].'.png" class="img_barre_menu"></a>';
                 }
 
             ?>
         </div>
 
-        <div class="button_menu">
+        <div class="barre_button_menu_droite">
             <!-- MARKET ET CONTRATS -->
             <?php
-                echo '<a href="market_front.php?idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/market.png" class="menu_pic"></a>';
-                echo '<a href="contract_front.php?idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/deal.png" class="menu_pic"></a>';
+                echo '<a href="market_front.php?idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/market.png" class="img_barre_menu_market"></a>';
+                echo '<a href="contract_front.php?idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/deal.png" class="img_barre_menu_contract"></a>';
             ?>
         </div>
 
         </div>
-
 
 
         <!-- Display of the subpage handling every miscellaneous displays -->
