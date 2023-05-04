@@ -157,7 +157,7 @@ body{
 }
 
 
-.logo_du_jeu_bodyaccueil{
+.logo_du_jeu_odyaccueil{
     width: 20vw;
 }
 
@@ -170,41 +170,3 @@ body{
     font-size: 3.8vw;
     color: red;
 }
-
-
-
-.test{
-    position: absolute;
-    left: 1vw;
-    bottom: 0%;
-    width: 5%;
-
-    animation-duration: 30s;
-    animation-name: mouton;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-@keyframes mouton {
-    0% {
-      margin-left: 3vw;
-      height: 10%;
-      transform: rotateY(0deg);
-    }
-  
-    49% {
-      margin-left: 93vw;
-      height: 10%;
-      transform: rotateY(0deg);
-    }
-    50%{
-        margin-left: 93vw;
-        height: 10%;
-        transform: rotateY(180deg);
-    }
-    100%{
-        margin-left: 3vw;
-      height: 10%;
-      transform: rotateY(180deg);
-    }
-  }
