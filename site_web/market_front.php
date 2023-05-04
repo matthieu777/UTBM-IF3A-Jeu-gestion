@@ -3,17 +3,13 @@
     <head>
         <meta charset="utf-8">
         <title>Market Place</title>
-        <style>
-          img {
-            width : 50px;
-            height : 50px;
-          }
-        </style>
+        <link rel="stylesheet" href="style/market.css">
+
     </head>
 
     <body>
-        <h1>Market Place</h1>
-        <p>
+        <h1><u>Market Place</u></h1>
+        <div class="box-marcher-contract">
         <?php
             include("function_for_bdd.php");
 
@@ -27,11 +23,11 @@
                 $res = requestResultToArray($donnees);
                 if (count($res) != 0){
                     //affichage de la ligne de contrat
-                    echo '<button name = '.$i.' type="button_market" OnClick="GoToBack('.$id_contrat[$i][0].','.$idPlayer.')"> '.$res[0][1].' veut vendre '.$res[0][3].' <img src="textures/'.$res[0][2].'.png"> en echange de '.$res[0][5].' <img src="textures/'.$res[0][4].'.png"></button>';
+                    echo '<button class = textemarket name = '.$i.' type="button_market" OnClick="GoToBack('.$id_contrat[$i][0].','.$idPlayer.')"> '.$res[0][1].' veut vendre '.$res[0][3].' <img src="textures/'.$res[0][2].'.png"> en echange de '.$res[0][5].' <img src="textures/'.$res[0][4].'.png"></button>';
                 }
             }
         ?>
-        </p>
+        </div>
 
         <?php // si il n'y a pas de contrat
           if(count($id_contrat) == 0){
@@ -46,3 +42,4 @@
         window.location = "market_back.php?idContrat=" + idContrat + "&idPlayer=" + idPlayer;
     }
 </script>
+
