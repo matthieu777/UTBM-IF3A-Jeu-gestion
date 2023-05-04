@@ -34,7 +34,10 @@ session_start();
       $tour = $tour["numeroTour"];
       sleep(1);
       $tour = $tour + 1;
-      //executeSQLRequest("INSERT INTO `contrat` (`idVendeur`, `ressource1`, `valeur1`, `ressource2`, `valeur2`,`periode`,`duree`) VALUES (?,?,?,?,?,1,1); ",array());
+      $idjoueur = requestResultToArray(executeSQLRequest("SELECT idJoueur FROM joueur WHERE email LIKE '%@gmail.bot' AND numeroPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?) ",array($pseudo)));
+      $r = rand(0, count($idjoueur)-1);
+      $listeressource = ['iron', 'oil', 'uranium', 'dollar', 'electricity'];
+      executeSQLRequest("INSERT INTO `contrat` (`idVendeur`, `ressource1`, `valeur1`, `ressource2`, `valeur2`,`periode`,`duree`) VALUES (?,?,?,?,?,1,1); ",array($idjoueur[0][$r], $listeressource[rand(0,4)], rand(2,10), $listeressource[rand(0,4)], rand(1,9)));
 
       //recuperation des ressources
       $valeurs_restant_map = requestResultToArray(executeSQLRequest("SELECT ferRestant AS fer , petroleRestant AS petrole, uraniumRestant AS uranium FROM map WHERE idPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?)", array($pseudo)));
