@@ -46,7 +46,7 @@
             
             ?>
 
-                <input class="boutonentre" type="submit" value ="Valider" onclick="window.location.href='../main.php'">
+                <input class="boutonentre" type="submit" value ="Valider" onclick="window.location.href='connexion.php'">
             </div>
             <form method="post">
             <div class="ensemble_partie_changer">
