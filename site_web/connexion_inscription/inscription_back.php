@@ -83,8 +83,8 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) &&
 
 
         if ($req){
-
-            header("Location: connexion_front.php?reussi=inscription");
+            header("Location: choix_partie.php?pseudo=".$pseudo);
+            
 
         } else {
 
