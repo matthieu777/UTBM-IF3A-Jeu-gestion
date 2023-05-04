@@ -41,14 +41,14 @@
         <link rel="stylesheet" href="style/main.css">
     </head>
     <body>
-        <?php session_start(); 
-        include "function_for_bdd.php"; 
+        <?php session_start();
+        include "function_for_bdd.php";
         $idPlayerrequete= executeSQLRequest("SELECT idJoueur FROM joueur WHERE pseudo = ? ",array($_SESSION['pseudo']));
         $idPlayer = $idPlayerrequete-> fetch();
         $idPlayer = $idPlayer[0]
 
         ?>
-        
+
         <?php
             writeClickableImageCSS("info_menu_pic", 125, 125);
             writeClickableImageCSS("menu_pic", 200, 200);
@@ -91,7 +91,7 @@
 
 <?php
 
-if (isset($_POST['deconnexion'])) { 
+if (isset($_POST['deconnexion'])) {
   session_destroy();
   header('Location: accueil.php?reussi=deconnexion');
 }
@@ -114,7 +114,7 @@ if (isset($_POST['deconnexion'])) {
         <!-- Display of the centrals/mines -->
 
         <?php
-            
+
 
             $r = "SELECT numeroTour FROM map INNER JOIN joueur ON map.idPartie = joueur.numeroPartie WHERE joueur.idJoueur = ?";
             $tour = requestResultToArray(executeSQLRequest($r,array($idPlayer)))[0][0];
@@ -128,7 +128,7 @@ if (isset($_POST['deconnexion'])) {
                 $data = requestResultToArray(executeSQLRequest($r, array($idPlayer, $arr[$i])));
 
 
-                
+
                 echo '<div  class="'.$arr[$i].'">';
 
                 echo '<div  class="box-mes-usine-gauche">';
@@ -138,9 +138,9 @@ if (isset($_POST['deconnexion'])) {
 
                 echo '<div  class="box-usine-mes-usine-gauche">';
                 for ($j=0; $j < count($data); $j++) {
-                    
+
                     echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
-                   
+
                 }
                 echo '</div> ';
 
@@ -154,7 +154,7 @@ if (isset($_POST['deconnexion'])) {
 
         <?php
             // AFFICHAGE DES MINES
-            
+
             $arr = ["iron_mine", "oil_mine", "uranium_mine"];
             for ($i=0; $i < count($arr); $i++) {
                 $r = "SELECT idStructure, nom, tourCreation FROM `structure` WHERE idProprietaire = ? AND type = ?;";
@@ -205,7 +205,7 @@ if (isset($_POST['deconnexion'])) {
         <div class="button_menu">
             <!-- MARKET ET CONTRATS -->
             <?php
-                echo '<a href="market.php" target="misc_display_iframe"><img src="textures/market.png" class="menu_pic"></a>';
+                echo '<a href="market_front.php?idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/market.png" class="menu_pic"></a>';
                 echo '<a href="contract_front.php?idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/deal.png" class="menu_pic"></a>';
             ?>
         </div>
