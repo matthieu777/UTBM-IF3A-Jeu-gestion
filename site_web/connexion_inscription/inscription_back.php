@@ -63,10 +63,15 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) &&
 
         $req = executeSQLRequest("SELECT MAX(idPartie) FROM map",array());
         $idPartie = $req->fetch();
+        $nombrejoueur["COUNT(*)"] =1;
         $liste_prenom_bot = ["Pierre","Robin","Alain"];
         $liste_nom_bot = ["Kiroule","Moussant","Verse"];
-        $i = rand(0,2);
-        executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($liste_nom_bot[$i] , $liste_prenom_bot[$i] , $liste_prenom_bot[$i].$liste_nom_bot[$i] , $liste_prenom_bot[$i].'.'.$liste_nom_bot[$i].'@gmail.bot' ,  '1234' ,$idPartie["MAX(idPartie)"] ));
+        while ($nombrejoueur["COUNT(*)"] == 1) {
+          $r = rand(0,2);
+          $req = executeSQLRequest("SELECT COUNT(*) FROM joueur WHERE pseudo = ?", array($liste_prenom_bot[$r].$liste_nom_bot[$r]));
+          $nombrejoueur = $req -> fetch();
+        }
+        executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($liste_nom_bot[$r] , $liste_prenom_bot[$r] , $liste_prenom_bot[$r].$liste_nom_bot[$r] , $liste_prenom_bot[$r].'.'.$liste_nom_bot[$r].'@gmail.bot' ,  '1234' ,$idPartie["MAX(idPartie)"] ));
 
         $req = executeSQLRequest("insert into joueur (nom,prenom,pseudo,email,motDePasse,numeroPartie) values (?,?,?,?,?,?)",array($nom , $prenom , $pseudo , $email ,  $mdpcrypte ,$idPartie["MAX(idPartie)"] ));
 
