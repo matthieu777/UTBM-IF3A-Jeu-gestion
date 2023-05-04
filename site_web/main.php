@@ -1,36 +1,3 @@
-<!-- FUNCTIONS (you can't see the code its in php :-) )-->
-
-<!-- CSS related functions -->
-<?php
-    function writeClickableImageCSS(string $class, int $height, int $width)
-    {
-        echo '<style>
-                .'.$class.'{
-                    height: '.$height.'px;
-                    width: '.$width.'px;
-                    object-fit: contain;
-                }
-            </style>';
-    }
-
-    function writeButtonMenuCSS(string $class, int $left, int $top){
-        echo '<style>
-                .'.$class.'{
-                    left: '.$left.'%;
-                    top: '.$top.'%
-                }
-            </style>';
-    }
-
-    function writeIframeCSS(string $id, int $right, int $top){
-        echo '<style>
-                #'.$id.'{
-                    right: '.$right.'%;
-                    top: '.$top.'%
-                }
-            </style>';
-    }
-?>
 
 <!-- CODE -->
 <!DOCTYPE html>
@@ -49,17 +16,6 @@
 
         ?>
 
-        <?php
-
-
-            writeClickableImageCSS("mines_pic", 65, 65);
-
-
-            writeButtonMenuCSS("info_button_menu",27,1);
-            writeButtonMenuCSS("button_menu",70,0);
-
-
-        ?>
 
 
         <!-- Barre des boutons de déconnexion etc... -->
@@ -183,7 +139,7 @@ if (isset($_POST['deconnexion'])) {
 
 <!-- partie à droit -->
 
-   <div class="body-main-droite">
+    <div class="body-main-droite">
 
         <!-- Display of the button menu -->
 
@@ -210,6 +166,7 @@ if (isset($_POST['deconnexion'])) {
         </div>
 
         </div>
+
 
 
         <!-- Display of the subpage handling every miscellaneous displays -->
