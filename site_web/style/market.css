@@ -1,0 +1,65 @@
+img {
+    width : 7vw;
+    height: 12.5vh;
+
+  }
+
+h1{
+        color: #402813;
+        margin-left: 2%;
+        font-size: 5vw;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+
+ h3{
+    color: #ffffff;
+    margin-left: 2%;
+    font-size: 4vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+
+.box-marcher-contract{
+
+  width: 95vw;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  overflow-y: auto;
+}
+
+
+.box-marcher-contract::-webkit-scrollbar {
+  width: 1.7vw;
+
+
+  background-color: #A69256;
+}
+
+.box-marcher-contract::-webkit-scrollbar-thumb {
+  background-color: #736F3D;
+  border-radius: 15px;
+}
+
+
+.textemarket{
+    width: 85vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #736F3D;
+    border-radius: 5px;
+
+    margin-top: 2%;
+    box-shadow: 10px 5px 5px #7e7a43;
+    border: none;
+    color: white;
+    font-size: 2.5vw;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+
+ 
