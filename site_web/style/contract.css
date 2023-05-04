@@ -1,0 +1,92 @@
+h2{
+    color: #402813;
+    margin-left: 4%;
+    font-size: 3vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.formulairecontract{
+    margin-top: -1%;
+
+}
+
+.radio:checked + label img {
+    border: 4px solid #ffffff;
+    border-radius: 5px;
+    padding-left:1vw;
+    padding-right:1vw;
+    background: rgba(90, 96, 44, 0.67);
+    backdrop-filter: blur(9.1px);
+    -webkit-backdrop-filter: blur(9.1px);
+
+    width : 9vw;
+    height : 16.5vh;
+}
+
+.radio{
+    display: none;
+}
+
+.ensemble_image{
+
+    display: flex;
+    height: 18vh;
+    justify-content: space-around;
+}
+
+img {
+margin-left: 5%;
+width : 7.5vw;
+height : 15vh;
+
+}
+
+
+
+
+.inputensemble{
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+
+    width: 40vw;
+}
+
+p{
+    color: #ffffff;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3vw;
+}
+
+.valeur{
+    height: 4vh;
+    width: 18vw;
+    border-radius: 5px;
+    border: solid;
+    border-color:rgb(59, 85, 59) ;
+}
+
+.boutonentretext{
+    border: none;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(59, 85, 59);
+    color: white;
+    height: 13vh;
+    width: 15vw;
+    border-radius: 5px;
+
+    position: absolute;
+
+    margin-left: 75vw;
+    margin-top: -10vh;
+
+}
+.boutonentretext:hover{
+    border: solid;
+    border-color: #402813;
+}
+
+
+
