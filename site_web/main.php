@@ -107,7 +107,7 @@ if (isset($_POST['deconnexion'])) {
 
         <br>
 
-        <?php
+              <?php
             // AFFICHAGE DES MINES
 
             $arr = ["iron_mine", "oil_mine", "uranium_mine"];
@@ -117,12 +117,22 @@ if (isset($_POST['deconnexion'])) {
 
                 echo '<div class="'.$arr[$i].'">';
 
-                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
+                echo '<div  class="box-mes-usine-gauche">';
+                echo '<div  class="box-plus-mes-usine-gauche">';
 
+
+                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic-haut"></a>';
+                echo "</div>";
+                
+                echo '<div  class="box-usine-mes-usine-gauche">';
                 for ($j=0; $j < count($data); $j++) {
                     echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
                 }
                 echo "</div>";
+
+
+                echo "</div>";
+                echo '</div> ';
             }
         ?>
 
