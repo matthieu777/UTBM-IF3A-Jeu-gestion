@@ -88,7 +88,7 @@ if (isset($_POST['deconnexion'])) {
 
                 echo '<div  class="box-mes-usine-gauche">';
                 echo '<div  class="box-plus-mes-usine-gauche">';
-                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic-haut"></a>';
+                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
                 echo '</div> ';
 
                 echo '<div  class="box-usine-mes-usine-gauche">';
@@ -121,7 +121,7 @@ if (isset($_POST['deconnexion'])) {
                 echo '<div  class="box-plus-mes-usine-gauche">';
 
 
-                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic-haut"></a>';
+                echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
                 echo "</div>";
                 
                 echo '<div  class="box-usine-mes-usine-gauche">';
