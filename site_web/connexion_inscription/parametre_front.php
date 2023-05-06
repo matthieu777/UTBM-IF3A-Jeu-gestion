@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>parametre</title>
     <link rel="stylesheet" href="../style/parametre.css">
 </head>
 <body>
@@ -111,7 +111,15 @@
 
 
         <div class = "body-modif-map">
+            <div class="box-titre">
+            <h1><u>règles du jeu : </u><h1>
+            </div>
+            <p class=regle>Ce jeu est un subtil mélange entre un jeu de gestion et Cookie Clicker. Le but est de maintenir une production électrique supérieure à la demande pour la distribuer à tout le monde. Pour ce faire, vous pouvez acheter différents types de centrales afin de produire de l'énergie ou des mines pour produire des ressources dans le but de fabriquer plus de centrales. Vous pouvez également faire des échanges de ressources avec les autres joueurs en compétitions contre vous.<br><br>
 
+Les centrales ne produisent pas toutes au même rythme, et attention : elles s'usent ! A vous de bien savoir gérer pour éviter de se retrouver des centrales dépassées qui ne produisent plus rien. <br><br>
+
+Bon courage ! 
+ </p>
         </div>
 
 
