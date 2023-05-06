@@ -81,9 +81,8 @@
                         //enleve a joueur les couts de productions de la centrale
                         if($type == 'electricity'){
                           $donnees = requestResultToArray(executeSQLRequest("Select type, tourCreation From structure Where idStructure = ?",array($liste_id_structure[$i][0])));
-                          $req = executeSQLRequest("SELECT numeroTour FROM map INNER JOIN joueur WHERE idJoueur = ?", array($player));
-                          $tour = $req -> fetch();
-                          $ajout_ressources[$type] = $ajout_ressources[$type] + elecProdGaussian($donnees[0]["type"], $tour['numeroTour'], $donnees[0]["tourCreation"]);
+                          $tour = $_GET["tour"];
+                          $ajout_ressources[$type] +=  elecProdGaussian($donnees[0][0], $tour, $donnees[0][1]);
                         }
                         elseif ($type == 'dollar') {
 
