@@ -15,14 +15,15 @@ h1{
 
     margin-left: 5%;
     width: 30vw;
-    height: 13vh;
-    margin-top: 0.5%;
+    height: 17vh;
+    margin-top: -4vh;
+
 }
 
 
 
 .box-img{
-
+    margin-top: 1.5%;
     height: 100%;
     width: 30%;
 
@@ -41,6 +42,7 @@ p{
 }
 
 .prix{
+    margin-top: -2vh;
     margin-left: 2%;
 }
 
@@ -77,4 +79,9 @@ p{
     font-size: 2vw;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-decoration: none;
+}
+
+.erreur{
+    margin-top: -20vh;
+    margin-left: 30vw;
 }
