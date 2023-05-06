@@ -1,0 +1,27 @@
+
+
+h1{
+    margin-left: 3vw;
+    margin-top: 5vh;
+    font-size: 5vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #402813;
+
+}
+
+
+.ensemble_detail{
+    margin-left: 7vw;
+    margin-top: 2vh;
+
+    height: 50vh;
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+
+
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3vw;
+}
