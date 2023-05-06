@@ -15,7 +15,7 @@
 
             $idPlayer = $_GET["idPlayer"];
 
-            $id_contrat = requestResultToArray(executeSQLRequest("SELECT idContrat FROM `contrat`", array()));
+            $id_contrat = requestResultToArray(executeSQLRequest("SELECT idContrat FROM contrat INNER JOIN joueur ON contrat.idVendeur = joueur.idJoueur INNER JOIN map ON joueur.numeroPartie = map.idPartie WHERE numeroPartie = (SELECT numeroPartie FROM joueur WHERE idJoueur = ?) ", array($idPlayer)));
 
             //parcours autant de fois qu'il y a de contrat pour tous les afficher
             for ($i = 0; $i < count($id_contrat); $i++) {
@@ -30,7 +30,7 @@
         </div>
 
         <?php // si il n'y a pas de contrat
-          if(count($id_contrat) == 0){
+        if(count($id_contrat) == 0){
             echo "<h3>Il n'y a aucun contrat pour le moment.</h3>";
           }
         ?>
@@ -42,4 +42,3 @@
         window.location = "market_back.php?idContrat=" + idContrat + "&idPlayer=" + idPlayer;
     }
 </script>
-
