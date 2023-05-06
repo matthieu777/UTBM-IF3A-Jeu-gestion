@@ -150,13 +150,14 @@ body{
   .plus_pic{
     margin-left: 10%;
     margin-right: 5%;
-    width: 60%;
+    width: 40%;
     display: flex;
   }
 
+
   .power_plant_pic{
     margin-right:2% ;
-    width: 14%;
+    width: 20%;
 
   }
 
@@ -190,12 +191,6 @@ body{
 
 
 
-.plus_pic{
-    margin-left: 3%;
-    margin-right: 5%;
-    width: 20%;
-
-  }
 
 
 
