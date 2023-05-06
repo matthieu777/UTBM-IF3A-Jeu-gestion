@@ -11,12 +11,11 @@ if(isset($_POST["ressource1"])&& isset($_POST["valeur1"])&& isset($_POST["ressou
   $valeur2 = $_POST["valeur2"];
   $player = $_GET["idPlayer"];
   echo $player;
-  echo '<br>';
-  $arr = array($player,$ressource1,$valeur1,$ressource2,$valeur2);
-  echo var_dump($arr);
-  echo '<br>';
 
-  $req= executeSQLRequest("INSERT INTO `contrat` (`idVendeur`, `ressource1`, `valeur1`, `ressource2`, `valeur2`,`periode`,`duree`) VALUES (?,?,?,?,?,1,1); ",$arr);
+  $arr = array($player,$ressource1,$valeur1,$ressource2,$valeur2);
+
+
+  $req= executeSQLRequest("INSERT INTO `contrat` (`idVendeur`, `ressource1`, `valeur1`, `ressource2`, `valeur2`) VALUES (?,?,?,?,?); ",$arr);
 
 
 }
