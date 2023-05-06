@@ -16,7 +16,7 @@
     $res = requestResultToArray(executeSQLRequest($r, array($idContrat)));
 
     $r = "SELECT numeroArgent, nombreFer, nombrePetrole, nombreUranium FROM joueur WHERE idJoueur = ?";
-    $ressources = executeSQLRequest($r, array($playerId))->fetch();
+    $ressources = executeSQLRequest($r, array($idPlayer))->fetch();
 
     if($ressources[$arr[$res[0][1]]] >= $res[0][2] and $ressources[$arr[$res[0][3]]] >= $res[0][4]){
         $r = "DELETE FROM contrat WHERE idContrat = ?";
