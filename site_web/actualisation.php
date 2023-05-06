@@ -47,7 +47,7 @@ session_start();
       $table_de_convertion = ['iron' => 8, 'oil' => 6 , 'uranium' => 10, 'dollar' => 1, 'electricity' => 1];
       $listeressource = ['iron', 'oil', 'uranium', 'dollar', 'electricity'];
       $r_valeur2 = round($r_valeur1 * $table_de_convertion[$listeressource[$r_ressouces1]]/ $table_de_convertion[$listeressource[$r_ressouces2]] );
-      executeSQLRequest("INSERT INTO `contrat` (`idVendeur`, `ressource1`, `valeur1`, `ressource2`, `valeur2`) VALUES (?,?,?,?,?); ",array($idjoueur[0][$r_joueur], $listeressource[$r_ressouces1], $r_valeur1, $listeressource[$r_ressouces2], $r_valeur2));
+      executeSQLRequest("INSERT INTO `contrat` (`idVendeur`, `ressource1`, `valeur1`, `ressource2`, `valeur2`) VALUES (?,?,?,?,?); ",array($idjoueur[$r_joueur][0], $listeressource[$r_ressouces1], $r_valeur1, $listeressource[$r_ressouces2], $r_valeur2));
 
       //achat d'un idContrat
       //récuperation de la liste des contrats
