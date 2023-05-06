@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>choix_partie</title>
     <link rel="stylesheet" href="../style/partie.css">
 </head>
 <body>
@@ -46,7 +46,7 @@
             
             ?>
 
-                <input class="boutonentre" type="submit" value ="Valider" onclick="window.location.href='connexion_front.php'">
+                <input class="boutonentre" type="submit" value ="Valider" onclick="window.location.href='connexion_front.php?reussi=inscription'">
             </div>
             <form method="post">
             <div class="ensemble_partie_changer">
