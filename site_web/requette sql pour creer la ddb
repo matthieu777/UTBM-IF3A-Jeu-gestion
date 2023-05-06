@@ -76,13 +76,8 @@ CREATE TABLE contrat(
     valeur1 INT NOT NULL,
     ressource2 VARCHAR(11) NOT NULL,
     valeur2 INT NOT NULL,
-    periode INT NOT NULL,
-    duree INT NOT NULL,
-    debut INT,
-    idAcheteur INT,
     PRIMARY KEY(idContrat),
-    FOREIGN KEY(IdVendeur) REFERENCES joueur(idJoueur),
-    FOREIGN KEY(IdAcheteur) REFERENCES joueur(idJoueur)
+    FOREIGN KEY(IdVendeur) REFERENCES joueur(idJoueur)
     );
 
 #tour, valeur , joueur
