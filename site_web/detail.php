@@ -5,6 +5,7 @@
         <title>
             Détails
         </title>
+        <link rel="stylesheet" href="style/detail.css">
     </head>
     <body>
         <?php
@@ -26,11 +27,12 @@
             $player = $_GET["idPlayer"];
         ?>
 
-        <h1>Détail du gain
+        <h1><u>Détail du gain
             <?php
                 $name = ['dollar' => "d'argent", 'electricity' =>  "d'électricité", 'iron' =>  'de fer', 'oil' =>  'de pétrole', 'uranium' =>  "d'uranium"];
                 echo "$name[$type]";
             ?>
+            </u>
         </h1>
 
                 <?php
@@ -103,7 +105,7 @@
                     }
 
                 ?>
-            <ol>
+             <ol class="ensemble_detail">
             <li>Nombre actuel <?php echo $name[$type]; ?> : <?php echo $ressources_actuel[0];?></li>
             <ol>
                 <li>Mine/Centrales : + <?php if($type == 'electricity'){echo round($ajout_ressources[$type],2);} else{echo $ajout_ressources[$type][0];} ?></li>
