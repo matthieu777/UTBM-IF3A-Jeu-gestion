@@ -54,6 +54,7 @@ session_start();
       $liste_contrat = requestResultToArray(executeSQLRequest("SELECT idVendeur, ressource1, valeur1, ressource2, valeur2, idContrat FROM contrat INNER JOIN joueur ON contrat.idVendeur = joueur.idJoueur INNER JOIN map ON joueur.numeroPartie = map.idPartie WHERE numeroPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?) ", array($pseudo)));
       //choix d'un contrat
       $contrat = $liste_contrat[rand(0,count($liste_contrat)-1)];
+      //f(round($contrat[2] * $table_de_convertion[$listeressource[$contrat[1]]]/ $table_de_convertion[$listeressource[$contrat[3]]] ) + rand(1, 4) > $contrat[4] ){
         executeSQLRequest("DELETE FROM contrat WHERE idContrat = ?", array($contrat[5]));
 
         $arr = [
