@@ -52,7 +52,7 @@
             if ($ressources[0][0] >= $prices['dollar'] and $ressources[0][1] >= $prices['iron'] and $ressources[0][2] >= $prices['oil'] and $ressources[0][3] >= $prices['uranium']) {
                 echo '<button class = boutton-acheter type="button" name="button"><a class = texte-boutton-acheter type="button" href="buy_structure_back.php?type='.$type.'&playerid='.$playerId.'&tour='.$tour.'&price_dollar='.$prices['dollar'].'&price_iron='.$prices['iron'].'&price_oil='.$prices['oil'].'&price_uranium='.$prices['uranium'].'">Acheter</a></button>';
             } else {
-                echo "<p>Vous n'avez pas assez de ressources pour acheter ce bâtiment.</p>";
+                echo "<p class=erreur>Vous n'avez pas assez de ressources pour acheter ce bâtiment.</p>";
             }
         ?>
 
