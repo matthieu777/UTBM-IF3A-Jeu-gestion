@@ -55,8 +55,12 @@
                     //teste puis ajout du fer
                     if($type == 'iron' or $type == 'oil' or $type == 'uranium'){
                       if($valeurs_restant_map[0][$type] >= $valeurs_production_joueur[0][$type]){
-                         $req = executeSQLRequest("SELECT SUM( ".$tab_equilibrage[$type]." ) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type where idProprietaire = ?", array($player));
+                         $req = executeSQLRequest("SELECT COALESCE(SUM( ".$tab_equilibrage[$type]." ),0) FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type where idProprietaire = ?", array($player));
                          $ajout_ressources[$type] = $req -> fetch();
+                      }
+                      else{
+                        //permet que lorsque la map est vide de ressources de mettre quand meme le sous tableau pour eviter les erreurs
+                        $ajout_ressources[$type] = array(0);
                       }
                     }
 
@@ -86,6 +90,7 @@
 
                         }
                         else{
+
                           $req = executeSQLRequest("SELECT ".$tab_cout_production[$type]." FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type WHERE idStructure = ?", array($liste_id_structure[$i][0]));
                           $req = $req -> fetch();
 
@@ -93,6 +98,10 @@
                         }
                       }
                     }
+                    if($type == 'dollar' and $ajout_ressources['dollar'] == 0){
+                      $ajout_ressources['dollar'] = array( 0 => 0);
+                    }
+
                 ?>
             <ol>
             <li>Nombre actuel <?php echo $name[$type]; ?> : <?php echo $ressources_actuel[0];?></li>
