@@ -123,7 +123,7 @@ if (isset($_POST['deconnexion'])) {
 
                 echo '<a href="buy_structure_front.php?type='.$arr[$i].'&playerid='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/plus.png" class="plus_pic"></a>';
                 echo "</div>";
-                
+
                 echo '<div  class="box-usine-mes-usine-gauche">';
                 for ($j=0; $j < count($data); $j++) {
                     echo '<a href="central.php?type='.$arr[$i].'&id='.$data[$j][0].'&name='.$data[$j][1].'&datecrea='.$data[$j][2].'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/'.$arr[$i].'.png" class="power_plant_pic"></a>';
@@ -161,7 +161,7 @@ if (isset($_POST['deconnexion'])) {
                 $button_names = ['dollar', 'electricity', 'iron', 'oil', 'uranium'];
 
                 for ($i = 0; $i < count($button_names); $i++) {
-                    echo '<a href="detail.php?type='.$button_names[$i].'&idPlayer='.$idPlayer.'" target="misc_display_iframe"><img src="textures/'.$button_names[$i].'.png" class="img_barre_menu"></a>';
+                    echo '<a href="detail.php?type='.$button_names[$i].'&idPlayer='.$idPlayer.'&tour='.$tour.'" target="misc_display_iframe"><img src="textures/'.$button_names[$i].'.png" class="img_barre_menu"></a>';
                 }
 
             ?>
