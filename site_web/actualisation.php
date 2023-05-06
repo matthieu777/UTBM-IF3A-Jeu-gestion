@@ -32,16 +32,43 @@ session_start();
       $req = executeSQLRequest("SELECT numeroTour FROM map INNER JOIN joueur ON map.idPartie = joueur.numeroPartie WHERE pseudo = ?",array($pseudo));
       $tour = $req->fetch();
       $tour = $tour["numeroTour"];
+      
       sleep(1);
       $tour = $tour + 1;
+
+
+    //bot
+      //création d'un contrat par les bots
       $idjoueur = requestResultToArray(executeSQLRequest("SELECT idJoueur FROM joueur WHERE email LIKE '%@gmail.bot' AND numeroPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?) ",array($pseudo)));
-      $r = rand(0, count($idjoueur)-1);
+      $r_joueur = rand(0, count($idjoueur)-1);
+      $r_ressouces1 = rand(0,4);
+      $r_ressouces2 = rand(0,4);
+      $r_valeur1 =rand(1,19);
+      $table_de_convertion = ['iron' => 8, 'oil' => 6 , 'uranium' => 10, 'dollar' => 1, 'electricity' => 1];
       $listeressource = ['iron', 'oil', 'uranium', 'dollar', 'electricity'];
-      executeSQLRequest("INSERT INTO `contrat` (`idVendeur`, `ressource1`, `valeur1`, `ressource2`, `valeur2`,`periode`,`duree`) VALUES (?,?,?,?,?,1,1); ",array($idjoueur[0][$r], $listeressource[rand(0,4)], rand(2,10), $listeressource[rand(0,4)], rand(1,9)));
+      $r_valeur2 = round($r_valeur1 * $table_de_convertion[$listeressource[$r_ressouces1]]/ $table_de_convertion[$listeressource[$r_ressouces2]] );
+      executeSQLRequest("INSERT INTO `contrat` (`idVendeur`, `ressource1`, `valeur1`, `ressource2`, `valeur2`) VALUES (?,?,?,?,?); ",array($idjoueur[0][$r_joueur], $listeressource[$r_ressouces1], $r_valeur1, $listeressource[$r_ressouces2], $r_valeur2));
+
+      //achat d'un idContrat
+      //récuperation de la liste des contrats
+      $liste_contrat = requestResultToArray(executeSQLRequest("SELECT idVendeur, ressource1, valeur1, ressource2, valeur2, idContrat FROM contrat INNER JOIN joueur ON contrat.idVendeur = joueur.idJoueur INNER JOIN map ON joueur.numeroPartie = map.idPartie WHERE numeroPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?) ", array($pseudo)));
+      //choix d'un contrat
+      $contrat = $liste_contrat[rand(0,count($liste_contrat)-1)];
+        executeSQLRequest("DELETE FROM contrat WHERE idContrat = ?", array($contrat[5]));
+
+        $arr = [
+            "dollar" => "numeroArgent",
+            "electricity" => "nombreElec",
+            "iron" => "nombreFer",
+            "oil" => "nombrePetrole",
+            "uranium" => "nombreUranium"
+        ];
+
+        executeSQLRequest("UPDATE joueur SET ".$arr[$contrat[3]]." = ".$arr[$contrat[3]]." + ?, ".$arr[$contrat[1]]." = ".$arr[$contrat[1]]." - ? WHERE pseudo = ?", array(intval($contrat[4]), intval($contrat[2]), $pseudo));
 
       //recuperation des ressources
       $valeurs_restant_map = requestResultToArray(executeSQLRequest("SELECT ferRestant AS fer , petroleRestant AS petrole, uraniumRestant AS uranium FROM map WHERE idPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?)", array($pseudo)));
-      $valeurs_production_joueur = requestResultToArray(executeSQLRequest("SELECT SUM(productionIron) AS fer, SUM(productionOil) AS petrole, SUM(productionUranium) AS uranium FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type WHERE idProprietaire = (SELECT idJoueur FROM joueur WHERE pseudo = ?)", array($pseudo)));
+      $valeurs_production_joueur = requestResultToArray(executeSQLRequest("SELECT COALESCE(SUM(productionIron),0) AS fer, COALESCE(SUM(productionOil),0) AS petrole, COALESCE(SUM(productionUranium),0) AS uranium FROM equilibrage INNER JOIN structure on equilibrage.typeStructure = structure.type WHERE idProprietaire = (SELECT idJoueur FROM joueur WHERE pseudo = ?)", array($pseudo)));
 
       //teste puis ajout du fer
       if($valeurs_restant_map[0]["fer"] >= $valeurs_production_joueur[0]["fer"]){
