@@ -32,7 +32,7 @@ session_start();
       $req = executeSQLRequest("SELECT numeroTour FROM map INNER JOIN joueur ON map.idPartie = joueur.numeroPartie WHERE pseudo = ?",array($pseudo));
       $tour = $req->fetch();
       $tour = $tour["numeroTour"];
-      
+
       sleep(1);
       $tour = $tour + 1;
 
@@ -64,7 +64,7 @@ session_start();
             "uranium" => "nombreUranium"
         ];
 
-        executeSQLRequest("UPDATE joueur SET ".$arr[$contrat[3]]." = ".$arr[$contrat[3]]." + ?, ".$arr[$contrat[1]]." = ".$arr[$contrat[1]]." - ? WHERE pseudo = ?", array(intval($contrat[4]), intval($contrat[2]), $pseudo));
+        executeSQLRequest("UPDATE joueur SET ".$arr[$contrat[3]]." = ".$arr[$contrat[3]]." + ?, ".$arr[$contrat[1]]." = ".$arr[$contrat[1]]." - ? WHERE idJoueur = ?", array(intval($contrat[4]), intval($contrat[2]), $contrat[0]));
 
       //recuperation des ressources
       $valeurs_restant_map = requestResultToArray(executeSQLRequest("SELECT ferRestant AS fer , petroleRestant AS petrole, uraniumRestant AS uranium FROM map WHERE idPartie = (SELECT numeroPartie FROM joueur WHERE pseudo = ?)", array($pseudo)));
