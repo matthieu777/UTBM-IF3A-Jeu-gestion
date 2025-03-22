@@ -2,7 +2,7 @@
 
 ### Description
 
-Ce projet a été réalisé dans le cadre de l'UV IF3A durant la 1ère année de prépa intégrée à l'UTBM. Il implémente un jeu de gestion de ressources.
+Ce projet a été réalisé dans le cadre de l'UV IF3A durant la 1er année de prépa intégrée à l'UTBM. Il implémente un jeu de gestion de ressources.
 
 ### Langage
 
